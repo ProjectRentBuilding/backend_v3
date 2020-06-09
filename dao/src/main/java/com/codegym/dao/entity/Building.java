@@ -9,6 +9,7 @@ public class Building {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_building")
     private Integer id;
 
     @Column(name="abbreviation_name")

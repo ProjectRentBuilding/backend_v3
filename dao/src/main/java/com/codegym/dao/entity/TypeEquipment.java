@@ -12,8 +12,8 @@ public class TypeEquipment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToMany(mappedBy  = "idType", cascade = CascadeType.ALL)
-    private Set<Equipment> equipment;
+    @OneToMany(mappedBy  = "typeEquipment", cascade = CascadeType.ALL)
+    private Set<Equipment> equipments;
 
     @Column(name = "name_type")
     private String nameType;
@@ -24,6 +24,16 @@ public class TypeEquipment {
     public TypeEquipment() {
     }
 
+    @Override
+    public String toString() {
+        return "TypeEquipment{" +
+                "id=" + id +
+                ", equipments=" + equipments +
+                ", nameType='" + nameType + '\'' +
+                ", deleteFlag=" + deleteFlag +
+                '}';
+    }
+
     public Integer getId() {
         return id;
     }
@@ -32,12 +42,12 @@ public class TypeEquipment {
         this.id = id;
     }
 
-    public Set<Equipment> getEquipment() {
-        return equipment;
+    public Set<Equipment> getEquipments() {
+        return equipments;
     }
 
-    public void setEquipment(Set<Equipment> equipment) {
-        this.equipment = equipment;
+    public void setEquipments(Set<Equipment> equipments) {
+        this.equipments = equipments;
     }
 
     public String getNameType() {
@@ -54,15 +64,5 @@ public class TypeEquipment {
 
     public void setDeleteFlag(Integer deleteFlag) {
         this.deleteFlag = deleteFlag;
-    }
-
-    @Override
-    public String toString() {
-        return "TypeEquipment{" +
-                "id=" + id +
-                ", equipment=" + equipment +
-                ", nameType='" + nameType + '\'' +
-                ", deleteFlag=" + deleteFlag +
-                '}';
     }
 }

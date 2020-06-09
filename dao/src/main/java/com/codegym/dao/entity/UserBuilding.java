@@ -7,15 +7,15 @@ public class UserBuilding {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "username")
-    private Long id;
+    private String username;
 
     @Column(name = "password_user")
     private String passwordUser;
 
     @Column(name = "delete_flag")
-    private Boolean deleteFlag;
+    private Integer deleteFlag;
 
-    @OneToOne(mappedBy = "customer")
+    @OneToOne(mappedBy = "userBuilding")
     private Customer customer;
 
     @ManyToOne
@@ -25,12 +25,27 @@ public class UserBuilding {
     @OneToOne(mappedBy = "userBuilding")
     private Employee employee;
 
-    public Long getId() {
-        return id;
+    public UserBuilding() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public String toString() {
+        return "UserBuilding{" +
+                "username='" + username + '\'' +
+                ", passwordUser='" + passwordUser + '\'' +
+                ", deleteFlag=" + deleteFlag +
+                ", customer=" + customer +
+                ", roleUser=" + roleUser +
+                ", employee=" + employee +
+                '}';
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPasswordUser() {
@@ -41,11 +56,11 @@ public class UserBuilding {
         this.passwordUser = passwordUser;
     }
 
-    public Boolean getDeleteFlag() {
+    public Integer getDeleteFlag() {
         return deleteFlag;
     }
 
-    public void setDeleteFlag(Boolean deleteFlag) {
+    public void setDeleteFlag(Integer deleteFlag) {
         this.deleteFlag = deleteFlag;
     }
 
@@ -65,15 +80,11 @@ public class UserBuilding {
         this.roleUser = roleUser;
     }
 
-    @Override
-    public String toString() {
-        return "UserBuilding{" +
-                "id=" + id +
-                ", passwordUser='" + passwordUser + '\'' +
-                ", deleteFlag=" + deleteFlag +
-                ", customer=" + customer +
-                ", roleUser=" + roleUser +
-                ", employee=" + employee +
-                '}';
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

@@ -11,6 +11,9 @@ public class Employee {
     @Column(name = "id_employee")
     private Long id;
 
+    @Column(name="delete_flag")
+    private Integer deleteFlag;
+
     @Column(name = "name_employee")
     private String name;
 
@@ -30,6 +33,7 @@ public class Employee {
     private String address;
 
     @Column(name = "gender")
+    private String gender;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username", referencedColumnName = "username")
@@ -38,12 +42,36 @@ public class Employee {
     public Employee() {
     }
 
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", deleteFlag=" + deleteFlag +
+                ", name='" + name + '\'' +
+                ", birthday=" + birthday +
+                ", idCard='" + idCard + '\'' +
+                ", phone=" + phone +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", gender='" + gender + '\'' +
+                ", userBuilding=" + userBuilding +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(Integer deleteFlag) {
+        this.deleteFlag = deleteFlag;
     }
 
     public String getName() {
@@ -94,25 +122,19 @@ public class Employee {
         this.address = address;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public UserBuilding getUserBuilding() {
         return userBuilding;
     }
 
     public void setUserBuilding(UserBuilding userBuilding) {
         this.userBuilding = userBuilding;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", birthday=" + birthday +
-                ", idCard='" + idCard + '\'' +
-                ", phone=" + phone +
-                ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                ", userBuilding=" + userBuilding +
-                '}';
     }
 }
