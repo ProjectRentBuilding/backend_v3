@@ -101,4 +101,18 @@ public class Employee {
     public void setUserBuilding(UserBuilding userBuilding) {
         this.userBuilding = userBuilding;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", birthday=" + birthday +
+                ", idCard='" + idCard + '\'' +
+                ", phone=" + phone +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", userBuilding=" + userBuilding +
+                '}';
+    }
 }

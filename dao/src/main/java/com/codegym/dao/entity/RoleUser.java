@@ -31,4 +31,12 @@ public class RoleUser {
     public void setUserBuildings(Set<UserBuilding> userBuildings) {
         this.userBuildings = userBuildings;
     }
+
+    @Override
+    public String toString() {
+        return "RoleUser{" +
+                "id=" + id +
+                ", userBuildings=" + userBuildings +
+                '}';
+    }
 }
