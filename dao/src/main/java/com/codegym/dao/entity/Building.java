@@ -6,21 +6,52 @@ import java.util.List;
 @Entity
 @Table(name = "building")
 public class Building {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name="name_floor")
     private String nameFloor;
+
+    @Column(name="code_floor")
     private String codeFloor;
+    @Column(name="area")
     private double area;
+
+    @Column(name="capacity")
     private String capacity;
+
+    @Column(name="status_floor")
     private String statusFloor;
+
+    @Column(name="delete_flag")
     private Integer deleteFlag;
-    @ManyToOne(targetEntity = Image.class)
-    @JoinColumn(name = "image_id")
+
+    @ManyToOne
+    @JoinColumn(name = "id_image")
     private Image image;
-    @OneToMany(targetEntity = Floor.class)
-    @JoinColumn(name="floor_id")
+
+    @OneToMany(mappedBy = "building",cascade = CascadeType.ALL)
     private List<Floor> floors;
+
+    public Building() {
+    }
+
+    @Override
+    public String toString() {
+        return "Building{" +
+                "id=" + id +
+                ", nameFloor='" + nameFloor + '\'' +
+                ", codeFloor='" + codeFloor + '\'' +
+                ", area=" + area +
+                ", capacity='" + capacity + '\'' +
+                ", statusFloor='" + statusFloor + '\'' +
+                ", deleteFlag=" + deleteFlag +
+                ", image=" + image +
+                ", floors=" + floors +
+                '}';
+    }
 
     public Integer getId() {
         return id;
