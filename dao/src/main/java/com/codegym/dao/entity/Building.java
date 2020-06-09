@@ -11,19 +11,40 @@ public class Building {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name="name_floor")
-    private String nameFloor;
+    @Column(name="abbreviation_name")
+    private String abbreviationName;
 
-    @Column(name="code_floor")
-    private String codeFloor;
-    @Column(name="area")
-    private double area;
+    @Column(name="full_name")
+    private String fullName;
+    @Column(name="tax_code")
+    private String taxCode;
 
-    @Column(name="capacity")
-    private String capacity;
+    @Column(name="phone")
+    private Integer phone;
 
-    @Column(name="status_floor")
-    private String statusFloor;
+    @Column(name="email")
+    private String email;
+
+    @Column(name="fax")
+    private String fax;
+
+    @Column(name="address")
+    private String address;
+
+    @Column(name="management")
+    private String management;
+
+    @Column(name="manager")
+    private String manager;
+
+    @Column(name="account_number")
+    private String accountNumber;
+
+    @Column(name="recipient_name")
+    private String recipientName;
+
+    @Column(name="bank")
+    private String bank;
 
     @Column(name="delete_flag")
     private Integer deleteFlag;
@@ -42,11 +63,18 @@ public class Building {
     public String toString() {
         return "Building{" +
                 "id=" + id +
-                ", nameFloor='" + nameFloor + '\'' +
-                ", codeFloor='" + codeFloor + '\'' +
-                ", area=" + area +
-                ", capacity='" + capacity + '\'' +
-                ", statusFloor='" + statusFloor + '\'' +
+                ", abbreviationName='" + abbreviationName + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", taxCode='" + taxCode + '\'' +
+                ", phone=" + phone +
+                ", email='" + email + '\'' +
+                ", fax='" + fax + '\'' +
+                ", address='" + address + '\'' +
+                ", management='" + management + '\'' +
+                ", manager='" + manager + '\'' +
+                ", accountNumber='" + accountNumber + '\'' +
+                ", recipientName='" + recipientName + '\'' +
+                ", bank='" + bank + '\'' +
                 ", deleteFlag=" + deleteFlag +
                 ", image=" + image +
                 ", floors=" + floors +
@@ -61,44 +89,100 @@ public class Building {
         this.id = id;
     }
 
-    public String getNameFloor() {
-        return nameFloor;
+    public String getAbbreviationName() {
+        return abbreviationName;
     }
 
-    public void setNameFloor(String nameFloor) {
-        this.nameFloor = nameFloor;
+    public void setAbbreviationName(String abbreviationName) {
+        this.abbreviationName = abbreviationName;
     }
 
-    public String getCodeFloor() {
-        return codeFloor;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setCodeFloor(String codeFloor) {
-        this.codeFloor = codeFloor;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public double getArea() {
-        return area;
+    public String getTaxCode() {
+        return taxCode;
     }
 
-    public void setArea(double area) {
-        this.area = area;
+    public void setTaxCode(String taxCode) {
+        this.taxCode = taxCode;
     }
 
-    public String getCapacity() {
-        return capacity;
+    public Integer getPhone() {
+        return phone;
     }
 
-    public void setCapacity(String capacity) {
-        this.capacity = capacity;
+    public void setPhone(Integer phone) {
+        this.phone = phone;
     }
 
-    public String getStatusFloor() {
-        return statusFloor;
+    public String getEmail() {
+        return email;
     }
 
-    public void setStatusFloor(String statusFloor) {
-        this.statusFloor = statusFloor;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getManagement() {
+        return management;
+    }
+
+    public void setManagement(String management) {
+        this.management = management;
+    }
+
+    public String getManager() {
+        return manager;
+    }
+
+    public void setManager(String manager) {
+        this.manager = manager;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public String getRecipientName() {
+        return recipientName;
+    }
+
+    public void setRecipientName(String recipientName) {
+        this.recipientName = recipientName;
+    }
+
+    public String getBank() {
+        return bank;
+    }
+
+    public void setBank(String bank) {
+        this.bank = bank;
     }
 
     public Integer getDeleteFlag() {
