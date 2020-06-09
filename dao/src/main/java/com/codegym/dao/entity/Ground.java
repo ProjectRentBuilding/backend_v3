@@ -135,19 +135,19 @@ public class Ground {
         this.floor = floor;
     }
 
-    public List<Equipment> getEquipments() {
+    public Set<Equipment> getEquipments() {
         return equipments;
     }
 
-    public void setEquipments(List<Equipment> equipments) {
+    public void setEquipments(Set<Equipment> equipments) {
         this.equipments = equipments;
     }
 
-    public List<Contract> getContracts() {
+    public Set<Contract> getContracts() {
         return contracts;
     }
 
-    public void setContracts(List<Contract> contracts) {
+    public void setContracts(Set<Contract> contracts) {
         this.contracts = contracts;
     }
 }
