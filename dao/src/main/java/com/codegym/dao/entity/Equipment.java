@@ -31,7 +31,7 @@ public class Equipment {
 
     @ManyToOne
     @JoinColumn(name = "id_ground")
-    private Integer idGround;
+    private Ground ground;
 
     @Column(name = "delete_flag")
     private Integer deleteFlag;
@@ -95,12 +95,12 @@ public class Equipment {
         this.typeEquipment = typeEquipment;
     }
 
-    public Integer getIdGround() {
-        return idGround;
+    public Ground getGround() {
+        return ground;
     }
 
-    public void setIdGround(Integer idGround) {
-        this.idGround = idGround;
+    public void setGround(Ground ground) {
+        this.ground = ground;
     }
 
     public Integer getDeleteFlag() {

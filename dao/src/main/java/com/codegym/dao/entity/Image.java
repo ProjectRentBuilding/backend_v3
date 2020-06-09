@@ -52,12 +52,21 @@ public class Image {
     public void setId(Integer id) {
         this.id = id;
     }
-    public List<Building> getBuildings() {
+
+    public Set<Building> getBuildings() {
         return buildings;
     }
 
-    public void setBuildings(List<Building> buildings) {
+    public void setBuildings(Set<Building> buildings) {
         this.buildings = buildings;
+    }
+
+    public Set<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(Set<Contract> contracts) {
+        this.contracts = contracts;
     }
 
     public String getNameImage() {
