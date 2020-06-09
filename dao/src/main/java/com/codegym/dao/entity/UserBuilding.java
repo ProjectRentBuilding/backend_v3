@@ -64,4 +64,16 @@ public class UserBuilding {
     public void setRoleUser(RoleUser roleUser) {
         this.roleUser = roleUser;
     }
+
+    @Override
+    public String toString() {
+        return "UserBuilding{" +
+                "id=" + id +
+                ", passwordUser='" + passwordUser + '\'' +
+                ", deleteFlag=" + deleteFlag +
+                ", customer=" + customer +
+                ", roleUser=" + roleUser +
+                ", employee=" + employee +
+                '}';
+    }
 }

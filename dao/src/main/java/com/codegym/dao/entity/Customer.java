@@ -27,7 +27,7 @@ public class Customer {
     private String email ;
 
     @Column(name = "address")
-    private String addresss ;
+    private String address ;
 
     @Column(name = "gender")
     private String gender ;
@@ -95,12 +95,12 @@ public class Customer {
         this.email = email;
     }
 
-    public String getAddresss() {
-        return addresss;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddresss(String addresss) {
-        this.addresss = addresss;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getGender() {
@@ -133,5 +133,22 @@ public class Customer {
 
     public void setUserBuilding(UserBuilding userBuilding) {
         this.userBuilding = userBuilding;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", birthday=" + birthday +
+                ", idCard='" + idCard + '\'' +
+                ", phone=" + phone +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", gender='" + gender + '\'' +
+                ", website='" + website + '\'' +
+                ", nameCompany='" + nameCompany + '\'' +
+                ", userBuilding=" + userBuilding +
+                '}';
     }
 }
