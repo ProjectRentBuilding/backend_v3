@@ -110,4 +110,19 @@ public class Equipment {
     public void setDeleteFlag(Integer deleteFlag) {
         this.deleteFlag = deleteFlag;
     }
+
+    @Override
+    public String toString() {
+        return "Equipment{" +
+                "id=" + id +
+                ", nameEquipment='" + nameEquipment + '\'' +
+                ", amount=" + amount +
+                ", statusEquipment='" + statusEquipment + '\'' +
+                ", amountOfBroken=" + amountOfBroken +
+                ", note='" + note + '\'' +
+                ", typeEquipment=" + typeEquipment +
+                ", ground=" + ground +
+                ", deleteFlag=" + deleteFlag +
+                '}';
+    }
 }
