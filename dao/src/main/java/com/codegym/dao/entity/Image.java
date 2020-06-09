@@ -23,13 +23,13 @@ public class Image {
     @Column(name="delete_flag")
     private Integer deleteFlag;
 
-    @OneToMany(mappedBy = "image",cascade = ALL)
+    @ManyToOne
     @JoinColumn(name="id_building")
-    private Set<Building> buildings;
+    private Building building;
 
-    @OneToMany(mappedBy = "image",cascade = ALL)
+    @ManyToOne
     @JoinColumn(name="id_contract")
-    private Set<Contract> contracts;
+    private Contract contract;
 
     public Image() {
     }
@@ -41,7 +41,8 @@ public class Image {
                 ", nameImage='" + nameImage + '\'' +
                 ", urlImage='" + urlImage + '\'' +
                 ", deleteFlag=" + deleteFlag +
-                ", buildings=" + buildings +
+                ", building=" + building +
+                ", contract=" + contract +
                 '}';
     }
 
@@ -53,20 +54,20 @@ public class Image {
         this.id = id;
     }
 
-    public Set<Building> getBuildings() {
-        return buildings;
+    public Building getBuilding() {
+        return building;
     }
 
-    public void setBuildings(Set<Building> buildings) {
-        this.buildings = buildings;
+    public void setBuilding(Building building) {
+        this.building = building;
     }
 
-    public Set<Contract> getContracts() {
-        return contracts;
+    public Contract getContract() {
+        return contract;
     }
 
-    public void setContracts(Set<Contract> contracts) {
-        this.contracts = contracts;
+    public void setContract(Contract contract) {
+        this.contract = contract;
     }
 
     public String getNameImage() {
