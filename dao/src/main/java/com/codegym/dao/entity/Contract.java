@@ -26,7 +26,7 @@ public class Contract {
     @JoinColumn(name = "id_ground")
     private Ground ground;
 
-    @OneToMany(mappedBy = "image")
+    @OneToMany(mappedBy = "contract", cascade = CascadeType.ALL)
     private Set<Image> images;
 
 

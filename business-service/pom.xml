@@ -8,8 +8,9 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.codegym</groupId>
-    <artifactId>business-service</artifactId>
+    <artifactId>web</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
     <dependencies>
         <dependency>
             <groupId>com.codegym</groupId>
@@ -17,4 +18,5 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
 </project>
