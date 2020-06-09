@@ -134,11 +134,11 @@ public class Floor {
         this.building = building;
     }
 
-    public List<Ground> getGrounds() {
+    public Set<Ground> getGrounds() {
         return grounds;
     }
 
-    public void setGrounds(List<Ground> grounds) {
+    public void setGrounds(Set<Ground> grounds) {
         this.grounds = grounds;
     }
 }
