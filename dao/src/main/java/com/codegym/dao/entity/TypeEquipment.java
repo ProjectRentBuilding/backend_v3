@@ -55,4 +55,14 @@ public class TypeEquipment {
     public void setDeleteFlag(Integer deleteFlag) {
         this.deleteFlag = deleteFlag;
     }
+
+    @Override
+    public String toString() {
+        return "TypeEquipment{" +
+                "id=" + id +
+                ", equipment=" + equipment +
+                ", nameType='" + nameType + '\'' +
+                ", deleteFlag=" + deleteFlag +
+                '}';
+    }
 }
