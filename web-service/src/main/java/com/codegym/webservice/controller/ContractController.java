@@ -20,7 +20,8 @@ public class ContractController {
 
     @GetMapping("")
     public List<Contract> getAllContract(){
-        List<Contract> contracts = contractService.findAllByDeleteFlagIsNull();
+        List<Contract> contracts;
+        contracts = contractService.findAllByDeleteFlagIsNull();
         return contracts;
     }
 }
