@@ -10,10 +10,22 @@ public class RoleUser {
     @Column(name = "id_role")
     private Long id;
 
+    @Column(name = "role_name")
+    private String roleName;
+
     @OneToMany(mappedBy = "roleUser")
     private Set<UserBuilding> userBuildings;
 
     public RoleUser() {
+    }
+
+    @Override
+    public String toString() {
+        return "RoleUser{" +
+                "id=" + id +
+                ", roleName='" + roleName + '\'' +
+                ", userBuildings=" + userBuildings +
+                '}';
     }
 
     public Long getId() {
@@ -24,19 +36,19 @@ public class RoleUser {
         this.id = id;
     }
 
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
     public Set<UserBuilding> getUserBuildings() {
         return userBuildings;
     }
 
     public void setUserBuildings(Set<UserBuilding> userBuildings) {
         this.userBuildings = userBuildings;
-    }
-
-    @Override
-    public String toString() {
-        return "RoleUser{" +
-                "id=" + id +
-                ", userBuildings=" + userBuildings +
-                '}';
     }
 }
