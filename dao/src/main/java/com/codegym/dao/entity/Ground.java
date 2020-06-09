@@ -40,7 +40,7 @@ public class Ground {
     @OneToMany(mappedBy ="ground",cascade = CascadeType.ALL)
     private Set<Equipment> equipments;
 
-    @OneToMany(mappedBy = "ground")
+    @OneToMany(mappedBy = "ground",cascade = CascadeType.ALL)
     private Set<Contract> contracts;
 
     public Ground() {
