@@ -1,31 +1,67 @@
 package com.codegym.dao.entity;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "ground")
 public class Ground {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name="codeGround")
     private String codeGround;
+
+    @Column(name="area")
     private double area;
+
+    @Column(name="status_ground")
     private String statusGround;
+
+    @Column(name="price")
     private Integer price;
+
+    @Column(name="price_manager")
     private Integer priceManager;
+
+    @Column(name="delete_flag")
     private Integer deleteFlag;
+
+    @Column(name="type_ground")
     private String typeGround;
-    @ManyToOne(targetEntity = Floor.class)
-    @JoinColumn(name = "floor_id")
+
+    @ManyToOne
+    @JoinColumn(name = "id_floor")
     private Floor floor;
 
-    @OneToMany(targetEntity = Equipment.class)
-    @JoinColumn(name="equipment_id")
-    private Equipment equipment;
+    @OneToMany(mappedBy ="ground",cascade = CascadeType.ALL)
+    private Set<Equipment> equipments;
 
-    @OneToMany(targetEntity = Contract.class)
-    @JoinColumn(name="contract_id")
-    private Contract contract;
+    @OneToMany(mappedBy = "ground")
+    private Set<Contract> contracts;
+
+    public Ground() {
+    }
+
+    @Override
+    public String toString() {
+        return "Ground{" +
+                "id=" + id +
+                ", codeGround='" + codeGround + '\'' +
+                ", area=" + area +
+                ", statusGround='" + statusGround + '\'' +
+                ", price=" + price +
+                ", priceManager=" + priceManager +
+                ", deleteFlag=" + deleteFlag +
+                ", typeGround='" + typeGround + '\'' +
+                ", floor=" + floor +
+                ", equipments=" + equipments +
+                ", contracts=" + contracts +
+                '}';
+    }
 
     public Integer getId() {
         return id;
@@ -99,19 +135,19 @@ public class Ground {
         this.floor = floor;
     }
 
-    public Equipment getEquipment() {
-        return equipment;
+    public List<Equipment> getEquipments() {
+        return equipments;
     }
 
-    public void setEquipment(Equipment equipment) {
-        this.equipment = equipment;
+    public void setEquipments(List<Equipment> equipments) {
+        this.equipments = equipments;
     }
 
-    public Contract getContract() {
-        return contract;
+    public List<Contract> getContracts() {
+        return contracts;
     }
 
-    public void setContract(Contract contract) {
-        this.contract = contract;
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
     }
 }
