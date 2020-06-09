@@ -13,6 +13,7 @@ public class Floor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_floor")
     private Integer id;
 
     @Column(name="name_floor")
@@ -33,8 +34,9 @@ public class Floor {
     @Column(name="delete_flag")
     private Integer deleteFlag;
 
-    @Column(name="type_floor")
-    private String typeFloor;
+    @ManyToOne
+    @JoinColumn(name = "id_type_floor")
+    private TypeFloor typeFloor;
 
     @ManyToOne
     @JoinColumn(name="id_building")
@@ -46,99 +48,5 @@ public class Floor {
     public Floor() {
     }
 
-    @Override
-    public String toString() {
-        return "Floor{" +
-                "id=" + id +
-                ", nameFloor='" + nameFloor + '\'' +
-                ", codeFloor='" + codeFloor + '\'' +
-                ", area=" + area +
-                ", capacity='" + capacity + '\'' +
-                ", statusFloor='" + statusFloor + '\'' +
-                ", deleteFlag=" + deleteFlag +
-                ", typeFloor='" + typeFloor + '\'' +
-                ", building=" + building +
-                ", grounds=" + grounds +
-                '}';
-    }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNameFloor() {
-        return nameFloor;
-    }
-
-    public void setNameFloor(String nameFloor) {
-        this.nameFloor = nameFloor;
-    }
-
-    public String getCodeFloor() {
-        return codeFloor;
-    }
-
-    public void setCodeFloor(String codeFloor) {
-        this.codeFloor = codeFloor;
-    }
-
-    public double getArea() {
-        return area;
-    }
-
-    public void setArea(double area) {
-        this.area = area;
-    }
-
-    public String getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(String capacity) {
-        this.capacity = capacity;
-    }
-
-    public String getStatusFloor() {
-        return statusFloor;
-    }
-
-    public void setStatusFloor(String statusFloor) {
-        this.statusFloor = statusFloor;
-    }
-
-    public Integer getDeleteFlag() {
-        return deleteFlag;
-    }
-
-    public void setDeleteFlag(Integer deleteFlag) {
-        this.deleteFlag = deleteFlag;
-    }
-
-    public String getTypeFloor() {
-        return typeFloor;
-    }
-
-    public void setTypeFloor(String typeFloor) {
-        this.typeFloor = typeFloor;
-    }
-
-    public Building getBuilding() {
-        return building;
-    }
-
-    public void setBuilding(Building building) {
-        this.building = building;
-    }
-
-    public Set<Ground> getGrounds() {
-        return grounds;
-    }
-
-    public void setGrounds(Set<Ground> grounds) {
-        this.grounds = grounds;
-    }
 }

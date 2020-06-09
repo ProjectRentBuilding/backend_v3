@@ -12,6 +12,7 @@ public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_image")
     private Integer id;
 
     @Column(name="name_image")

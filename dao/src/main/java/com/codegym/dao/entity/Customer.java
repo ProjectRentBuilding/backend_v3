@@ -11,6 +11,9 @@ public class Customer {
     @Column(name = "id_customer")
     private Long id;
 
+    @Column(name="delete_flag")
+    private Integer deleteFlag;
+
     @Column(name = "name_customer")
     private String name ;
 
@@ -47,12 +50,38 @@ public class Customer {
     public Customer() {
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", deleteFlag=" + deleteFlag +
+                ", name='" + name + '\'' +
+                ", birthday=" + birthday +
+                ", idCard='" + idCard + '\'' +
+                ", phone=" + phone +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", gender='" + gender + '\'' +
+                ", website='" + website + '\'' +
+                ", nameCompany='" + nameCompany + '\'' +
+                ", userBuilding=" + userBuilding +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(Integer deleteFlag) {
+        this.deleteFlag = deleteFlag;
     }
 
     public String getName() {
@@ -133,22 +162,5 @@ public class Customer {
 
     public void setUserBuilding(UserBuilding userBuilding) {
         this.userBuilding = userBuilding;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", birthday=" + birthday +
-                ", idCard='" + idCard + '\'' +
-                ", phone=" + phone +
-                ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                ", gender='" + gender + '\'' +
-                ", website='" + website + '\'' +
-                ", nameCompany='" + nameCompany + '\'' +
-                ", userBuilding=" + userBuilding +
-                '}';
     }
 }
