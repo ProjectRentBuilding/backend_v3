@@ -1,6 +1,6 @@
 package com.codegym.webservice.controller;
 
-import com.codegym.dao.entity.Contract;
+
 import com.codegym.dao.entity.Equipment;
 import com.codegym.web.services.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
