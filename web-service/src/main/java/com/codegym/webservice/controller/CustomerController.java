@@ -1,13 +1,12 @@
 package com.codegym.webservice.controller;
 
+import com.codegym.dao.dto.CustomerDTO;
 import com.codegym.dao.entity.Customer;
 import com.codegym.dao.entity.Equipment;
 import com.codegym.web.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +21,13 @@ public class CustomerController {
         List<Customer> customers;
         customers = customerService.findAllByDeleteFlagIsNull();
         return customers;
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<CustomerDTO>getCustomer(@PathVariable("id") int id) {
+        CustomerDTO customerDTO = customerService.getCustomerById(id);
+        if (customerDTO != null) {
+            return ResponseEntity.ok(customerDTO);
+        }
+        return ResponseEntity.ok(null);
     }
 }
