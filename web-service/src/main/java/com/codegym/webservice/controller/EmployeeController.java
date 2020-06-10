@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/customers")
+@RequestMapping("/employees")
 
 public class EmployeeController {
 @Autowired
