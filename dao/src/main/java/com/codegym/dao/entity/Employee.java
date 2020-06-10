@@ -1,10 +1,14 @@
 package com.codegym.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties
 @Table(name = "employee")
 public class Employee {
     @Id
@@ -37,11 +41,13 @@ public class Employee {
     private String gender;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonBackReference
     @JoinColumn(name = "username", referencedColumnName = "username")
     private UserBuilding userBuilding;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "employee")
-    private Set<Employee> employees;
+    private Set<Contract> contracts;
 
 
     public Employee() {
@@ -143,11 +149,11 @@ public class Employee {
         this.userBuilding = userBuilding;
     }
 
-    public Set<Employee> getEmployees() {
-        return employees;
+    public Set<Contract> getContracts() {
+        return contracts;
     }
 
-    public void setEmployees(Set<Employee> employees) {
-        this.employees = employees;
+    public void setContracts(Set<Contract> contracts) {
+        this.contracts = contracts;
     }
 }
