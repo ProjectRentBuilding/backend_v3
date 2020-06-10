@@ -11,5 +11,8 @@ import java.util.List;
 @Repository
 public interface EquipmentRepository extends JpaRepository<Equipment, Integer> {
     List<Equipment> findAllByDeleteFlagIsNull();
-//    Page<Equipment> findAllByDeletedIsFalse(Pageable pageable);
+    Equipment findAllByDeleteFlagIsNullAndIdIs(Integer id);
+    Page<Equipment> findAllByDeleteFlagIsNullAndTypeEquipment(Pageable pageable, String typeEquipment);
+    Page<Equipment> findAllByDeleteFlagIsNullAndGround(Pageable pageable, String ground);
+
 }
