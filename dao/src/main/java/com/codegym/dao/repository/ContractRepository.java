@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface ContractRepository extends JpaRepository<Contract, Integer> {
     List<Contract> findAllByDeleteFlagIsNull();
+    Contract findAllByDeleteFlagIsNullAndIdIs(Integer id);
 }
