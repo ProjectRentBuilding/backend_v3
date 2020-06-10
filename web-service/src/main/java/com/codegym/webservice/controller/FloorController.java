@@ -1,13 +1,12 @@
 package com.codegym.webservice.controller;
 
+import com.codegym.dao.dto.FloorDTO;
 import com.codegym.dao.entity.Floor;
 import com.codegym.dao.repository.FloorRepository;
 import com.codegym.web.services.FloorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +22,14 @@ public class FloorController {
         List<Floor> floors;
         floors = floorService.findAllByDeleteFlagIsNull();
         return floors;
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<FloorDTO> getFloor(@PathVariable("id") int id) {
+        FloorDTO floorDTO = floorService.findAllByDeleteFlagIsNullAndIdIs(id);
+        if (floorDTO != null) {
+            return ResponseEntity.ok(floorDTO);
+        }
+        return null;
     }
 }
