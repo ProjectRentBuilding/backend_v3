@@ -50,9 +50,8 @@ public class Building {
     @Column(name="delete_flag")
     private Integer deleteFlag;
 
-    @ManyToOne
-    @JoinColumn(name = "id_image")
-    private Image image;
+    @OneToMany(mappedBy = "building",cascade = CascadeType.ALL)
+    private List<Image> images;
 
     @OneToMany(mappedBy = "building",cascade = CascadeType.ALL)
     private List<Floor> floors;
@@ -77,7 +76,7 @@ public class Building {
                 ", recipientName='" + recipientName + '\'' +
                 ", bank='" + bank + '\'' +
                 ", deleteFlag=" + deleteFlag +
-                ", image=" + image +
+                ", images=" + images +
                 ", floors=" + floors +
                 '}';
     }
@@ -194,12 +193,12 @@ public class Building {
         this.deleteFlag = deleteFlag;
     }
 
-    public Image getImage() {
-        return image;
+    public List<Image> getImages() {
+        return images;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 
     public List<Floor> getFloors() {
