@@ -33,7 +33,7 @@ public class ContractServiceImpl implements ContractService {
             contractDTO.setEmployee(contract.getEmployee());
             contractDTO.setCustomer(contract.getCustomer());
             contractDTO.setGround(contract.getGround());
-            contractDTO.setImages(contract.getImages());
+            contractDTO.setUlrImage(contract.getUrlImage());
             contractDTO.setTerm(contract.getTerm());
             contractDTO.setStatusContract(contract.getStatusContract());
             contractDTO.setStartRentDay(contract.getStartRentDay());
