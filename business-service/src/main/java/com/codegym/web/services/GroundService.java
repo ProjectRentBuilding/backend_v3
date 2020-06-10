@@ -1,4 +1,4 @@
 package com.codegym.web.services;
 
-public class GroundService {
+public interface GroundService {
 }

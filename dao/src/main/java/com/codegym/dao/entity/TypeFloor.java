@@ -1,9 +1,13 @@
 package com.codegym.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties
 @Table(name = "type_floor")
 
 public class TypeFloor {
@@ -19,6 +23,7 @@ public class TypeFloor {
     @Column(name = "delete_flag")
     private Integer deleteFlag;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "typeFloor", cascade = CascadeType.ALL)
     private Set<Floor> floors;
 

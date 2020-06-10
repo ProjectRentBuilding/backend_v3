@@ -1,5 +1,8 @@
 package com.codegym.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -7,6 +10,7 @@ import java.util.Set;
 import static javax.persistence.CascadeType.ALL;
 
 @Entity
+@JsonIgnoreProperties
 @Table(name = "image")
 public class Image {
 
@@ -24,10 +28,12 @@ public class Image {
     @Column(name="delete_flag")
     private Integer deleteFlag;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name="id_building")
     private Building building;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name="id_contract")
     private Contract contract;
