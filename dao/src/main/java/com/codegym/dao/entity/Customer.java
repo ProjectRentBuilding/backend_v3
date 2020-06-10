@@ -1,52 +1,58 @@
 package com.codegym.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name="customer")
+@JsonIgnoreProperties
+@Table(name = "customer")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_customer")
     private Long id;
 
-    @Column(name="delete_flag")
+    @Column(name = "delete_flag")
     private Integer deleteFlag;
 
     @Column(name = "name_customer")
-    private String name ;
+    private String name;
 
     @Column(name = "birthday")
-    private Date birthday ;
+    private Date birthday;
 
     @Column(name = "id_card")
-    private String idCard ;
+    private String idCard;
 
     @Column(name = "phone")
-    private int phone ;
+    private int phone;
 
     @Column(name = "email")
-    private String email ;
+    private String email;
 
     @Column(name = "address")
-    private String address ;
+    private String address;
 
     @Column(name = "gender")
-    private String gender ;
+    private String gender;
 
     @Column(name = "website")
-    private String website ;
+    private String website;
 
     @Column(name = "name_company")
-    private String nameCompany ;
+    private String nameCompany;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "username",referencedColumnName = "username")
+    @JsonBackReference
+    @JoinColumn(name = "username", referencedColumnName = "username")
     private UserBuilding userBuilding;
 
-
+    @JsonBackReference
     @OneToMany(mappedBy = "customer")
     private Set<Contract> contracts;
 

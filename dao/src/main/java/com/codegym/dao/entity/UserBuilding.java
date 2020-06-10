@@ -1,7 +1,12 @@
 package com.codegym.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+
 @Entity
+@JsonIgnoreProperties
 @Table(name = "user_building")
 public class UserBuilding {
     @Id
@@ -16,13 +21,16 @@ public class UserBuilding {
     private Integer deleteFlag;
 
     @OneToOne(mappedBy = "userBuilding")
+    @JsonManagedReference
     private Customer customer;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "id_role")
     private RoleUser roleUser;
 
     @OneToOne(mappedBy = "userBuilding")
+    @JsonManagedReference
     private Employee employee;
 
     public UserBuilding() {
