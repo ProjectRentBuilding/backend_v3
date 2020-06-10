@@ -14,7 +14,7 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_employee")
-    private Long id;
+    private Integer id;
 
     @Column(name="delete_flag")
     private Integer deleteFlag;
@@ -69,11 +69,11 @@ public class Employee {
                 '}';
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
