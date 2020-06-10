@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface ContractService {
 
-
     List<Contract> findAllByDeleteFlagIsNull();
     ContractDTO findAllByDeleteFlagIsNullAndIdIs(Integer id);
 
