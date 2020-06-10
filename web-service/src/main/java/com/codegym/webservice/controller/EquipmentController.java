@@ -23,4 +23,6 @@ public class EquipmentController {
         equipments = equipmentService.findAllByDeleteFlagIsNull();
         return equipments;
     }
+
+
 }
