@@ -1,4 +1,4 @@
 package com.codegym.web.services;
 
-public class ImageService {
+public interface ImageService {
 }

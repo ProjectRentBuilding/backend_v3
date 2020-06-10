@@ -1,5 +1,9 @@
 package com.codegym.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 import java.util.List;
@@ -8,6 +12,7 @@ import java.util.Set;
 import static javax.persistence.CascadeType.ALL;
 
 @Entity
+@JsonIgnoreProperties
 @Table(name = "floor")
 public class Floor {
 
@@ -35,13 +40,16 @@ public class Floor {
     private Integer deleteFlag;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "id_type_floor")
     private TypeFloor typeFloor;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name="id_building")
     private Building building;
 
+    @JsonBackReference
     @OneToMany(mappedBy ="floor",cascade = ALL)
     private Set<Ground> grounds;
 

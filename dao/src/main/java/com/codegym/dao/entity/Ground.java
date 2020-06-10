@@ -2,6 +2,7 @@ package com.codegym.dao.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -36,7 +37,7 @@ public class Ground {
     @Column(name="delete_flag")
     private Integer deleteFlag;
 
-
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "id_floor")
     private Floor floor;
@@ -49,6 +50,7 @@ public class Ground {
     @OneToMany(mappedBy = "ground",cascade = CascadeType.ALL)
     private Set<Contract> contracts;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "id_type_ground")
     private TypeGround typeGround;

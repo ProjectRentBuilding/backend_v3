@@ -1,9 +1,13 @@
 package com.codegym.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties
 @Table(name = "type_ground")
 public class TypeGround {
     @Id
@@ -17,6 +21,7 @@ public class TypeGround {
     @Column(name = "delete_flag")
     private Integer deleteFlag;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "typeGround", cascade = CascadeType.ALL)
     private Set<Ground> grounds;
 

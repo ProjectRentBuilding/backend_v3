@@ -1,9 +1,13 @@
 package com.codegym.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties
 @Table(name = "building")
 public class Building {
 
@@ -50,9 +54,11 @@ public class Building {
     @Column(name="delete_flag")
     private Integer deleteFlag;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "building",cascade = CascadeType.ALL)
     private List<Image> images;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "building",cascade = CascadeType.ALL)
     private List<Floor> floors;
 
