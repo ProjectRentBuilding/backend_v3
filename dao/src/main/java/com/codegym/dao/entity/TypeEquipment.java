@@ -1,10 +1,14 @@
 package com.codegym.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Set;
 
 
 @Entity
+@JsonIgnoreProperties
 @Table(name = "type_equipment")
 public class TypeEquipment {
     @Id
@@ -12,6 +16,7 @@ public class TypeEquipment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @JsonBackReference
     @OneToMany(mappedBy  = "typeEquipment", cascade = CascadeType.ALL)
     private Set<Equipment> equipments;
 

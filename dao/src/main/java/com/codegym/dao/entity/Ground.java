@@ -1,10 +1,14 @@
 package com.codegym.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties
 @Table(name = "ground")
 public class Ground {
 
@@ -37,9 +41,11 @@ public class Ground {
     @JoinColumn(name = "id_floor")
     private Floor floor;
 
+    @JsonBackReference
     @OneToMany(mappedBy ="ground",cascade = CascadeType.ALL)
     private Set<Equipment> equipments;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "ground",cascade = CascadeType.ALL)
     private Set<Contract> contracts;
 
