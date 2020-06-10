@@ -1,9 +1,13 @@
 package com.codegym.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "equipment")
+@JsonIgnoreProperties
 public class Equipment {
     @Id
     @Column(name = "id_equipment")
@@ -25,10 +29,12 @@ public class Equipment {
     @Column(name = "note")
     private String note;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "id_type")
     private TypeEquipment typeEquipment;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "id_ground")
     private Ground ground;
