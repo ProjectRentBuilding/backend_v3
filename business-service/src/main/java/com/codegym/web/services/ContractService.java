@@ -9,6 +9,7 @@ public interface ContractService {
 
     List<Contract> findAllByDeleteFlagIsNull();
     ContractDTO findAllByDeleteFlagIsNullAndIdIs(Integer id);
+    void delete(Integer id) ;
 
 
 }
