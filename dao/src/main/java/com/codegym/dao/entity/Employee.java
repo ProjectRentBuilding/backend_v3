@@ -2,6 +2,7 @@ package com.codegym.dao.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "employee")
@@ -38,6 +39,10 @@ public class Employee {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username", referencedColumnName = "username")
     private UserBuilding userBuilding;
+
+    @OneToMany(mappedBy = "employee")
+    private Set<Employee> employees;
+
 
     public Employee() {
     }
@@ -136,5 +141,13 @@ public class Employee {
 
     public void setUserBuilding(UserBuilding userBuilding) {
         this.userBuilding = userBuilding;
+    }
+
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
     }
 }
