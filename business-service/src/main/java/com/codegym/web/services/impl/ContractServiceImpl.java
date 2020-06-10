@@ -49,5 +49,11 @@ public class ContractServiceImpl implements ContractService {
         return null;
     }
 
+    @Override
+    public void delete(Integer id) {
+        Contract contract = contractRepository.findAllByDeleteFlagIsNullAndIdIs(id);
+        contract.setDeleteFlag(1);
+        contractRepository.save(contract);
+    }
 
 }
