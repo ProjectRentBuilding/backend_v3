@@ -1,6 +1,7 @@
 package com.codegym.dao.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -34,9 +35,8 @@ public class Contract {
     @JoinColumn(name = "id_ground")
     private Ground ground;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "contract", cascade = CascadeType.ALL)
-    private Set<Image> images;
+    @Column(name = "url_image")
+    private String urlImage;
 
 
     @Column(name = "term")
@@ -82,7 +82,7 @@ public class Contract {
                 ", employee=" + employee +
                 ", customer=" + customer +
                 ", ground=" + ground +
-                ", images=" + images +
+                ", urlImage='" + urlImage + '\'' +
                 ", term=" + term +
                 ", statusContract=" + statusContract +
                 ", startRentDay=" + startRentDay +
@@ -129,12 +129,12 @@ public class Contract {
         this.ground = ground;
     }
 
-    public Set<Image> getImages() {
-        return images;
+    public String getUrlImage() {
+        return urlImage;
     }
 
-    public void setImages(Set<Image> images) {
-        this.images = images;
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 
     public Double getTerm() {

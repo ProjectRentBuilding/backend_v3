@@ -3,11 +3,7 @@ package com.codegym.dao.dto;
 import com.codegym.dao.entity.Customer;
 import com.codegym.dao.entity.Employee;
 import com.codegym.dao.entity.Ground;
-import com.codegym.dao.entity.Image;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -19,7 +15,7 @@ public class ContractDTO implements Serializable {
     private Employee employee;
     private Customer customer;
     private Ground ground;
-    private Set<Image> images;
+    private String ulrImage;
     private Double term;
     private Boolean statusContract;
     private Date startRentDay;
@@ -42,7 +38,7 @@ public class ContractDTO implements Serializable {
                 ", employee=" + employee +
                 ", customer=" + customer +
                 ", ground=" + ground +
-                ", images=" + images +
+                ", ulrImage='" + ulrImage + '\'' +
                 ", term=" + term +
                 ", statusContract=" + statusContract +
                 ", startRentDay=" + startRentDay +
@@ -89,12 +85,12 @@ public class ContractDTO implements Serializable {
         this.ground = ground;
     }
 
-    public Set<Image> getImages() {
-        return images;
+    public String getUlrImage() {
+        return ulrImage;
     }
 
-    public void setImages(Set<Image> images) {
-        this.images = images;
+    public void setUlrImage(String ulrImage) {
+        this.ulrImage = ulrImage;
     }
 
     public Double getTerm() {
