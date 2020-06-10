@@ -1,11 +1,16 @@
 package com.codegym.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties
 @Table(name = "contract")
 public class Contract {
 
@@ -14,18 +19,22 @@ public class Contract {
     @Column(name = "id_contract")
     private Integer id;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "id_employee")
     private Employee employee;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "id_customer")
     private Customer customer;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "id_ground")
     private Ground ground;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "contract", cascade = CascadeType.ALL)
     private Set<Image> images;
 
