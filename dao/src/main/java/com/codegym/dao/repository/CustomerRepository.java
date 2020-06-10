@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer,Long> {
+public interface CustomerRepository extends JpaRepository<Customer,Integer> {
     List<Customer> findAllByDeleteFlagIsNull();
-    Customer findAllByDeleteFlagIsNullAndIdIs(Long id);
+    Customer findAllByDeleteFlagIsNullAndIdIs(Integer id);
 }

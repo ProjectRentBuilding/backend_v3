@@ -54,9 +54,10 @@ public class Building {
     @Column(name="delete_flag")
     private Integer deleteFlag;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "building",cascade = CascadeType.ALL)
-    private List<Image> images;
+    @Column(name = "url_image")
+    private String urlImage;
+
+
 
     @JsonBackReference
     @OneToMany(mappedBy = "building",cascade = CascadeType.ALL)
@@ -82,7 +83,7 @@ public class Building {
                 ", recipientName='" + recipientName + '\'' +
                 ", bank='" + bank + '\'' +
                 ", deleteFlag=" + deleteFlag +
-                ", images=" + images +
+                ", urlImage='" + urlImage + '\'' +
                 ", floors=" + floors +
                 '}';
     }
@@ -199,12 +200,12 @@ public class Building {
         this.deleteFlag = deleteFlag;
     }
 
-    public List<Image> getImages() {
-        return images;
+    public String getUrlImage() {
+        return urlImage;
     }
 
-    public void setImages(List<Image> images) {
-        this.images = images;
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 
     public List<Floor> getFloors() {
