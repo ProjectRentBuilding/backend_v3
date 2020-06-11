@@ -1,6 +1,7 @@
 package com.codegym.web.services.impl;
 
 import com.codegym.dao.dto.CustomerDTO;
+import com.codegym.dao.entity.Building;
 import com.codegym.dao.entity.Contract;
 import com.codegym.dao.entity.Customer;
 import com.codegym.dao.entity.UserBuilding;
@@ -48,14 +49,10 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Integer deleteCustomer(Integer id) {
+    public void deleteCustomer(Integer id) {
         Customer customer = customerRepository.findAllByDeleteFlagIsNullAndIdIs(id);
-        if (customer != null) {
-            customer.setDeleteFlag(null);
+            customer.setDeleteFlag(1);
             customerRepository.save(customer);
-            return null;
-        }
-        return 1;
     }
 
     @Override

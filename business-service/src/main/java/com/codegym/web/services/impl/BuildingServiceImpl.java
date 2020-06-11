@@ -44,4 +44,36 @@ public class BuildingServiceImpl implements BuildingService {
         }
         return null;
     }
+
+    @Override
+    public Building findById(Integer id) {
+        return buildingRepository.findById(id).orElse(null);
+    }
+    @Override
+    public void remove(Integer id) {
+        Building building = buildingRepository.findAllByDeleteFlagIsNullAndIdIs(id);
+        building.setDeleteFlag(1);
+        buildingRepository.save(building);
+    }
+    @Override
+    public void save(BuildingDTO buildingDTO) {
+        Building building = new Building();
+        building.setId(buildingDTO.getId());
+        building.setAbbreviationName(buildingDTO.getAbbreviationName());
+        building.setFullName(buildingDTO.getFullName());
+        building.setTaxCode(buildingDTO.getTaxCode());
+        building.setPhone(buildingDTO.getPhone());
+        building.setEmail(buildingDTO.getEmail());
+        building.setFax(buildingDTO.getFax());
+        building.setAddress(buildingDTO.getAddress());
+        building.setManagement(buildingDTO.getManagement());
+        building.setManager(buildingDTO.getManager());
+        building.setAccountNumber(buildingDTO.getAccountNumber());
+        building.setRecipientName(buildingDTO.getRecipientName());
+        building.setBank(buildingDTO.getBank());
+        building.setUrlImage(buildingDTO.getUrlImage());
+        building.setFloors(buildingDTO.getFloors());
+        buildingRepository.save(building);
+        }
+
 }

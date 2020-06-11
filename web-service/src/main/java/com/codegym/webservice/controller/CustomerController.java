@@ -1,6 +1,7 @@
 package com.codegym.webservice.controller;
 
 import com.codegym.dao.dto.CustomerDTO;
+import com.codegym.dao.entity.Building;
 import com.codegym.dao.entity.Customer;
 import com.codegym.dao.entity.Equipment;
 import com.codegym.web.services.CustomerService;
@@ -10,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*",allowedHeaders = "*")
@@ -42,12 +45,21 @@ public class CustomerController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<CustomerDTO> deleteCourse(@PathVariable int id) {
-        if (customerService.deleteCustomer(id) == null) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public Map<String, Boolean> deleteCustomer(@PathVariable("id") int id) {
+       CustomerDTO customer=customerService.getCustomerById(id);
+        customerService.deleteCustomer(customer.getId());
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("delete", Boolean.TRUE);
+        return response;
+
+
     }
 
 }
+
+//    public Map<String, Boolean> deleteBulding(@PathVariable("id") int id) {
+//        Building building = buildingService.findById(id);
+//        buildingService.remove(building.getId());
+//        Map<String, Boolean> response = new HashMap<>();
+//        response.put("delete", Boolean.TRUE);
+//        return response;

@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -32,5 +34,22 @@ public class BuildingController {
         }
         return null;
     }
+
+
+    @DeleteMapping("/{id}")
+    public Map<String, Boolean> deleteBulding(@PathVariable("id") int id) {
+        Building building = buildingService.findById(id);
+        buildingService.remove(building.getId());
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("delete", Boolean.TRUE);
+        return response;
+    }
+    @PostMapping("")
+    public ResponseEntity<BuildingDTO> createBuilding(@RequestBody BuildingDTO buildingDTO) {
+        buildingService.save(buildingDTO);
+        return ResponseEntity.ok(buildingDTO);
+    }
+
+
 
 }

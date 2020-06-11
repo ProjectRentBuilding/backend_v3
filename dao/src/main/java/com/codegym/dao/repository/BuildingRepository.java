@@ -17,4 +17,6 @@ public interface BuildingRepository extends JpaRepository<Building,Integer> {
     Building findAllByDeleteFlagIsNullAndIdIs(Integer id);
 
 
+
+
 }
