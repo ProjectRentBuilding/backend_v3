@@ -2,6 +2,7 @@ package com.codegym.dao.dto;
 
 import com.codegym.dao.entity.Contract;
 import com.codegym.dao.entity.UserBuilding;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.io.Serializable;
 import java.util.Date;
