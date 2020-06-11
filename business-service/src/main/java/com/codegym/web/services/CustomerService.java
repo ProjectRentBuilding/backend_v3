@@ -10,4 +10,8 @@ import java.util.List;
 public interface CustomerService {
     List<Customer> findAllByDeleteFlagIsNull();
     CustomerDTO getCustomerById(Integer id);
+
+
+    void deleteCustomer(Integer id);
+    void save(CustomerDTO customerDTO);
 }

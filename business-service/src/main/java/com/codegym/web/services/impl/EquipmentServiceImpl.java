@@ -1,9 +1,7 @@
 package com.codegym.web.services.impl;
 
-import com.codegym.dao.dto.ContractDTO;
-import com.codegym.dao.dto.EmployeeDTO;
+
 import com.codegym.dao.dto.EquipmentDTO;
-import com.codegym.dao.entity.Contract;
 import com.codegym.dao.entity.Equipment;
 import com.codegym.dao.repository.EquipmentRepository;
 import com.codegym.web.services.EquipmentService;
@@ -36,12 +34,26 @@ public class EquipmentServiceImpl implements EquipmentService {
                 equipmentDTO.setAmountOfBroken(equipment.getAmountOfBroken());
                 equipmentDTO.setNote(equipment.getNote());
                 equipmentDTO.setGround(equipment.getGround());
+                return equipmentDTO;
             }
             return null;
     }
 
+
     @Override
-    public void save(Equipment equipment) {
+    public Equipment findById(Integer id) {
+        return equipmentRepository.findById(id).orElse(null);
+    }
+
+//    @Override
+//    public void save(Equipment equipment) {
+//        equipmentRepository.save(equipment);
+//    }
+
+    @Override
+    public void delete(Integer id) {
+        Equipment equipment = equipmentRepository.findAllByDeleteFlagIsNullAndIdIs(id);
+        equipment.setDeleteFlag(1);
         equipmentRepository.save(equipment);
     }
 

@@ -35,6 +35,7 @@ public class BuildingController {
         return null;
     }
 
+
     @DeleteMapping("/{id}")
     public Map<String, Boolean> deleteBulding(@PathVariable("id") int id) {
         BuildingDTO building = buildingService.findAllByDeleteFlagIsNullAndIdIs(id);
@@ -48,6 +49,7 @@ public class BuildingController {
         buildingService.save(buildingDTO);
         return ResponseEntity.ok(buildingDTO);
     }
+
 
 
 }
