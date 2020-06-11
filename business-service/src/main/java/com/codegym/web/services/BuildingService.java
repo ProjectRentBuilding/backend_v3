@@ -10,4 +10,10 @@ public interface BuildingService {
     List<Building> findAllByDeleteFlagIsNull();
     BuildingDTO findAllByDeleteFlagIsNullAndIdIs(Integer id);
 
+    Building findById(Integer id);
+
+    void save(BuildingDTO buildingDTO);
+
+    void remove(Integer id);
+
 }
