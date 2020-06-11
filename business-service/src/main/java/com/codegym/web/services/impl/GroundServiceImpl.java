@@ -39,4 +39,22 @@ public class GroundServiceImpl implements GroundService {
         }
         return null;
     }
+
+    @Override
+    public Ground findById(Integer id) {
+        return null;
+    }
+
+    @Override
+    public void save(GroundDTO groundDTO) {
+
+    }
+
+    @Override
+    public void remove(Integer id) {
+        Ground ground = groundRepository.findAllByDeleteFlagIsNullAndIdIs(id);
+        ground.setDeleteFlag(1);
+        groundRepository.save(ground);
+
+    }
 }

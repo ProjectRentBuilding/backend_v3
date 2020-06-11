@@ -37,7 +37,7 @@ public class BuildingController {
 
     @DeleteMapping("/{id}")
     public Map<String, Boolean> deleteBulding(@PathVariable("id") int id) {
-        Building building = buildingService.findById(id);
+        BuildingDTO building = buildingService.findAllByDeleteFlagIsNullAndIdIs(id);
         buildingService.remove(building.getId());
         Map<String, Boolean> response = new HashMap<>();
         response.put("delete", Boolean.TRUE);

@@ -41,4 +41,22 @@ public class FloorServiceImpl implements FloorService {
         }
        return null;
     }
+
+    @Override
+    public Floor findById(Integer id) {
+        return null;
+    }
+
+    @Override
+    public void save(FloorDTO floorDTO) {
+
+    }
+
+    @Override
+    public void remove(Integer id) {
+        Floor floor = floorRepository.findAllByDeleteFlagIsNullAndIdIs(id);
+        floor.setDeleteFlag(1);
+        floorRepository.save(floor);
+
+    }
 }
