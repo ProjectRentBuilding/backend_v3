@@ -1,12 +1,17 @@
 package com.codegym.web.services.impl;
 
 import com.codegym.dao.dto.CustomerDTO;
+import com.codegym.dao.entity.Contract;
 import com.codegym.dao.entity.Customer;
+import com.codegym.dao.entity.UserBuilding;
 import com.codegym.dao.repository.CustomerRepository;
 import com.codegym.web.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 
 @Service
@@ -42,4 +47,33 @@ public class CustomerServiceImpl implements CustomerService {
         return null;
     }
 
+    @Override
+    public Integer deleteCustomer(Integer id) {
+        Customer customer = customerRepository.findAllByDeleteFlagIsNullAndIdIs(id);
+        if (customer != null) {
+            customer.setDeleteFlag(null);
+            customerRepository.save(customer);
+            return null;
+        }
+        return 1;
+    }
+
+    @Override
+    public void save(CustomerDTO customerDTO) {
+        Customer customer = new Customer();
+        customer.setId(customerDTO.getId());
+        customer.setDeleteFlag(customerDTO.getDeleteFlag());
+        customer.setName(customerDTO.getName());
+        customer.setBirthday(customerDTO.getBirthday());
+        customer.setIdCard(customerDTO.getIdCard());
+        customer.setPhone(customerDTO.getPhone());
+        customer.setEmail(customerDTO.getEmail());
+        customer.setAddress(customerDTO.getAddress());
+        customer.setGender(customerDTO.getGender());
+        customer.setWebsite(customerDTO.getWebsite());
+        customer.setNameCompany(customerDTO.getNameCompany());
+        customer.setUserBuilding(customerDTO.getUserBuilding());
+        customer.setContracts(customerDTO.getContracts());
+        customerRepository.save(customer);
+    }
 }
