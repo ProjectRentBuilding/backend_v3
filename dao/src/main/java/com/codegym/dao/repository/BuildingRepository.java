@@ -14,5 +14,7 @@ public interface BuildingRepository extends JpaRepository<Building,Integer> {
     Page<Building> findAllByDeleteFlagIsNull(Pageable pageable);
     Page<Building> findAllByDeleteFlagIsNullAndFullNameContaining(String fullName,Pageable pageable);
 
+    Building findAllByDeleteFlagIsNullAndIdIs(Integer id);
+
 
 }

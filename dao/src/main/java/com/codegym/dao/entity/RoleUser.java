@@ -1,8 +1,12 @@
 package com.codegym.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Set;
 @Entity
+@JsonIgnoreProperties
 @Table(name = "role_user")
 public class RoleUser {
     @Id
@@ -12,7 +16,8 @@ public class RoleUser {
 
     @Column(name = "role_name")
     private String roleName;
-
+    
+    @JsonBackReference
     @OneToMany(mappedBy = "roleUser")
     private Set<UserBuilding> userBuildings;
 

@@ -20,9 +20,6 @@ public class Equipment {
     @Column(name = "amount")
     private Integer amount;
 
-    @Column(name = "status_equipment")
-    private String statusEquipment;
-
     @Column(name = "amount_of_broken")
     private Integer amountOfBroken;
 
@@ -67,14 +64,6 @@ public class Equipment {
 
     public void setAmount(Integer amount) {
         this.amount = amount;
-    }
-
-    public String getStatusEquipment() {
-        return statusEquipment;
-    }
-
-    public void setStatusEquipment(String statusEquipment) {
-        this.statusEquipment = statusEquipment;
     }
 
     public Integer getAmountOfBroken() {
@@ -123,7 +112,6 @@ public class Equipment {
                 "id=" + id +
                 ", nameEquipment='" + nameEquipment + '\'' +
                 ", amount=" + amount +
-                ", statusEquipment='" + statusEquipment + '\'' +
                 ", amountOfBroken=" + amountOfBroken +
                 ", note='" + note + '\'' +
                 ", typeEquipment=" + typeEquipment +
