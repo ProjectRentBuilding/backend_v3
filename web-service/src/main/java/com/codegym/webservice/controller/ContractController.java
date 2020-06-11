@@ -34,15 +34,15 @@ public class ContractController {
         }
         return ResponseEntity.ok(null);
     }
-//
-//    @DeleteMapping("/{id}")
-//    public Map<String, Boolean> deleteContract(@PathVariable(value = "id") Integer contractID) {
-//        ContractDTO contract = contractService.findAllByDeleteFlagIsNullAndIdIs(contractID);
-//        contractService.delete(contract.getId());
-//        Map<String, Boolean> response = new HashMap<>();
-//        response.put("deleted", Boolean.TRUE);
-//        return response;
-//    }
+
+    @DeleteMapping("/{id}")
+    public Map<String, Boolean> deleteContract(@PathVariable(value = "id") Integer contractID) {
+        ContractDTO contract = contractService.findAllByDeleteFlagIsNullAndIdIs(contractID);
+        contractService.delete(contract.getId());
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;
+    }
 
 
 //

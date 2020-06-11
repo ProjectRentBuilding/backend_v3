@@ -50,11 +50,29 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
+    public Contract findById(Integer id) {
+        return contractRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public void delete(Integer id) {
         Contract contract = contractRepository.findAllByDeleteFlagIsNullAndIdIs(id);
         contract.setDeleteFlag(1);
         contractRepository.save(contract);
     }
+
+    @Override
+    public void save(ContractDTO contractDTO) {
+
+    }
+
+
+    @Override
+    public void updateContract(ContractDTO contractDTO) {
+
+    }
+
+
 
 
 }
