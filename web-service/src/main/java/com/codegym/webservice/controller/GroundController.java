@@ -1,6 +1,6 @@
 package com.codegym.webservice.controller;
 
-import com.codegym.dao.dto.FloorDTO;
+import com.codegym.dao.dto.GroundDTO;
 import com.codegym.dao.dto.GroundDTO;
 import com.codegym.dao.entity.Ground;
 import com.codegym.web.services.GroundService;
@@ -41,5 +41,15 @@ public class GroundController {
         Map<String, Boolean> response = new HashMap<>();
         response.put("delete", Boolean.TRUE);
         return response;
+    }
+    @PostMapping("")
+    public ResponseEntity<GroundDTO> createGround(@RequestBody GroundDTO groundDTO) {
+        groundService.save(groundDTO);
+        return ResponseEntity.ok(groundDTO);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<GroundDTO> updateGround(@PathVariable(value = "id") Integer id, @RequestBody GroundDTO groundDTO) {
+        groundService.updateGround(groundDTO);
+        return ResponseEntity.ok(groundDTO);
     }
 }

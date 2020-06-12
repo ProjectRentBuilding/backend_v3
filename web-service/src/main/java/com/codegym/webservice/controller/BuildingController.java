@@ -1,6 +1,7 @@
 package com.codegym.webservice.controller;
 
 import com.codegym.dao.dto.BuildingDTO;
+import com.codegym.dao.dto.ContractDTO;
 import com.codegym.dao.entity.Building;
 import com.codegym.web.services.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,7 @@ public class BuildingController {
         response.put("delete", Boolean.TRUE);
         return response;
     }
+
     @PostMapping("")
     public ResponseEntity<BuildingDTO> createBuilding(@RequestBody BuildingDTO buildingDTO) {
         buildingService.save(buildingDTO);
@@ -51,5 +53,9 @@ public class BuildingController {
     }
 
 
-
+    @PutMapping("/{id}")
+    public ResponseEntity<BuildingDTO> updateBuilding(@PathVariable(value = "id") Integer id, @RequestBody BuildingDTO buildingDTO) {
+        buildingService.updateBuilding(buildingDTO);
+        return ResponseEntity.ok(buildingDTO);
+    }
 }

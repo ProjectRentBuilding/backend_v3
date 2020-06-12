@@ -2,8 +2,11 @@ package com.codegym.web.services.impl;
 
 import com.codegym.dao.dto.GroundDTO;
 import com.codegym.dao.entity.*;
+import com.codegym.dao.repository.FloorRepository;
 import com.codegym.dao.repository.GroundRepository;
+import com.codegym.dao.repository.TypeGroundRepository;
 import com.codegym.web.services.GroundService;
+import com.codegym.web.services.TypeGroundService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,11 @@ import java.util.Set;
 public class GroundServiceImpl implements GroundService {
     @Autowired
     private GroundRepository groundRepository;
+    @Autowired
+    private FloorRepository floorRepository;
+
+    @Autowired
+    private TypeGroundRepository typeGroundRepository;
 
     @Override
     public List<Ground> findAllByDeleteFlagIsNull() {
@@ -31,10 +39,12 @@ public class GroundServiceImpl implements GroundService {
             groundDTO.setStatusGround(ground.getStatusGround());
             groundDTO.setPrice(ground.getPrice());
             groundDTO.setPriceManager(ground.getPriceManager());
-            groundDTO.setFloor(ground.getFloor());
             groundDTO.setEquipments(ground.getEquipments());
             groundDTO.setContracts(ground.getContracts());
-            groundDTO.setTypeGround(ground.getTypeGround());
+
+            // Chuyển đổi kiểu lưu đối tượng từ ground sang kiểu lưu integer groundDTO
+            groundDTO.setFloorId(ground.getFloor().getId());
+            groundDTO.setTypeGroundId(ground.getTypeGround().getId());
             return groundDTO;
         }
         return null;
@@ -47,13 +57,48 @@ public class GroundServiceImpl implements GroundService {
 
     @Override
     public void save(GroundDTO groundDTO) {
+        Ground ground = new Ground();
+        ground.setId(groundDTO.getId());
+        ground.setCodeGround(ground.getStatusGround());
+        ground.setArea(groundDTO.getArea());
+        ground.setStatusGround(groundDTO.getStatusGround());
+        ground.setPrice(groundDTO.getPrice());
+        ground.setPriceManager(groundDTO.getPriceManager());
+        ground.setDeleteFlag(groundDTO.getDeleteFlag());
+        ground.setEquipments(groundDTO.getEquipments());
+        ground.setContracts(groundDTO.getContracts());
 
+        ground.setFloor(floorRepository.findAllByDeleteFlagIsNullAndIdIs(groundDTO.getFloorId()));
+
+        ground.setTypeGround(typeGroundRepository.findById(groundDTO.getTypeGroundId()).get());
+        groundRepository.save(ground);
     }
 
     @Override
     public void remove(Integer id) {
         Ground ground = groundRepository.findAllByDeleteFlagIsNullAndIdIs(id);
         ground.setDeleteFlag(1);
+        groundRepository.save(ground);
+
+    }
+
+    @Override
+    public void updateGround(GroundDTO groundDTO) {
+        Ground ground = groundRepository.findAllByDeleteFlagIsNullAndIdIs(groundDTO.getId());
+        ground.setId(groundDTO.getId());
+        ground.setCodeGround(ground.getStatusGround());
+        ground.setArea(groundDTO.getArea());
+        ground.setStatusGround(groundDTO.getStatusGround());
+        ground.setPrice(groundDTO.getPrice());
+        ground.setPriceManager(groundDTO.getPriceManager());
+        ground.setDeleteFlag(groundDTO.getDeleteFlag());
+
+        ground.setEquipments(groundDTO.getEquipments());
+        ground.setContracts(groundDTO.getContracts());
+
+        ground.setFloor(floorRepository.findAllByDeleteFlagIsNullAndIdIs(groundDTO.getFloorId()));
+
+        ground.setTypeGround(typeGroundRepository.findById(groundDTO.getId()).get());
         groundRepository.save(ground);
 
     }

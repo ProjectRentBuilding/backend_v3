@@ -1,6 +1,7 @@
 package com.codegym.webservice.controller;
 
-import com.codegym.dao.dto.BuildingDTO;
+import com.codegym.dao.dto.FloorDTO;
+import com.codegym.dao.dto.FloorDTO;
 import com.codegym.dao.dto.FloorDTO;
 import com.codegym.dao.entity.Floor;
 import com.codegym.dao.repository.FloorRepository;
@@ -42,5 +43,15 @@ public class FloorController {
         Map<String, Boolean> response = new HashMap<>();
         response.put("delete", Boolean.TRUE);
         return response;
+    }
+    @PostMapping("")
+    public ResponseEntity<FloorDTO> createFloor(@RequestBody FloorDTO floorDTO) {
+        floorService.save(floorDTO);
+        return ResponseEntity.ok(floorDTO);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<FloorDTO> updateFloor(@PathVariable(value = "id") Integer id, @RequestBody FloorDTO floorDTO) {
+        floorService.updateFloor(floorDTO);
+        return ResponseEntity.ok(floorDTO);
     }
 }
