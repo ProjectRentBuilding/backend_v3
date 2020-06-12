@@ -20,17 +20,18 @@ public class UserBuilding {
     @Column(name = "delete_flag")
     private Integer deleteFlag;
 
+
+//    @JsonManagedReference(value = "userBuildingCustomer")
     @OneToOne(mappedBy = "userBuilding")
-    @JsonManagedReference
     private Customer customer;
 
-    @JsonManagedReference
+//    @JsonManagedReference(value = "id_role")
     @ManyToOne
     @JoinColumn(name = "id_role")
     private RoleUser roleUser;
 
     @OneToOne(mappedBy = "userBuilding")
-    @JsonManagedReference
+//    @JsonManagedReference(value = "userBuildingEmployee")
     private Employee employee;
 
     public UserBuilding() {

@@ -21,7 +21,7 @@ public class TypeGround {
     @Column(name = "delete_flag")
     private Integer deleteFlag;
 
-    @JsonBackReference
+    @JsonBackReference(value = "typeGround")
     @OneToMany(mappedBy = "typeGround", cascade = CascadeType.ALL)
     private Set<Ground> grounds;
 

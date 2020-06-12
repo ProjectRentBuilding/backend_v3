@@ -17,7 +17,7 @@ public class RoleUser {
     @Column(name = "role_name")
     private String roleName;
 
-    @JsonBackReference
+    @JsonBackReference(value = "roleUser")
     @OneToMany(mappedBy = "roleUser")
     private Set<UserBuilding> userBuildings;
 

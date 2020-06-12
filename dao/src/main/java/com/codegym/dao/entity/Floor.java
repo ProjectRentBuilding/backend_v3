@@ -40,16 +40,16 @@ public class Floor {
     private Integer deleteFlag;
 
     @ManyToOne
-    @JsonManagedReference
+//    @JsonManagedReference(value = "id_type_floor" )
     @JoinColumn(name = "id_type_floor")
     private TypeFloor typeFloor;
 
     @ManyToOne
-    @JsonManagedReference
+//    @JsonManagedReference(value = "id_building" )
     @JoinColumn(name="id_building")
     private Building building;
 
-    @JsonBackReference
+    @JsonBackReference(value = "floor")
     @OneToMany(mappedBy ="floor",cascade = ALL)
     private Set<Ground> grounds;
 
