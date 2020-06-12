@@ -55,6 +55,7 @@ public class BuildingServiceImpl implements BuildingService {
         building.setDeleteFlag(1);
         buildingRepository.save(building);
     }
+
     @Override
     public void save(BuildingDTO buildingDTO) {
         Building building = new Building();
@@ -75,5 +76,25 @@ public class BuildingServiceImpl implements BuildingService {
         building.setFloors(buildingDTO.getFloors());
         buildingRepository.save(building);
         }
+    @Override
+    public void updateBuilding(BuildingDTO buildingDTO) {
+        Building building = buildingRepository.findAllByDeleteFlagIsNullAndIdIs(buildingDTO.getId());
+        building.setId(buildingDTO.getId());
+        building.setAbbreviationName(buildingDTO.getAbbreviationName());
+        building.setFullName(buildingDTO.getFullName());
+        building.setTaxCode(buildingDTO.getTaxCode());
+        building.setPhone(buildingDTO.getPhone());
+        building.setEmail(buildingDTO.getEmail());
+        building.setFax(buildingDTO.getFax());
+        building.setAddress(buildingDTO.getAddress());
+        building.setManagement(buildingDTO.getManagement());
+        building.setManager(buildingDTO.getManager());
+        building.setAccountNumber(buildingDTO.getAccountNumber());
+        building.setRecipientName(buildingDTO.getRecipientName());
+        building.setBank(buildingDTO.getBank());
+        building.setUrlImage(buildingDTO.getUrlImage());
+        building.setFloors(buildingDTO.getFloors());
+        buildingRepository.save(building);
+    }
 
 }
