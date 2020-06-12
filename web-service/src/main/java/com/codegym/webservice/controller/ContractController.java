@@ -1,5 +1,6 @@
 package com.codegym.webservice.controller;
 
+import com.codegym.dao.dto.BuildingDTO;
 import com.codegym.dao.dto.ContractDTO;
 import com.codegym.dao.entity.Contract;
 import com.codegym.web.services.ContractService;
@@ -44,6 +45,18 @@ public class ContractController {
         return response;
     }
 
+    @PostMapping("")
+    public ResponseEntity<ContractDTO> createContract(@RequestBody ContractDTO contractDTO) {
+        contractService.save(contractDTO);
+        return ResponseEntity.ok(contractDTO);
+    }
+
+
+    @PutMapping("/{id}/update")
+    public ResponseEntity<ContractDTO> updateContract(@PathVariable(value = "id") Integer id ,@RequestBody ContractDTO contractDTO){
+        contractService.updateContract(contractDTO);
+        return ResponseEntity.ok(contractDTO);
+    }
 
 //
 //    @GetMapping("/{id}")
@@ -67,7 +80,7 @@ public class ContractController {
 //        map.put("unified", String.valueOf(contractDTO.getUnified()));
 //        map.put("id", String.valueOf(contractDTO.getId()));
 //        map.put("deleteFlag", String.valueOf(contractDTO.getDeleteFlag()));
-//        map.put("urlImage", contractDTO.getUlrImage());
+//        map.put("urlImage", contractDTO.getUrlImage());
 //        return map;
 //    }
 

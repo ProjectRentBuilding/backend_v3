@@ -59,7 +59,7 @@ public class Building {
 
 
 
-    @JsonBackReference
+    @JsonBackReference(value = "building")
     @OneToMany(mappedBy = "building",cascade = CascadeType.ALL)
     private List<Floor> floors;
 

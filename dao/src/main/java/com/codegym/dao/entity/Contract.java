@@ -21,17 +21,17 @@ public class Contract {
     @Column(name = "id_contract")
     private Integer id;
 
-    @JsonManagedReference
+//    @JsonManagedReference(value = "id_employee")
     @ManyToOne
     @JoinColumn(name = "id_employee")
     private Employee employee;
 
-    @JsonManagedReference
+//    @JsonManagedReference(value = "id_customer")
     @ManyToOne
     @JoinColumn(name = "id_customer")
     private Customer customer;
 
-    @JsonManagedReference
+//    @JsonManagedReference(value = "id_ground")
     @ManyToOne
     @JoinColumn(name = "id_ground")
     private Ground ground;

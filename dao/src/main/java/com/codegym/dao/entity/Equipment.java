@@ -26,12 +26,12 @@ public class Equipment {
     @Column(name = "note")
     private String note;
 
-    @JsonManagedReference
+//    @JsonManagedReference(value = "id_typeTypeEquipment")
     @ManyToOne
     @JoinColumn(name = "id_type")
     private TypeEquipment typeEquipment;
 
-    @JsonManagedReference
+//    @JsonManagedReference(value = "id_groundEquipment")
     @ManyToOne
     @JoinColumn(name = "id_ground")
     private Ground ground;

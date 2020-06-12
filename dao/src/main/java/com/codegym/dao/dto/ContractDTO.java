@@ -6,8 +6,6 @@ import com.codegym.dao.entity.Ground;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
-
 
 
 public class ContractDTO implements Serializable {
@@ -15,7 +13,7 @@ public class ContractDTO implements Serializable {
     private Employee employee;
     private Customer customer;
     private Ground ground;
-    private String ulrImage;
+    private String urlImage;
     private Double term;
     private Boolean statusContract;
     private Date startRentDay;
@@ -38,7 +36,7 @@ public class ContractDTO implements Serializable {
                 ", employee=" + employee +
                 ", customer=" + customer +
                 ", ground=" + ground +
-                ", ulrImage='" + ulrImage + '\'' +
+                ", urlImage='" + urlImage + '\'' +
                 ", term=" + term +
                 ", statusContract=" + statusContract +
                 ", startRentDay=" + startRentDay +
@@ -85,12 +83,12 @@ public class ContractDTO implements Serializable {
         this.ground = ground;
     }
 
-    public String getUlrImage() {
-        return ulrImage;
+    public String getUrlImage() {
+        return urlImage;
     }
 
-    public void setUlrImage(String ulrImage) {
-        this.ulrImage = ulrImage;
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 
     public Double getTerm() {

@@ -7,9 +7,7 @@ import com.codegym.web.services.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class ContractServiceImpl implements ContractService {
@@ -33,7 +31,7 @@ public class ContractServiceImpl implements ContractService {
             contractDTO.setEmployee(contract.getEmployee());
             contractDTO.setCustomer(contract.getCustomer());
             contractDTO.setGround(contract.getGround());
-            contractDTO.setUlrImage(contract.getUrlImage());
+            contractDTO.setUrlImage(contract.getUrlImage());
             contractDTO.setTerm(contract.getTerm());
             contractDTO.setStatusContract(contract.getStatusContract());
             contractDTO.setStartRentDay(contract.getStartRentDay());
@@ -63,13 +61,47 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public void save(ContractDTO contractDTO) {
+        Contract contract = new Contract();
+        contract.setId(contractDTO.getId());
+        contract.setEmployee(contractDTO.getEmployee());
+        contract.setCustomer(contractDTO.getCustomer());
+        contract.setGround(contractDTO.getGround());
+        contract.setUrlImage(contractDTO.getUrlImage());
+        contract.setTerm(contractDTO.getTerm());
+        contract.setStatusContract(contractDTO.getStatusContract());
+        contract.setStartRentDay(contractDTO.getStartRentDay());
+        contract.setEndRentDay(contractDTO.getEndRentDay());
+        contract.setPrice(contractDTO.getPrice());
+        contract.setTotal(contractDTO.getTotal());
+        contract.setDeposits(contractDTO.getDeposits());
+        contract.setTaxCode(contractDTO.getTaxCode());
+        contract.setContent(contractDTO.getContent());
+        contract.setUnified(contractDTO.getUnified());
+        contractRepository.save(contract);
+
 
     }
 
 
     @Override
     public void updateContract(ContractDTO contractDTO) {
-
+        Contract contract = contractRepository.findAllByDeleteFlagIsNullAndIdIs(contractDTO.getId());
+        contract.setId(contractDTO.getId());
+        contract.setEmployee(contractDTO.getEmployee());
+        contract.setCustomer(contractDTO.getCustomer());
+        contract.setGround(contractDTO.getGround());
+        contract.setUrlImage(contractDTO.getUrlImage());
+        contract.setTerm(contractDTO.getTerm());
+        contract.setStatusContract(contractDTO.getStatusContract());
+        contract.setStartRentDay(contractDTO.getStartRentDay());
+        contract.setEndRentDay(contractDTO.getEndRentDay());
+        contract.setPrice(contractDTO.getPrice());
+        contract.setTotal(contractDTO.getTotal());
+        contract.setDeposits(contractDTO.getDeposits());
+        contract.setTaxCode(contractDTO.getTaxCode());
+        contract.setContent(contractDTO.getContent());
+        contract.setUnified(contractDTO.getUnified());
+        contractRepository.save(contract);
     }
 
 
