@@ -10,9 +10,9 @@ import java.util.Date;
 
 public class ContractDTO implements Serializable {
     private Integer id;
-    private Employee employee;
-    private Customer customer;
-    private Ground ground;
+    private Integer employeeId;
+    private Integer customerId;
+    private Integer groundId;
     private String urlImage;
     private Double term;
     private Boolean statusContract;
@@ -33,9 +33,9 @@ public class ContractDTO implements Serializable {
     public String toString() {
         return "ContractDTO{" +
                 "id=" + id +
-                ", employee=" + employee +
-                ", customer=" + customer +
-                ", ground=" + ground +
+                ", employee=" + employeeId +
+                ", customer=" + customerId +
+                ", ground=" + groundId +
                 ", urlImage='" + urlImage + '\'' +
                 ", term=" + term +
                 ", statusContract=" + statusContract +
@@ -59,28 +59,28 @@ public class ContractDTO implements Serializable {
         this.id = id;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public Integer getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Integer getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
     }
 
-    public Ground getGround() {
-        return ground;
+    public Integer getGroundId() {
+        return groundId;
     }
 
-    public void setGround(Ground ground) {
-        this.ground = ground;
+    public void setGroundId(Integer groundId) {
+        this.groundId = groundId;
     }
 
     public String getUrlImage() {
