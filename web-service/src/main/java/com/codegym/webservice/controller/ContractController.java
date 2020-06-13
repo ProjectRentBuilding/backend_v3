@@ -52,7 +52,12 @@ public class ContractController {
 
 
     @PutMapping("/{id}")
+
+//    public ResponseEntity<ContractDTO> updateContract(@PathVariable(value = "id") Integer id ,@RequestBody ContractDTO contractDTO){
+
     public ResponseEntity<ContractDTO> updateContract(@PathVariable(value = "id") Integer id ,@RequestBody ContractDTO contractDTO){
+//        ContractDTO contractDTO = contractService.findAllByDeleteFlagIsNullAndIdIs(id);
+        System.out.println(contractDTO.getId()+" null o day");
         contractService.updateContract(contractDTO);
         return ResponseEntity.ok(contractDTO);
     }

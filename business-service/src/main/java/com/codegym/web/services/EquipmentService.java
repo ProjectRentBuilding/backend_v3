@@ -13,8 +13,12 @@ public interface EquipmentService {
     EquipmentDTO findAllByDeleteFlagIsNullAndIdIs(Integer id);
 
     Equipment findById(Integer id);
-//    void save(Equipment equipment);
     void delete(Integer id) ;
     Page<Equipment> findAllByDeleteFlagIsNullAndTypeEquipment(Pageable pageable, String typeEquipment);
     Page<Equipment> findAllByDeleteFlagIsNullAndGround(Pageable pageable, String ground);
+
+    void save(EquipmentDTO equipmentDTO);
+
+    void updateEquipment(EquipmentDTO equipmentDTO);
+
 }

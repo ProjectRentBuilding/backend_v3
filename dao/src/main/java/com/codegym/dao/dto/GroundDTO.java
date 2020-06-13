@@ -21,10 +21,12 @@ public class GroundDTO implements Serializable {
     private Integer price;
     private Integer priceManager;
     private Integer deleteFlag;
-    private Floor floor;
+
     private Set<Equipment> equipments;
     private Set<Contract> contracts;
-    private TypeGround typeGround;
+
+    private Integer floorId;
+    private Integer typeGroundId;
 
     public GroundDTO() {
     }
@@ -85,12 +87,12 @@ public class GroundDTO implements Serializable {
         this.deleteFlag = deleteFlag;
     }
 
-    public Floor getFloor() {
-        return floor;
+    public Integer getFloorId() {
+        return floorId;
     }
 
-    public void setFloor(Floor floor) {
-        this.floor = floor;
+    public void setFloorId(Integer floorId) {
+        this.floorId = floorId;
     }
 
     public Set<Equipment> getEquipments() {
@@ -109,11 +111,11 @@ public class GroundDTO implements Serializable {
         this.contracts = contracts;
     }
 
-    public TypeGround getTypeGround() {
-        return typeGround;
+    public Integer getTypeGroundId() {
+        return typeGroundId;
     }
 
-    public void setTypeGround(TypeGround typeGround) {
-        this.typeGround = typeGround;
+    public void setTypeGroundId(Integer typeGroundId) {
+        this.typeGroundId = typeGroundId;
     }
 }

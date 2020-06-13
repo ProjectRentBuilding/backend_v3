@@ -1,7 +1,6 @@
 package com.codegym.webservice.controller;
 
 
-
 import com.codegym.dao.dto.EquipmentDTO;
 import com.codegym.dao.entity.Equipment;
 import com.codegym.web.services.EquipmentService;
@@ -22,7 +21,7 @@ public class EquipmentController {
     EquipmentService equipmentService;
 
     @GetMapping("")
-    public List<Equipment> getAllContract() {
+    public List<Equipment> getAllEquipment() {
         List<Equipment> equipments;
         equipments = equipmentService.findAllByDeleteFlagIsNull();
         return equipments;
@@ -38,7 +37,7 @@ public class EquipmentController {
     }
 
     @DeleteMapping("/{id}")
-    public Map<String, Boolean> deleteContract(@PathVariable(value = "id") Integer id) {
+    public Map<String, Boolean> deleteEquipment(@PathVariable(value = "id") Integer id) {
         EquipmentDTO equipment = equipmentService.findAllByDeleteFlagIsNullAndIdIs(id);
         equipmentService.delete(equipment.getId());
         Map<String, Boolean> response = new HashMap<>();
@@ -46,12 +45,17 @@ public class EquipmentController {
         return response;
     }
 
-//    @PostMapping("")
-//    public ResponseEntity<?> createEquipment( @RequestBody EquipmentDTO equipmentDTO) {
-//        if (equipmentService.createEquipment(equipmentDTO)) {
-//            return new ResponseEntity<>(HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+    @PostMapping("")
+    public ResponseEntity<EquipmentDTO> createEquipment(@RequestBody EquipmentDTO equipmentDTO) {
+        equipmentService.save(equipmentDTO);
+        return ResponseEntity.ok(equipmentDTO);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<EquipmentDTO> updateEquipment(@PathVariable(value = "id") Integer id , @RequestBody EquipmentDTO equipmentDTO){
+        equipmentService.updateEquipment(equipmentDTO);
+        return ResponseEntity.ok(equipmentDTO);
+    }
+
+
 }

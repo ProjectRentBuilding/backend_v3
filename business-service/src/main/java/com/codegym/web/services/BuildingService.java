@@ -16,4 +16,6 @@ public interface BuildingService {
 
     void remove(Integer id);
 
+    void updateBuilding(BuildingDTO buildingDTO);
+
 }

@@ -9,11 +9,25 @@ public class EquipmentDTO {
     private Integer amount;
     private Integer amountOfBroken;
     private String note;
-    private TypeEquipment typeEquipment;
-    private Ground ground;
+    private Integer typeEquipmentId;
+    private Integer groundId;
     private Integer deleteFlag;
 
     public EquipmentDTO() {
+    }
+
+    @Override
+    public String toString() {
+        return "EquipmentDTO{" +
+                "id=" + id +
+                ", nameEquipment='" + nameEquipment + '\'' +
+                ", amount=" + amount +
+                ", amountOfBroken=" + amountOfBroken +
+                ", note='" + note + '\'' +
+                ", typeEquipmentId=" + typeEquipmentId +
+                ", groundId=" + groundId +
+                ", deleteFlag=" + deleteFlag +
+                '}';
     }
 
     public Integer getId() {
@@ -56,20 +70,20 @@ public class EquipmentDTO {
         this.note = note;
     }
 
-    public TypeEquipment getTypeEquipment() {
-        return typeEquipment;
+    public Integer getTypeEquipmentId() {
+        return typeEquipmentId;
     }
 
-    public void setTypeEquipment(TypeEquipment typeEquipment) {
-        this.typeEquipment = typeEquipment;
+    public void setTypeEquipmentId(Integer typeEquipmentId) {
+        this.typeEquipmentId = typeEquipmentId;
     }
 
-    public Ground getGround() {
-        return ground;
+    public Integer getGroundId() {
+        return groundId;
     }
 
-    public void setGround(Ground ground) {
-        this.ground = ground;
+    public void setGroundId(Integer groundId) {
+        this.groundId = groundId;
     }
 
     public Integer getDeleteFlag() {
@@ -78,19 +92,5 @@ public class EquipmentDTO {
 
     public void setDeleteFlag(Integer deleteFlag) {
         this.deleteFlag = deleteFlag;
-    }
-
-    @Override
-    public String toString() {
-        return "EquipmentDTO{" +
-                "id=" + id +
-                ", nameEquipment='" + nameEquipment + '\'' +
-                ", amount=" + amount +
-                ", amountOfBroken=" + amountOfBroken +
-                ", note='" + note + '\'' +
-                ", typeEquipment=" + typeEquipment +
-                ", ground=" + ground +
-                ", deleteFlag=" + deleteFlag +
-                '}';
     }
 }

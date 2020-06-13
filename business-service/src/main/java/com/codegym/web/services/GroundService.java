@@ -1,9 +1,8 @@
 package com.codegym.web.services;
 
 
-import com.codegym.dao.dto.FloorDTO;
+
 import com.codegym.dao.dto.GroundDTO;
-import com.codegym.dao.entity.Floor;
 import com.codegym.dao.entity.Ground;
 
 import java.util.List;
@@ -16,4 +15,6 @@ public interface GroundService {
     void save(GroundDTO groundDTO);
 
     void remove(Integer id);
+
+    void updateGround(GroundDTO groundDTO);
 }

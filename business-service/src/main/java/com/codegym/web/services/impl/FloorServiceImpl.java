@@ -1,22 +1,28 @@
 package com.codegym.web.services.impl;
 
 import com.codegym.dao.dto.FloorDTO;
-import com.codegym.dao.entity.Building;
+
 import com.codegym.dao.entity.Floor;
-import com.codegym.dao.entity.Ground;
-import com.codegym.dao.entity.TypeFloor;
+
+import com.codegym.dao.repository.BuildingRepository;
 import com.codegym.dao.repository.FloorRepository;
+import com.codegym.dao.repository.TypeFloorRepository;
 import com.codegym.web.services.FloorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
+
 
 @Service
 public class FloorServiceImpl implements FloorService {
     @Autowired
     private FloorRepository floorRepository;
+    @Autowired
+    private TypeFloorRepository typeFloorRepository;
+    @Autowired
+    private BuildingRepository buildingRepository;
+
 
     @Override
     public List<Floor> findAllByDeleteFlagIsNull() {
@@ -34,9 +40,11 @@ public class FloorServiceImpl implements FloorService {
             floorDTO.setArea(floor.getArea());
             floorDTO.setCapacity(floor.getCapacity());
             floorDTO.setStatusFloor(floor.getStatusFloor());
-            floorDTO.setTypeFloor(floor.getTypeFloor());
-            floorDTO.setBuilding(floor.getBuilding());
             floorDTO.setGrounds(floor.getGrounds());
+
+            // Chuyển kiểu integer sang object
+            floorDTO.setTypeFloorId(floor.getTypeFloor().getId());
+            floorDTO.setBuildingId(floor.getBuilding().getId());
             return floorDTO;
         }
        return null;
@@ -44,18 +52,45 @@ public class FloorServiceImpl implements FloorService {
 
     @Override
     public Floor findById(Integer id) {
-        return null;
+          return floorRepository.findById(id).orElse(null);
     }
 
     @Override
     public void save(FloorDTO floorDTO) {
+        Floor floor = new Floor();
+        floor.setId(floorDTO.getId());
+        floor.setNameFloor(floorDTO.getNameFloor());
+        floor.setCodeFloor(floorDTO.getCodeFloor());
+        floor.setArea(floorDTO.getArea());
+        floor.setCapacity(floorDTO.getCapacity());
+        floor.setStatusFloor(floorDTO.getStatusFloor());
+        floor.setGrounds(floor.getGrounds());
 
+        floor.setTypeFloor(typeFloorRepository.findById(floorDTO.getTypeFloorId()).get());
+        floor.setBuilding(buildingRepository.findAllByDeleteFlagIsNullAndIdIs(floorDTO.getBuildingId()));
+        floorRepository.save(floor);
     }
 
     @Override
     public void remove(Integer id) {
         Floor floor = floorRepository.findAllByDeleteFlagIsNullAndIdIs(id);
         floor.setDeleteFlag(1);
+        floorRepository.save(floor);
+
+    }
+
+    @Override
+    public void updateFloor(FloorDTO floorDTO) {
+        Floor floor = floorRepository.findAllByDeleteFlagIsNullAndIdIs(floorDTO.getId());
+        floor.setId(floorDTO.getId());
+        floor.setNameFloor(floorDTO.getNameFloor());
+        floor.setCodeFloor(floorDTO.getCodeFloor());
+        floor.setArea(floorDTO.getArea());
+        floor.setCapacity(floorDTO.getCapacity());
+        floor.setStatusFloor(floorDTO.getStatusFloor());
+        floor.setTypeFloor(typeFloorRepository.findById(floorDTO.getTypeFloorId()).get());
+        floor.setBuilding(buildingRepository.findAllByDeleteFlagIsNullAndIdIs(floorDTO.getBuildingId()));
+        floor.setGrounds(floor.getGrounds());
         floorRepository.save(floor);
 
     }

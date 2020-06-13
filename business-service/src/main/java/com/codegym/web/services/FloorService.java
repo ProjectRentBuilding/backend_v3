@@ -3,6 +3,7 @@ package com.codegym.web.services;
 
 
 import com.codegym.dao.dto.BuildingDTO;
+import com.codegym.dao.dto.ContractDTO;
 import com.codegym.dao.dto.FloorDTO;
 import com.codegym.dao.entity.Building;
 import com.codegym.dao.entity.Floor;
@@ -21,5 +22,7 @@ public interface FloorService {
     void save(FloorDTO floorDTO);
 
     void remove(Integer id);
+
+    void updateFloor(FloorDTO floorDTO);
 
 }
