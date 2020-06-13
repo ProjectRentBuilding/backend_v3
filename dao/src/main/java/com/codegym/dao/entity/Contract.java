@@ -17,7 +17,7 @@ import java.util.Set;
 public class Contract {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_contract")
     private Integer id;
 
