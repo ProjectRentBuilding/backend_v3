@@ -36,6 +36,9 @@ public class Ground {
     @Column(name="delete_flag")
     private Integer deleteFlag;
 
+    @Column(name="note")
+    private String note;
+
 //    @JsonManagedReference(value = "id_floorGround")
     @ManyToOne
     @JoinColumn(name = "id_floor")
@@ -57,6 +60,24 @@ public class Ground {
 
     public Ground() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Ground{" +
+                "id=" + id +
+                ", codeGround='" + codeGround + '\'' +
+                ", area=" + area +
+                ", statusGround='" + statusGround + '\'' +
+                ", price=" + price +
+                ", priceManager=" + priceManager +
+                ", deleteFlag=" + deleteFlag +
+                ", note='" + note + '\'' +
+                ", floor=" + floor +
+                ", equipments=" + equipments +
+                ", contracts=" + contracts +
+                ", typeGround=" + typeGround +
+                '}';
     }
 
     public Integer getId() {
@@ -113,6 +134,14 @@ public class Ground {
 
     public void setDeleteFlag(Integer deleteFlag) {
         this.deleteFlag = deleteFlag;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public Floor getFloor() {

@@ -27,6 +27,7 @@ public class GroundDTO implements Serializable {
 
     private Integer floorId;
     private Integer typeGroundId;
+    private String note;
 
     public GroundDTO() {
     }
@@ -117,5 +118,13 @@ public class GroundDTO implements Serializable {
 
     public void setTypeGroundId(Integer typeGroundId) {
         this.typeGroundId = typeGroundId;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

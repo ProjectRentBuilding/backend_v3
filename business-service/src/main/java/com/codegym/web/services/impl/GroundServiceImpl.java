@@ -41,6 +41,7 @@ public class GroundServiceImpl implements GroundService {
             groundDTO.setPriceManager(ground.getPriceManager());
             groundDTO.setEquipments(ground.getEquipments());
             groundDTO.setContracts(ground.getContracts());
+            groundDTO.setNote(ground.getNote());
 
             // Chuyển đổi kiểu lưu đối tượng từ ground sang kiểu lưu integer groundDTO
             groundDTO.setFloorId(ground.getFloor().getId());
@@ -59,7 +60,7 @@ public class GroundServiceImpl implements GroundService {
     public void save(GroundDTO groundDTO) {
         Ground ground = new Ground();
         ground.setId(groundDTO.getId());
-        ground.setCodeGround(ground.getStatusGround());
+        ground.setCodeGround(groundDTO.getCodeGround());
         ground.setArea(groundDTO.getArea());
         ground.setStatusGround(groundDTO.getStatusGround());
         ground.setPrice(groundDTO.getPrice());
@@ -67,10 +68,11 @@ public class GroundServiceImpl implements GroundService {
         ground.setDeleteFlag(groundDTO.getDeleteFlag());
         ground.setEquipments(groundDTO.getEquipments());
         ground.setContracts(groundDTO.getContracts());
+        ground.setNote(groundDTO.getNote());
 
         ground.setFloor(floorRepository.findAllByDeleteFlagIsNullAndIdIs(groundDTO.getFloorId()));
 
-        ground.setTypeGround(typeGroundRepository.findById(groundDTO.getTypeGroundId()).get());
+        ground.setTypeGround(typeGroundRepository.findById(groundDTO.getTypeGroundId()).orElse(null));
         groundRepository.save(ground);
     }
 
@@ -86,19 +88,17 @@ public class GroundServiceImpl implements GroundService {
     public void updateGround(GroundDTO groundDTO) {
         Ground ground = groundRepository.findAllByDeleteFlagIsNullAndIdIs(groundDTO.getId());
         ground.setId(groundDTO.getId());
-        ground.setCodeGround(ground.getStatusGround());
+        ground.setCodeGround(groundDTO.getCodeGround());
         ground.setArea(groundDTO.getArea());
         ground.setStatusGround(groundDTO.getStatusGround());
         ground.setPrice(groundDTO.getPrice());
         ground.setPriceManager(groundDTO.getPriceManager());
         ground.setDeleteFlag(groundDTO.getDeleteFlag());
-
         ground.setEquipments(groundDTO.getEquipments());
         ground.setContracts(groundDTO.getContracts());
-
+        ground.setNote(groundDTO.getNote());
         ground.setFloor(floorRepository.findAllByDeleteFlagIsNullAndIdIs(groundDTO.getFloorId()));
-
-        ground.setTypeGround(typeGroundRepository.findById(groundDTO.getId()).get());
+        ground.setTypeGround(typeGroundRepository.findById(groundDTO.getTypeGroundId()).orElse(null));
         groundRepository.save(ground);
 
     }
