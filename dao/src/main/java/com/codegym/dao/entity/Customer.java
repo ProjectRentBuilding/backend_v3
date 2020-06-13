@@ -13,7 +13,7 @@ import java.util.Set;
 @Table(name = "customer")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_customer")
     private Integer id;
 
@@ -30,7 +30,7 @@ public class Customer {
     private String idCard;
 
     @Column(name = "phone")
-    private int phone;
+    private String phone;
 
     @Column(name = "email")
     private String email;
@@ -118,11 +118,11 @@ public class Customer {
         this.idCard = idCard;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

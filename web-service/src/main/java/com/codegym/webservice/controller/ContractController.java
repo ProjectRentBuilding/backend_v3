@@ -1,6 +1,5 @@
 package com.codegym.webservice.controller;
 
-import com.codegym.dao.dto.BuildingDTO;
 import com.codegym.dao.dto.ContractDTO;
 import com.codegym.dao.entity.Contract;
 import com.codegym.web.services.ContractService;
@@ -53,7 +52,9 @@ public class ContractController {
 
 
     @PutMapping("/{id}")
+
 //    public ResponseEntity<ContractDTO> updateContract(@PathVariable(value = "id") Integer id ,@RequestBody ContractDTO contractDTO){
+
     public ResponseEntity<ContractDTO> updateContract(@PathVariable(value = "id") Integer id ,@RequestBody ContractDTO contractDTO){
 //        ContractDTO contractDTO = contractService.findAllByDeleteFlagIsNullAndIdIs(id);
         System.out.println(contractDTO.getId()+" null o day");

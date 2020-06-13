@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name = "role_user")
 public class RoleUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_role")
     private Integer id;
 
