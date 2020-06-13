@@ -20,8 +20,9 @@ public class FloorDTO implements Serializable {
     private double area;
     private String capacity;
     private String statusFloor;
-    private TypeFloor typeFloor;
-    private Building building;
+    private Integer deleteFlag;
+    private Integer typeFloorId;
+    private Integer buildingId;
     private Set<Ground> grounds;
 
     public FloorDTO() {
@@ -75,20 +76,28 @@ public class FloorDTO implements Serializable {
         this.statusFloor = statusFloor;
     }
 
-    public TypeFloor getTypeFloor() {
-        return typeFloor;
+    public Integer getDeleteFlag() {
+        return deleteFlag;
     }
 
-    public void setTypeFloor(TypeFloor typeFloor) {
-        this.typeFloor = typeFloor;
+    public void setDeleteFlag(Integer deleteFlag) {
+        this.deleteFlag = deleteFlag;
     }
 
-    public Building getBuilding() {
-        return building;
+    public Integer getTypeFloorId() {
+        return typeFloorId;
     }
 
-    public void setBuilding(Building building) {
-        this.building = building;
+    public void setTypeFloorId(Integer typeFloorId) {
+        this.typeFloorId = typeFloorId;
+    }
+
+    public Integer getBuildingId() {
+        return buildingId;
+    }
+
+    public void setBuildingId(Integer buildingId) {
+        this.buildingId = buildingId;
     }
 
     public Set<Ground> getGrounds() {
