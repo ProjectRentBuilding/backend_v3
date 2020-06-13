@@ -17,7 +17,7 @@ import static javax.persistence.CascadeType.ALL;
 public class Floor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_floor")
     private Integer id;
 

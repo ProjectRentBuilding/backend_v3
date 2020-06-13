@@ -71,6 +71,27 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setNameCompany(customerDTO.getNameCompany());
         customer.setUserBuilding(customerDTO.getUserBuilding());
         customer.setContracts(customerDTO.getContracts());
+
+        customerRepository.save(customer);
+    }
+
+    @Override
+    public void updateCustomer(CustomerDTO customerDTO) {
+        Customer customer = customerRepository.findAllByDeleteFlagIsNullAndIdIs(customerDTO.getId());
+        customer.setId(customerDTO.getId());
+        customer.setDeleteFlag(customerDTO.getDeleteFlag());
+        customer.setName(customerDTO.getName());
+        customer.setBirthday(customerDTO.getBirthday());
+        customer.setIdCard(customerDTO.getIdCard());
+        customer.setPhone(customerDTO.getPhone());
+        customer.setEmail(customerDTO.getEmail());
+        customer.setAddress(customerDTO.getAddress());
+        customer.setGender(customerDTO.getGender());
+        customer.setWebsite(customerDTO.getWebsite());
+        customer.setNameCompany(customerDTO.getNameCompany());
+        customer.setUserBuilding(customerDTO.getUserBuilding());
+        customer.setContracts(customerDTO.getContracts());
+
         customerRepository.save(customer);
     }
 }

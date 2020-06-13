@@ -44,6 +44,30 @@ public class ContractController {
 //        return response;
 //    }
 
+<<<<<<< Updated upstream
+=======
+    @DeleteMapping("/{id}")
+    public Map<String, Boolean> deleteContract(@PathVariable(value = "id") Integer contractID) {
+        ContractDTO contract = contractService.findAllByDeleteFlagIsNullAndIdIs(contractID);
+        contractService.delete(contract.getId());
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;
+    }
+
+    @PostMapping("")
+    public ResponseEntity<ContractDTO> createContract(@RequestBody ContractDTO contractDTO) {
+        contractService.save(contractDTO);
+        return ResponseEntity.ok(contractDTO);
+    }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ContractDTO> updateContract(@PathVariable(value = "id") Integer id ,@RequestBody ContractDTO contractDTO){
+        contractService.updateContract(contractDTO);
+        return ResponseEntity.ok(contractDTO);
+    }
+>>>>>>> Stashed changes
 
 //
 //    @GetMapping("/{id}")

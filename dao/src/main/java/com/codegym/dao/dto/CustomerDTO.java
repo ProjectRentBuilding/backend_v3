@@ -14,7 +14,7 @@ public class CustomerDTO implements Serializable {
     private String name;
     private Date birthday;
     private String idCard;
-    private int phone;
+    private String phone;
     private String email;
     private String address;
     private String gender;
@@ -85,11 +85,11 @@ public class CustomerDTO implements Serializable {
         this.idCard = idCard;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

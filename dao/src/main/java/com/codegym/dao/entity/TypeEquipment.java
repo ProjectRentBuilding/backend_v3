@@ -13,7 +13,7 @@ import java.util.Set;
 public class TypeEquipment {
     @Id
     @Column(name = "id_type")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @JsonBackReference

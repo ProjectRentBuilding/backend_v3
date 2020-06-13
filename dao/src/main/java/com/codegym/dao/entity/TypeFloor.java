@@ -14,7 +14,7 @@ public class TypeFloor {
 
     @Id
     @Column(name = "id_type_floor")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "name_type_floor")

@@ -12,7 +12,7 @@ import java.util.Set;
 public class TypeGround {
     @Id
     @Column(name = "id_type_ground")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "name_type_ground")

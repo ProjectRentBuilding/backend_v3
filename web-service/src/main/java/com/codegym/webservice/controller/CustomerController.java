@@ -1,5 +1,6 @@
 package com.codegym.webservice.controller;
 
+import com.codegym.dao.dto.ContractDTO;
 import com.codegym.dao.dto.CustomerDTO;
 import com.codegym.dao.entity.Building;
 import com.codegym.dao.entity.Customer;
@@ -53,6 +54,11 @@ public class CustomerController {
         return response;
 
 
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<CustomerDTO> updateContract(@PathVariable(value = "id") Integer id , @RequestBody CustomerDTO customerDTO){
+        customerService.updateCustomer(customerDTO);
+        return ResponseEntity.ok(customerDTO);
     }
 
 }

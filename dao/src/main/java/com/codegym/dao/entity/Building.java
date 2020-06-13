@@ -12,7 +12,7 @@ import java.util.List;
 public class Building {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_building")
     private Integer id;
 
