@@ -1,6 +1,5 @@
 package com.codegym.webservice.controller;
 
-import com.codegym.dao.dto.BuildingDTO;
 import com.codegym.dao.dto.ContractDTO;
 import com.codegym.dao.entity.Contract;
 import com.codegym.web.services.ContractService;
