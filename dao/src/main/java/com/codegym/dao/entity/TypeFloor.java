@@ -23,7 +23,7 @@ public class TypeFloor {
     @Column(name = "delete_flag")
     private Integer deleteFlag;
 
-    @JsonBackReference
+    @JsonBackReference(value = "typeFloor")
     @OneToMany(mappedBy = "typeFloor", cascade = CascadeType.ALL)
     private Set<Floor> floors;
 

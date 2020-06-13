@@ -48,11 +48,11 @@ public class Customer {
     private String nameCompany;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonBackReference(value = "usernameCustomer")
     @JoinColumn(name = "username", referencedColumnName = "username")
     private UserBuilding userBuilding;
 
-    @JsonBackReference
+    @JsonBackReference(value = "customer")
     @OneToMany(mappedBy = "customer")
     private Set<Contract> contracts;
 

@@ -16,7 +16,7 @@ public class TypeEquipment {
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @JsonBackReference
+    @JsonBackReference(value = "typeEquipment")
     @OneToMany(mappedBy  = "typeEquipment", cascade = CascadeType.ALL)
     private Set<Equipment> equipments;
 

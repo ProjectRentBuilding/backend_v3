@@ -6,16 +6,14 @@ import com.codegym.dao.entity.Ground;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
-
 
 
 public class ContractDTO implements Serializable {
     private Integer id;
-    private Employee employee;
-    private Customer customer;
-    private Ground ground;
-    private String ulrImage;
+    private Integer employeeId;
+    private Integer customerId;
+    private Integer groundId;
+    private String urlImage;
     private Double term;
     private Boolean statusContract;
     private Date startRentDay;
@@ -35,10 +33,10 @@ public class ContractDTO implements Serializable {
     public String toString() {
         return "ContractDTO{" +
                 "id=" + id +
-                ", employee=" + employee +
-                ", customer=" + customer +
-                ", ground=" + ground +
-                ", ulrImage='" + ulrImage + '\'' +
+                ", employee=" + employeeId +
+                ", customer=" + customerId +
+                ", ground=" + groundId +
+                ", urlImage='" + urlImage + '\'' +
                 ", term=" + term +
                 ", statusContract=" + statusContract +
                 ", startRentDay=" + startRentDay +
@@ -61,36 +59,36 @@ public class ContractDTO implements Serializable {
         this.id = id;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public Integer getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Integer getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
     }
 
-    public Ground getGround() {
-        return ground;
+    public Integer getGroundId() {
+        return groundId;
     }
 
-    public void setGround(Ground ground) {
-        this.ground = ground;
+    public void setGroundId(Integer groundId) {
+        this.groundId = groundId;
     }
 
-    public String getUlrImage() {
-        return ulrImage;
+    public String getUrlImage() {
+        return urlImage;
     }
 
-    public void setUlrImage(String ulrImage) {
-        this.ulrImage = ulrImage;
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 
     public Double getTerm() {

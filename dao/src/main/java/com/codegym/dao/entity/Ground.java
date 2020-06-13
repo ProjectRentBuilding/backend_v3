@@ -36,20 +36,20 @@ public class Ground {
     @Column(name="delete_flag")
     private Integer deleteFlag;
 
-    @JsonManagedReference
+//    @JsonManagedReference(value = "id_floorGround")
     @ManyToOne
     @JoinColumn(name = "id_floor")
     private Floor floor;
 
-    @JsonBackReference
+    @JsonBackReference(value = "groundEquipments")
     @OneToMany(mappedBy ="ground",cascade = CascadeType.ALL)
     private Set<Equipment> equipments;
 
-    @JsonBackReference
+    @JsonBackReference(value = "groundContracts")
     @OneToMany(mappedBy = "ground",cascade = CascadeType.ALL)
     private Set<Contract> contracts;
 
-    @JsonManagedReference
+//    @JsonManagedReference(value = "id_type_ground")
     @ManyToOne
     @JoinColumn(name = "id_type_ground")
     private TypeGround typeGround;

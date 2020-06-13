@@ -34,18 +34,7 @@ public class ContractController {
         }
         return ResponseEntity.ok(null);
     }
-//
-//    @DeleteMapping("/{id}")
-//    public Map<String, Boolean> deleteContract(@PathVariable(value = "id") Integer contractID) {
-//        ContractDTO contract = contractService.findAllByDeleteFlagIsNullAndIdIs(contractID);
-//        contractService.delete(contract.getId());
-//        Map<String, Boolean> response = new HashMap<>();
-//        response.put("deleted", Boolean.TRUE);
-//        return response;
-//    }
 
-<<<<<<< Updated upstream
-=======
     @DeleteMapping("/{id}")
     public Map<String, Boolean> deleteContract(@PathVariable(value = "id") Integer contractID) {
         ContractDTO contract = contractService.findAllByDeleteFlagIsNullAndIdIs(contractID);
@@ -67,7 +56,6 @@ public class ContractController {
         contractService.updateContract(contractDTO);
         return ResponseEntity.ok(contractDTO);
     }
->>>>>>> Stashed changes
 
 //
 //    @GetMapping("/{id}")
@@ -91,7 +79,7 @@ public class ContractController {
 //        map.put("unified", String.valueOf(contractDTO.getUnified()));
 //        map.put("id", String.valueOf(contractDTO.getId()));
 //        map.put("deleteFlag", String.valueOf(contractDTO.getDeleteFlag()));
-//        map.put("urlImage", contractDTO.getUlrImage());
+//        map.put("urlImage", contractDTO.getUrlImage());
 //        return map;
 //    }
 

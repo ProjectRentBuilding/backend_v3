@@ -41,11 +41,11 @@ public class Employee {
     private String gender;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonBackReference(value = "usernameEmployee")
     @JoinColumn(name = "username", referencedColumnName = "username")
     private UserBuilding userBuilding;
 
-    @JsonBackReference
+    @JsonBackReference(value = "employee")
     @OneToMany(mappedBy = "employee")
     private Set<Contract> contracts;
 

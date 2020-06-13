@@ -38,6 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             employeeDTO.setUserBuilding(employee.getUserBuilding());
             employeeDTO.setUserBuilding(employee.getUserBuilding());
             employeeDTO.setContracts(employee.getContracts());
+            return employeeDTO;
         }
         return null;
     }
