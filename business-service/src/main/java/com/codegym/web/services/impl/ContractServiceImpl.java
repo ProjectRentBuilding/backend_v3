@@ -8,6 +8,8 @@ import com.codegym.dao.repository.EmployeeRepository;
 import com.codegym.dao.repository.GroundRepository;
 import com.codegym.web.services.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -116,7 +118,10 @@ public class ContractServiceImpl implements ContractService {
         contractRepository.save(contract);
     }
 
-
+    @Override
+    public Page<Contract> getContracts(String nameCustomer, Pageable pageable) {
+        return contractRepository.findAllByDeleteFlagIsNullAndCustomerNameContainingIgnoreCase(nameCustomer,pageable);
+    }
 
 
 }
