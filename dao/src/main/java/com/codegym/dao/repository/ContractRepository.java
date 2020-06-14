@@ -13,5 +13,6 @@ public interface ContractRepository extends JpaRepository<Contract, Integer> {
     List<Contract> findAllByDeleteFlagIsNull();
     Contract findAllByDeleteFlagIsNullAndIdIs(Integer id);
     Page<Contract> findAllByDeleteFlagIsNull(Pageable pageable);
-    Page<Contract> findAllByDeleteFlagIsNullAndCustomerNameIs(String fullName,Pageable pageable);
+    Page<Contract> findAllByDeleteFlagIsNullAndCustomerNameContainingIgnoreCase(String fullName,Pageable pageable);
+
 }
