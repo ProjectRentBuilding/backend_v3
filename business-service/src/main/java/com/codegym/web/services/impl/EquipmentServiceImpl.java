@@ -75,6 +75,7 @@ public class EquipmentServiceImpl implements EquipmentService {
     public void save(EquipmentDTO equipmentDTO) {
         Equipment equipment = new Equipment();
 
+        equipmentDTO.setId(equipmentDTO.getId());
         equipment.setTypeEquipment(typeEquipmentRepository.findById(equipmentDTO.getTypeEquipmentId()).get());
         equipment.setNameEquipment(equipmentDTO.getNameEquipment());
         equipment.setAmount(equipmentDTO.getAmount());
