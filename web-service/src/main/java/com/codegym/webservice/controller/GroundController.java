@@ -1,7 +1,6 @@
 package com.codegym.webservice.controller;
 
 import com.codegym.dao.dto.GroundDTO;
-import com.codegym.dao.dto.GroundDTO;
 import com.codegym.dao.entity.Ground;
 import com.codegym.web.services.GroundService;
 import org.springframework.beans.factory.annotation.Autowired;

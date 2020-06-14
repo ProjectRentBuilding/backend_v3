@@ -37,7 +37,7 @@ public class FloorController {
         return null;
     }
     @DeleteMapping("/{id}")
-    public Map<String, Boolean> deleteBulding(@PathVariable("id") int id) {
+    public Map<String, Boolean> deleteBuilding(@PathVariable("id") int id) {
         FloorDTO floor = floorService.findAllByDeleteFlagIsNullAndIdIs(id);
         floorService.remove(floor.getId());
         Map<String, Boolean> response = new HashMap<>();

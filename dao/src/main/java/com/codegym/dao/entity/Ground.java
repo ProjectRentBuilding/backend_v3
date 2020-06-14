@@ -13,7 +13,7 @@ import java.util.Set;
 public class Ground {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_ground")
     private Integer id;
 
