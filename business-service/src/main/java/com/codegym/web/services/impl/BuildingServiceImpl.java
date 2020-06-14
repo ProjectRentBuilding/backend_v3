@@ -38,8 +38,8 @@ public class BuildingServiceImpl implements BuildingService {
             buildingDTO.setAccountNumber(building.getAccountNumber());
             buildingDTO.setRecipientName(building.getRecipientName());
             buildingDTO.setBank(building.getBank());
-            buildingDTO.setUrlImage(building.getUrlImage());
-            buildingDTO.setFloors(building.getFloors());
+//            buildingDTO.setUrlImage(building.getUrlImage());
+//            buildingDTO.setFloors(building.getFloors());
             return buildingDTO;
         }
         return null;
@@ -72,8 +72,8 @@ public class BuildingServiceImpl implements BuildingService {
         building.setAccountNumber(buildingDTO.getAccountNumber());
         building.setRecipientName(buildingDTO.getRecipientName());
         building.setBank(buildingDTO.getBank());
-        building.setUrlImage(buildingDTO.getUrlImage());
-        building.setFloors(buildingDTO.getFloors());
+//        building.setUrlImage(buildingDTO.getUrlImage());
+//        building.setFloors(buildingDTO.getFloors());
         buildingRepository.save(building);
         }
     @Override

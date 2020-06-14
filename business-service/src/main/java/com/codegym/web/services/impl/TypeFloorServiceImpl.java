@@ -21,4 +21,6 @@ public class TypeFloorServiceImpl implements TypeFloorService {
     public TypeFloor findById(Integer id) {
         return typeFloorRepository.findById(id).orElse(null);
     }
+
+
 }
