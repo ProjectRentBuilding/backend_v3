@@ -1,11 +1,8 @@
 package com.codegym.dao.dto;
 
 import com.codegym.dao.entity.Floor;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 public class BuildingDTO implements Serializable {
 
@@ -24,10 +21,7 @@ public class BuildingDTO implements Serializable {
     private String bank;
     private Integer deleteFlag;
     private String urlImage;
-    private List<Floor> floors;
-
-    public BuildingDTO() {
-    }
+    private Set<Floor> floors;
 
     @Override
     public String toString() {
@@ -171,11 +165,11 @@ public class BuildingDTO implements Serializable {
         this.urlImage = urlImage;
     }
 
-    public List<Floor> getFloors() {
+    public Set<Floor> getFloors() {
         return floors;
     }
 
-    public void setFloors(List<Floor> floors) {
+    public void setFloors(Set<Floor> floors) {
         this.floors = floors;
     }
 }

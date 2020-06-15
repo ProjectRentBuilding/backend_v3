@@ -58,10 +58,6 @@ public class Ground {
     private TypeGround typeGround;
 
 
-    public Ground() {
-
-    }
-
     @Override
     public String toString() {
         return "Ground{" +

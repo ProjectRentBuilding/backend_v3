@@ -23,8 +23,6 @@ public class Image {
     @Column(name="type_image")
     private String type;
 
-    public Image() {
-    }
 
     @Override
     public String toString() {

@@ -11,6 +11,4 @@ import java.util.List;
 @Repository
 public interface TypeGroundRepository extends JpaRepository<TypeGround,Integer> {
     List<TypeGround> findAll();
-
-//    TypeGround findById(Integer id);
 }
