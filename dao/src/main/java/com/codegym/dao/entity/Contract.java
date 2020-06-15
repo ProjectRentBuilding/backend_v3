@@ -1,15 +1,9 @@
 package com.codegym.dao.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @JsonIgnoreProperties
@@ -73,8 +67,6 @@ public class Contract {
     @Column(name = "delete_flag")
     private Integer deleteFlag;
 
-    public Contract() {
-    }
 
     @Override
     public String toString() {

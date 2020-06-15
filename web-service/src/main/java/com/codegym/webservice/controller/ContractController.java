@@ -32,7 +32,7 @@ public class ContractController {
         if (contractDTO != null) {
             return ResponseEntity.ok(contractDTO);
         }
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(new ContractDTO());
     }
 
     @DeleteMapping("/{id}")
@@ -57,31 +57,6 @@ public class ContractController {
         return ResponseEntity.ok(contractDTO);
     }
 
-//
-//    @GetMapping("/{id}")
-//    public Map<String,String> getContract(@PathVariable("id") int id) {
-//        ContractDTO contractDTO = contractService.findAllByDeleteFlagIsNullAndIdIs(id);
-//        HashMap<String, String> map = new HashMap<>();
-//        map.put("customerName", contractDTO.getCustomer().getName());
-//        map.put("idCardCustomer", contractDTO.getCustomer().getIdCard());
-//        map.put("addressCustomer", contractDTO.getCustomer().getAddress());
-//        map.put("emailCustomer", contractDTO.getCustomer().getEmail());
-//        map.put("groundName", contractDTO.getGround().getCodeGround());
-//        map.put("term", String.valueOf(contractDTO.getTerm()));
-//        map.put("status", String.valueOf(contractDTO.getStatusContract()));
-//        map.put("startRentDay", String.valueOf(contractDTO.getStartRentDay()));
-//        map.put("endRentDay", String.valueOf(contractDTO.getEndRentDay()));
-//        map.put("price", String.valueOf(contractDTO.getPrice()));
-//        map.put("total", String.valueOf(contractDTO.getTotal()));
-//        map.put("deposits", String.valueOf(contractDTO.getDeposits()));
-//        map.put("taxCode", String.valueOf(contractDTO.getTaxCode()));
-//        map.put("content", String.valueOf(contractDTO.getContent()));
-//        map.put("unified", String.valueOf(contractDTO.getUnified()));
-//        map.put("id", String.valueOf(contractDTO.getId()));
-//        map.put("deleteFlag", String.valueOf(contractDTO.getDeleteFlag()));
-//        map.put("urlImage", contractDTO.getUrlImage());
-//        return map;
-//    }
 
 
 }
