@@ -1,7 +1,6 @@
 package com.codegym.webservice.controller;
 
 import com.codegym.dao.dto.BuildingDTO;
-import com.codegym.dao.dto.ContractDTO;
 import com.codegym.dao.entity.Building;
 import com.codegym.web.services.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;

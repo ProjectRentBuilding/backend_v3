@@ -6,12 +6,11 @@ import com.codegym.dao.repository.FloorRepository;
 import com.codegym.dao.repository.GroundRepository;
 import com.codegym.dao.repository.TypeGroundRepository;
 import com.codegym.web.services.GroundService;
-import com.codegym.web.services.TypeGroundService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
+
 
 @Service
 public class GroundServiceImpl implements GroundService {

@@ -1,16 +1,8 @@
 package com.codegym.dao.dto;
-
-import com.codegym.dao.entity.Building;
 import com.codegym.dao.entity.Ground;
-import com.codegym.dao.entity.TypeFloor;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-import static javax.persistence.CascadeType.ALL;
 
 public class FloorDTO implements Serializable {
 
@@ -25,8 +17,6 @@ public class FloorDTO implements Serializable {
     private Integer buildingId;
     private Set<Ground> grounds;
 
-    public FloorDTO() {
-    }
 
     public Integer getId() {
         return id;

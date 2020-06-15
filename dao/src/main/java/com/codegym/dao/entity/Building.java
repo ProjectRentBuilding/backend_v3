@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @JsonIgnoreProperties
@@ -61,10 +61,7 @@ public class Building {
 
     @JsonBackReference(value = "building")
     @OneToMany(mappedBy = "building",cascade = CascadeType.ALL)
-    private List<Floor> floors;
-
-    public Building() {
-    }
+    private Set<Floor> floors;
 
     @Override
     public String toString() {
@@ -208,11 +205,11 @@ public class Building {
         this.urlImage = urlImage;
     }
 
-    public List<Floor> getFloors() {
+    public Set<Floor> getFloors() {
         return floors;
     }
 
-    public void setFloors(List<Floor> floors) {
+    public void setFloors(Set<Floor> floors) {
         this.floors = floors;
     }
 }
