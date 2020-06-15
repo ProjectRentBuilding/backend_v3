@@ -2,7 +2,6 @@ package com.codegym.web.services.impl;
 
 
 import com.codegym.dao.dto.EquipmentDTO;
-import com.codegym.dao.entity.Contract;
 import com.codegym.dao.entity.Equipment;
 import com.codegym.dao.repository.EquipmentRepository;
 import com.codegym.dao.repository.GroundRepository;
@@ -76,12 +75,12 @@ public class EquipmentServiceImpl implements EquipmentService {
         Equipment equipment = new Equipment();
 
         equipmentDTO.setId(equipmentDTO.getId());
-        equipment.setTypeEquipment(typeEquipmentRepository.findById(equipmentDTO.getTypeEquipmentId()).get());
+        equipment.setTypeEquipment(typeEquipmentRepository.findById(equipmentDTO.getTypeEquipmentId()).orElse(null));
         equipment.setNameEquipment(equipmentDTO.getNameEquipment());
         equipment.setAmount(equipmentDTO.getAmount());
         equipment.setAmountOfBroken(equipmentDTO.getAmountOfBroken());
         equipment.setNote(equipmentDTO.getNote());
-        equipment.setGround(groundRepository.findById(equipmentDTO.getGroundId()).get());
+        equipment.setGround(groundRepository.findById(equipmentDTO.getGroundId()).orElse(null));
 
         equipmentRepository.save(equipment);
     }
@@ -91,12 +90,12 @@ public class EquipmentServiceImpl implements EquipmentService {
         Equipment equipment = equipmentRepository.findAllByDeleteFlagIsNullAndIdIs(equipmentDTO.getId());
 
         equipment.setId(equipmentDTO.getId());
-        equipment.setTypeEquipment(typeEquipmentRepository.findById(equipmentDTO.getTypeEquipmentId()).get());
+        equipment.setTypeEquipment(typeEquipmentRepository.findById(equipmentDTO.getTypeEquipmentId()).orElse(null));
         equipment.setNameEquipment(equipmentDTO.getNameEquipment());
         equipment.setAmount(equipmentDTO.getAmount());
         equipment.setAmountOfBroken(equipmentDTO.getAmountOfBroken());
         equipment.setNote(equipmentDTO.getNote());
-        equipment.setGround(groundRepository.findById(equipmentDTO.getGroundId()).get());
+        equipment.setGround(groundRepository.findById(equipmentDTO.getGroundId()).orElse(null));
 
         equipmentRepository.save(equipment);
     }
