@@ -66,7 +66,7 @@ public class FloorServiceImpl implements FloorService {
         floor.setStatusFloor(floorDTO.getStatusFloor());
         floor.setGrounds(floor.getGrounds());
 
-        floor.setTypeFloor(typeFloorRepository.findById(floorDTO.getTypeFloorId()).get());
+        floor.setTypeFloor(typeFloorRepository.findById(floorDTO.getTypeFloorId()).orElse(null));
         floor.setBuilding(buildingRepository.findAllByDeleteFlagIsNullAndIdIs(floorDTO.getBuildingId()));
         floorRepository.save(floor);
     }
@@ -88,7 +88,7 @@ public class FloorServiceImpl implements FloorService {
         floor.setArea(floorDTO.getArea());
         floor.setCapacity(floorDTO.getCapacity());
         floor.setStatusFloor(floorDTO.getStatusFloor());
-        floor.setTypeFloor(typeFloorRepository.findById(floorDTO.getTypeFloorId()).get());
+        floor.setTypeFloor(typeFloorRepository.findById(floorDTO.getTypeFloorId()).orElse(null));
         floor.setBuilding(buildingRepository.findAllByDeleteFlagIsNullAndIdIs(floorDTO.getBuildingId()));
         floor.setGrounds(floor.getGrounds());
         floorRepository.save(floor);

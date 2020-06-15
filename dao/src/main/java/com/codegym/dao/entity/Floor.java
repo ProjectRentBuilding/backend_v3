@@ -2,7 +2,7 @@ package com.codegym.dao.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 import javax.persistence.*;
 
@@ -52,9 +52,6 @@ public class Floor {
     @JsonBackReference(value = "floor")
     @OneToMany(mappedBy ="floor",cascade = ALL)
     private Set<Ground> grounds;
-
-    public Floor() {
-    }
 
     public Integer getId() {
         return id;

@@ -2,7 +2,6 @@ package com.codegym.web.services.impl;
 
 import com.codegym.dao.dto.BuildingDTO;
 import com.codegym.dao.entity.Building;
-import com.codegym.dao.entity.Floor;
 import com.codegym.dao.repository.BuildingRepository;
 import com.codegym.web.services.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +37,6 @@ public class BuildingServiceImpl implements BuildingService {
             buildingDTO.setAccountNumber(building.getAccountNumber());
             buildingDTO.setRecipientName(building.getRecipientName());
             buildingDTO.setBank(building.getBank());
-//            buildingDTO.setUrlImage(building.getUrlImage());
-//            buildingDTO.setFloors(building.getFloors());
             return buildingDTO;
         }
         return null;
@@ -72,8 +69,6 @@ public class BuildingServiceImpl implements BuildingService {
         building.setAccountNumber(buildingDTO.getAccountNumber());
         building.setRecipientName(buildingDTO.getRecipientName());
         building.setBank(buildingDTO.getBank());
-//        building.setUrlImage(buildingDTO.getUrlImage());
-//        building.setFloors(buildingDTO.getFloors());
         buildingRepository.save(building);
         }
     @Override

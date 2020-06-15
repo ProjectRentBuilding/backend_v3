@@ -2,12 +2,6 @@ package com.codegym.dao.dto;
 
 import com.codegym.dao.entity.Contract;
 import com.codegym.dao.entity.Equipment;
-import com.codegym.dao.entity.Floor;
-import com.codegym.dao.entity.TypeGround;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -29,8 +23,6 @@ public class GroundDTO implements Serializable {
     private Integer typeGroundId;
     private String note;
 
-    public GroundDTO() {
-    }
 
     public Integer getId() {
         return id;
