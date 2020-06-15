@@ -25,7 +25,7 @@ public class Building {
     private String taxCode;
 
     @Column(name="phone")
-    private Integer phone;
+    private String phone;
 
     @Column(name="email")
     private String email;
@@ -70,7 +70,7 @@ public class Building {
                 ", abbreviationName='" + abbreviationName + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", taxCode='" + taxCode + '\'' +
-                ", phone=" + phone +
+                ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", fax='" + fax + '\'' +
                 ", address='" + address + '\'' +
@@ -117,11 +117,11 @@ public class Building {
         this.taxCode = taxCode;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
