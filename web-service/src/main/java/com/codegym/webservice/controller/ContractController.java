@@ -57,11 +57,11 @@ public class ContractController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateContract(@Valid @PathVariable(value = "id") Integer id ,@RequestBody ContractDTO contractDTO,BindingResult bindingResult){
+    public ResponseEntity<?> updateContract(@PathVariable(value = "id") Integer id, @RequestBody @Valid ContractDTO contractDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         contractService.updateContract(contractDTO);
-        return ResponseEntity.ok(contractDTO);
+        return ResponseEntity.accepted().body(contractDTO);
     }
 
 
