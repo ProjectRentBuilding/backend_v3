@@ -1,23 +1,55 @@
 package com.codegym.dao.dto;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
 
 public class ContractDTO implements Serializable {
     private Integer id;
+    @NotNull(message = "Không được để trống")
+    @Min(value = 1,message = "Phải lớn hơn hoặc bằng 1")
     private Integer employeeId;
+
+    @Min(value = 1,message = "Phải lớn hơn hoặc bằng 1")
+    @NotNull(message = "Không được để trống")
     private Integer customerId;
+
+    @NotNull(message = "Không được để trống")
+    @Min(value = 1,message = "Phải lớn hơn hoặc bằng 1")
     private Integer groundId;
+
+    @NotNull(message = "Không được để trống")
     private String urlImage;
+
+    @NotNull(message = "Không được để trống")
     private Double term;
+
+    @NotNull(message = "Không được để trống")
     private Boolean statusContract;
+
+    @NotNull(message = "Không được để trống")
     private Date startRentDay;
+
+    @NotNull(message = "Không được để trống")
     private Date endRentDay;
+
+    @NotNull(message = "Không được để trống")
+    @Min(value = 1,message = "Phải lớn hơn hoặc bằng 1")
     private Double price;
+
+    @NotNull(message = "Không được để trống")
     private Double total;
+
+    @NotNull(message = "Không được để trống")
     private Double deposits;
+
+    @NotNull(message = "Không được để trống")
     private String taxCode;
+
+    @NotNull(message = "Không được để trống")
     private String content;
     private Boolean unified;
     private Integer deleteFlag;
