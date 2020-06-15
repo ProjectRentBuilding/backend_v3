@@ -4,9 +4,12 @@ import com.codegym.dao.dto.ContractDTO;
 import com.codegym.dao.entity.Contract;
 import com.codegym.web.services.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,16 +48,20 @@ public class ContractController {
     }
 
     @PostMapping("")
-    public ResponseEntity<ContractDTO> createContract(@RequestBody ContractDTO contractDTO) {
+    public ResponseEntity<?> createContract(@Valid @RequestBody ContractDTO contractDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         contractService.save(contractDTO);
         return ResponseEntity.ok(contractDTO);
     }
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<ContractDTO> updateContract(@PathVariable(value = "id") Integer id ,@RequestBody ContractDTO contractDTO){
+    public ResponseEntity<?> updateContract(@PathVariable(value = "id") Integer id, @RequestBody @Valid ContractDTO contractDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         contractService.updateContract(contractDTO);
-        return ResponseEntity.ok(contractDTO);
+        return ResponseEntity.accepted().body(contractDTO);
     }
 
 

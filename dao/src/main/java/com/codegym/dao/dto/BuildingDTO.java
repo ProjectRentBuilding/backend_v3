@@ -10,7 +10,7 @@ public class BuildingDTO implements Serializable {
     private String abbreviationName;
     private String fullName;
     private String taxCode;
-    private Integer phone;
+    private String phone;
     private String email;
     private String fax;
     private String address;
@@ -30,7 +30,7 @@ public class BuildingDTO implements Serializable {
                 ", abbreviationName='" + abbreviationName + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", taxCode='" + taxCode + '\'' +
-                ", phone=" + phone +
+                ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", fax='" + fax + '\'' +
                 ", address='" + address + '\'' +
@@ -77,11 +77,11 @@ public class BuildingDTO implements Serializable {
         this.taxCode = taxCode;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
