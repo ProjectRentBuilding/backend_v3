@@ -1,9 +1,5 @@
 package com.codegym.dao.dto;
 
-import com.codegym.dao.entity.Customer;
-import com.codegym.dao.entity.Employee;
-import com.codegym.dao.entity.Ground;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -25,9 +21,6 @@ public class ContractDTO implements Serializable {
     private String content;
     private Boolean unified;
     private Integer deleteFlag;
-
-    public ContractDTO() {
-    }
 
     @Override
     public String toString() {
