@@ -2,8 +2,11 @@ package com.codegym.dao.dto;
 
 import com.codegym.dao.entity.Contract;
 import com.codegym.dao.entity.UserBuilding;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sun.istack.NotNull;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;

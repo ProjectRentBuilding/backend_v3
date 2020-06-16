@@ -1,6 +1,5 @@
 package com.codegym.webservice.controller;
 
-import com.codegym.dao.dto.CustomerDTO;
 import com.codegym.dao.dto.EmployeeDTO;
 import com.codegym.dao.entity.Employee;
 import com.codegym.web.services.EmployeeService;
