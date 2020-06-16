@@ -3,6 +3,7 @@ package com.codegym.webservice.controller;
 import com.codegym.dao.dto.ContractDTO;
 import com.codegym.dao.entity.Contract;
 import com.codegym.web.services.ContractService;
+import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,10 +11,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +41,7 @@ public class ContractController {
     public Page<Contract> getListContract(@RequestParam("page") int page,
                                           @RequestParam("size") int size,
                                           @RequestParam("search") String name) {
-        Page<Contract> contracts = contractService.getContracts(name,PageRequest.of(page,size));
+        Page<Contract> contracts = contractService.getContracts(name, PageRequest.of(page, size));
         return contracts;
     }
 
@@ -77,5 +81,19 @@ public class ContractController {
         return ResponseEntity.accepted().body(contractDTO);
     }
 
+    @GetMapping("/export/{id}")
+    public void exportToPDF(HttpServletResponse response, @PathVariable("id") Integer id) throws IOException, DocumentException {
+        response.setContentType("application/pdf");
 
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename = contract_"+currentDateTime+".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        Contract contract = contractService.findById(id);
+        ContractPDFExporter exporter = new ContractPDFExporter(contract);
+        exporter.export(response);
+
+    }
 }
