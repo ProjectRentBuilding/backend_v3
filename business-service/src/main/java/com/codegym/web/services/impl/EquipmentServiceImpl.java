@@ -61,13 +61,18 @@ public class EquipmentServiceImpl implements EquipmentService {
     }
 
     @Override
-    public Page<Equipment> findAllByDeleteFlagIsNullAndTypeEquipment(Pageable pageable, String typeEquipment) {
-        return equipmentRepository.findAllByDeleteFlagIsNullAndTypeEquipment(pageable, typeEquipment);
+    public Page<Equipment> findAllByDeleteFlagIsNullAndTypeEquipment(String typeEquipment,Pageable pageable) {
+        return equipmentRepository.findAllByDeleteFlagIsNullAndTypeEquipmentContainingIgnoreCase(typeEquipment,pageable);
     }
 
     @Override
-    public Page<Equipment> findAllByDeleteFlagIsNullAndGround(Pageable pageable, String ground) {
-        return equipmentRepository.findAllByDeleteFlagIsNullAndGround(pageable, ground);
+    public Page<Equipment> findAllByDeleteFlagIsNullAndGroundContainingIgnoreCase( String ground, Pageable pageable) {
+        return equipmentRepository.findAllByDeleteFlagIsNullAndGroundContainingIgnoreCase(ground, pageable);
+    }
+
+    @Override
+    public Page<Equipment> getEquipments( String nameEquipment, Pageable pageable) {
+        return equipmentRepository.findAllByDeleteFlagIsNullAndNameEquipmentContaining(nameEquipment, pageable);
     }
 
     @Override
