@@ -2,14 +2,24 @@ package com.codegym.dao.dto;
 
 import com.codegym.dao.entity.Contract;
 import com.codegym.dao.entity.Equipment;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Set;
 
 public class GroundDTO implements Serializable {
 
-
     private Integer id;
+
+    @NotEmpty(message = "Không được để trống")
+    @Pattern(regexp = "(MB)[0-9]{3}", message ="Mã mặt bằng có định dạng là MBxxx (x là số 0-9)" )
     private String codeGround;
+
+//    @NotEmpty(message = "Không được để trống")
+//    @Size(max=15,message = "Diện tích tối đa 15 ký tự")
+//    @Pattern(regexp = "([1-9]([0-9])?)|([0-9]([1-9])?)", message ="Diện tích phải đúng định dạng" )
     private double area;
     private String statusGround;
     private Integer price;
