@@ -1,7 +1,6 @@
 package com.codegym.web.services;
 
 import com.codegym.dao.dto.EquipmentDTO;
-import com.codegym.dao.entity.Building;
 import com.codegym.dao.entity.Equipment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

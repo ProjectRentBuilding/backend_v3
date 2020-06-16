@@ -4,9 +4,16 @@ import com.codegym.dao.dto.ContractDTO;
 import com.codegym.dao.entity.Contract;
 import com.codegym.web.services.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +32,15 @@ public class ContractController {
         contracts = contractService.findAllByDeleteFlagIsNull();
         return contracts;
     }
+
+    @GetMapping(value = "/paging", params = {"page", "size", "search"})
+    public Page<Contract> getListContract(@RequestParam("page") int page,
+                                          @RequestParam("size") int size,
+                                          @RequestParam("search") String name) {
+        Page<Contract> contracts = contractService.getContracts(name,PageRequest.of(page,size));
+        return contracts;
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<ContractDTO> getContract(@PathVariable("id") int id) {
@@ -45,18 +61,21 @@ public class ContractController {
     }
 
     @PostMapping("")
-    public ResponseEntity<ContractDTO> createContract(@RequestBody ContractDTO contractDTO) {
+    public ResponseEntity<?> createContract(@Valid @RequestBody ContractDTO contractDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         contractService.save(contractDTO);
         return ResponseEntity.ok(contractDTO);
     }
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<ContractDTO> updateContract(@PathVariable(value = "id") Integer id ,@RequestBody ContractDTO contractDTO){
+    public ResponseEntity<?> updateContract(@PathVariable(value = "id") Integer id, @RequestBody @Valid ContractDTO contractDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         contractService.updateContract(contractDTO);
-        return ResponseEntity.ok(contractDTO);
+        return ResponseEntity.accepted().body(contractDTO);
     }
-
 
 
 }
