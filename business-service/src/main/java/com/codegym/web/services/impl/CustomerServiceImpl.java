@@ -5,6 +5,8 @@ import com.codegym.dao.entity.Customer;
 import com.codegym.dao.repository.CustomerRepository;
 import com.codegym.web.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
@@ -103,5 +105,10 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setContracts(customerDTO.getContracts());
 
         customerRepository.save(customer);
+    }
+
+    @Override
+    public Page<Customer> getCustomers(String nameCustomer, Pageable pageable) {
+        return customerRepository.findAllByDeleteFlagIsNullAndNameContainingIgnoreCase(nameCustomer,pageable);
     }
 }

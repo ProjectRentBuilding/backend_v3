@@ -2,17 +2,16 @@ package com.codegym.webservice.controller;
 
 import com.codegym.dao.dto.ContractDTO;
 import com.codegym.dao.dto.CustomerDTO;
-import com.codegym.dao.entity.Building;
-import com.codegym.dao.entity.Customer;
-import com.codegym.dao.entity.Employee;
-import com.codegym.dao.entity.Equipment;
-import com.codegym.dao.repository.CustomerRepository;
+import com.codegym.dao.entity.*;
+
 import com.codegym.web.services.CustomerService;
-import com.codegym.webservice.validation.ResourceNotFoundException;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -34,9 +33,23 @@ public class CustomerController {
         customers = customerService.findAllByDeleteFlagIsNull();
         return customers;
     }
+    @GetMapping(value = "/paging", params = {"page", "size", "search"})
+    public Page<Customer> getListContract(@RequestParam("page") int page,
+                                          @RequestParam("size") int size,
+                                          @RequestParam("search") String name) {
+        Page<Customer> customers = customerService.getCustomers(name, PageRequest.of(page,size));
+        return customers;
+    }
 
+//    @PostMapping("")
+//    public ResponseEntity<CustomerDTO> createCustomer(@Valid @RequestBody CustomerDTO customerDTO) {
+//        customerService.save(customerDTO);
+//        return ResponseEntity.ok(customerDTO);
+//    }
     @PostMapping("")
-    public ResponseEntity<CustomerDTO> createCustomer(@Valid @RequestBody CustomerDTO customerDTO) {
+    public ResponseEntity<?> createCustomer(@Valid @RequestBody CustomerDTO customerDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         customerService.save(customerDTO);
         return ResponseEntity.ok(customerDTO);
     }
@@ -60,10 +73,17 @@ public class CustomerController {
 
 
     }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<CustomerDTO> updateContract(@PathVariable(value = "id") Integer id , @RequestBody CustomerDTO customerDTO){
+//        customerService.updateCustomer(customerDTO);
+//        return ResponseEntity.ok(customerDTO);
+//    }
     @PutMapping("/{id}")
-    public ResponseEntity<CustomerDTO> updateContract(@PathVariable(value = "id") Integer id , @RequestBody CustomerDTO customerDTO){
+    public ResponseEntity<?> updateCustomer(@PathVariable(value = "id") Integer id, @RequestBody @Valid CustomerDTO customerDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         customerService.updateCustomer(customerDTO);
-        return ResponseEntity.ok(customerDTO);
+        return ResponseEntity.accepted().body(customerDTO);
     }
 
 }
