@@ -1,23 +1,60 @@
 package com.codegym.dao.dto;
 
 import com.codegym.dao.entity.Floor;
+
+
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Set;
 
 public class BuildingDTO implements Serializable {
 
     private Integer id;
+    @NotEmpty(message = "Không được để trống")
+    @Size(min = 2,message = "Tên viết tắt tối thiểu 2 ký tự")
+    @Size(max=25,message = "Tên viết tắt tối đa 25 ký tự")
     private String abbreviationName;
+    @NotEmpty(message = "Không được để trống")
+    @Size(min = 2,message = "Tên đầy đủ tối thiểu 2 ký tự")
+    @Size(max=50,message = "Tên đầy đủ tối đa 50 ký tự")
     private String fullName;
+    @NotEmpty(message = "Không được để trống")
+    @Pattern(regexp = "(MST-)[0-9]{3}", message ="Mã số thuế có định dạng là MST-xxx (x là số 0-9)" )
     private String taxCode;
+    @NotEmpty(message = "Không được để trống")
+    @Pattern(regexp = "([0-9]{9}|[0-9]{12})",message = "Số điện thoại gồm 9 hoặc 12 số")
     private String phone;
+    @NotEmpty(message = "Không được để trống")
+    @Email(message = "Nhập đúng định dạng email")
+    @Size(max = 25,message = "Email tối đa 25 ký tự")
     private String email;
+    @NotEmpty(message = "Không được để trống")
+    @Size(min = 2,message = "Fax tối thiểu 2 ký tự")
+    @Size(max=25,message = "Fax tối đa 25 ký tự")
     private String fax;
+    @NotEmpty(message = "Không được để trống")
+    @Size(min = 2,message = "Địa chỉ tối thiểu 2 ký tự")
+    @Size(max=50,message = "Địa chỉ tối đa 50 ký tự")
     private String address;
+    @NotEmpty(message = "Không được để trống")
+    @Size(min = 2,message = "Tên ban quản lý tối thiểu 2 ký tự")
+    @Size(max=50,message = "Tên ban quản lý tối đa 50 ký tự")
     private String management;
+    @NotEmpty(message = "Không được để trống")
+    @Size(min = 2,message = "Tên người quản lý tối thiểu 2 ký tự")
+    @Size(max=50,message = "Tên người quản lý tối đa 50 ký tự")
     private String manager;
+    @NotEmpty(message = "Không được để trống")
+    @Size(min = 2,message = "Số tài khoản tối thiểu 2 ký tự")
+    @Size(max=25,message = "Số tài khoản tối đa 25 ký tự")
     private String accountNumber;
+    @NotEmpty(message = "Không được để trống")
+    @Size(min = 2,message = "Tên người nhận tối thiểu 2 ký tự")
+    @Size(max=50,message = "Tên người nhận tối đa 50 ký tự")
     private String recipientName;
+    @NotEmpty(message = "Không được để trống")
+    @Size(min = 2,message = "Tên ngân hàng tối thiểu 2 ký tự")
+    @Size(max=50,message = "Tên ngân hàng tối đa 50 ký tự")
     private String bank;
     private Integer deleteFlag;
     private String urlImage;

@@ -4,9 +4,12 @@ import com.codegym.dao.dto.GroundDTO;
 import com.codegym.dao.entity.Ground;
 import com.codegym.web.services.GroundService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,12 +45,16 @@ public class GroundController {
         return response;
     }
     @PostMapping("")
-    public ResponseEntity<GroundDTO> createGround(@RequestBody GroundDTO groundDTO) {
+    public ResponseEntity<?> createGround(@Valid @RequestBody GroundDTO groundDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         groundService.save(groundDTO);
         return ResponseEntity.ok(groundDTO);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<GroundDTO> updateGround(@PathVariable(value = "id") Integer id, @RequestBody GroundDTO groundDTO) {
+    public ResponseEntity<?> updateGround(@PathVariable(value = "id") Integer id,@RequestBody @Valid GroundDTO groundDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         groundService.updateGround(groundDTO);
         return ResponseEntity.ok(groundDTO);
     }

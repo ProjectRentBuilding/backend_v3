@@ -2,11 +2,17 @@ package com.codegym.webservice.controller;
 
 import com.codegym.dao.dto.BuildingDTO;
 import com.codegym.dao.entity.Building;
+import com.codegym.dao.entity.Contract;
 import com.codegym.web.services.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +29,14 @@ public class BuildingController {
     public List<Building> getAllBuilding() {
         List<Building> buildings;
         buildings = buildingService.findAllByDeleteFlagIsNull();
+        return buildings;
+    }
+    @GetMapping(value = "/paging", params = {"page", "size", "search"})
+    public Page<Building> getListBuilding(@RequestParam("page") int page,
+                                          @RequestParam("size") int size,
+                                          @RequestParam("search") String name) {
+        Page<Building> buildings;
+        buildings= buildingService.getBuildings(name, PageRequest.of(page,size));
         return buildings;
     }
 
@@ -46,15 +60,17 @@ public class BuildingController {
     }
 
     @PostMapping("")
-    public ResponseEntity<BuildingDTO> createBuilding(@RequestBody BuildingDTO buildingDTO) {
+    public ResponseEntity<?> createBuilding(@Valid @RequestBody BuildingDTO buildingDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         buildingService.save(buildingDTO);
         return ResponseEntity.ok(buildingDTO);
     }
-
-
     @PutMapping("/{id}")
-    public ResponseEntity<BuildingDTO> updateBuilding(@PathVariable(value = "id") Integer id, @RequestBody BuildingDTO buildingDTO) {
+    public ResponseEntity<?> updateBuilding(@PathVariable(value = "id") Integer id, @RequestBody @Valid BuildingDTO buildingDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         buildingService.updateBuilding(buildingDTO);
-        return ResponseEntity.ok(buildingDTO);
+        return ResponseEntity.accepted().body(buildingDTO);
     }
 }
