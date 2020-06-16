@@ -12,7 +12,8 @@ import java.util.List;
 public interface EquipmentRepository extends JpaRepository<Equipment, Integer> {
     List<Equipment> findAllByDeleteFlagIsNull();
     Equipment findAllByDeleteFlagIsNullAndIdIs(Integer id);
-    Page<Equipment> findAllByDeleteFlagIsNullAndTypeEquipment(Pageable pageable, String typeEquipment);
-    Page<Equipment> findAllByDeleteFlagIsNullAndGround(Pageable pageable, String ground);
+    Page<Equipment> findAllByDeleteFlagIsNullAndTypeEquipmentContainingIgnoreCase(String typeEquipment,Pageable pageable);
+    Page<Equipment> findAllByDeleteFlagIsNullAndGroundContainingIgnoreCase( String ground, Pageable pageable);
+    Page<Equipment> findAllByDeleteFlagIsNullAndNameEquipmentContaining(String nameEquipment, Pageable pageable);
 
 }
