@@ -2,8 +2,6 @@ package com.codegym.dao.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -20,7 +18,7 @@ public class Customer {
     @Column(name = "delete_flag")
     private Integer deleteFlag;
 
-    @Column(name = "name_customer")
+    @Column(name = "name_customer",nullable = false)
     private String name;
 
     @Column(name = "birthday")
@@ -31,6 +29,7 @@ public class Customer {
 
     @Column(name = "phone")
     private String phone;
+
 
     @Column(name = "email")
     private String email;

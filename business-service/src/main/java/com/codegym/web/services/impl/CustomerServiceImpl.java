@@ -1,18 +1,17 @@
 package com.codegym.web.services.impl;
 
 import com.codegym.dao.dto.CustomerDTO;
-import com.codegym.dao.entity.Building;
-import com.codegym.dao.entity.Contract;
 import com.codegym.dao.entity.Customer;
-import com.codegym.dao.entity.UserBuilding;
 import com.codegym.dao.repository.CustomerRepository;
 import com.codegym.web.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+
 import java.util.List;
-import java.util.Set;
+
 
 
 @Service
@@ -49,11 +48,24 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public void deleteAllCustomer(Integer id) {
+       List<Customer> customers = customerRepository.findAllCustomer();
+     
+
+        for (Customer customer:customers) {
+            customer.setDeleteFlag(1);
+            customerRepository.save(customer);
+        }
+    }
+
+    @Override
     public void deleteCustomer(Integer id) {
         Customer customer = customerRepository.findAllByDeleteFlagIsNullAndIdIs(id);
             customer.setDeleteFlag(1);
             customerRepository.save(customer);
     }
+
+
 
     @Override
     public void save(CustomerDTO customerDTO) {
@@ -93,5 +105,10 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setContracts(customerDTO.getContracts());
 
         customerRepository.save(customer);
+    }
+
+    @Override
+    public Page<Customer> getCustomers(String nameCustomer, Pageable pageable) {
+        return customerRepository.findAllByDeleteFlagIsNullAndNameContainingIgnoreCase(nameCustomer,pageable);
     }
 }

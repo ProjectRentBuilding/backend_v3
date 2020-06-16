@@ -2,8 +2,8 @@ package com.codegym.dao.dto;
 
 import com.codegym.dao.entity.Contract;
 import com.codegym.dao.entity.UserBuilding;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -11,14 +11,32 @@ import java.util.Set;
 public class CustomerDTO implements Serializable {
     private Integer id;
     private Integer deleteFlag;
+    @NotNull(message = "Không được để trống")
+    @Size(min = 1,message = "Phải lớn hơn hoặc bằng 1")
     private String name;
+
+    @NotNull(message = "Không được để trống")
     private Date birthday;
+
+    @NotNull(message = "Không được để trống")
     private String idCard;
+
+    @NotNull(message = "Không được để trống")
     private String phone;
+
+    @NotNull(message = "Không được để trống")
     private String email;
+
+    @NotNull(message = "Không được để trống")
     private String address;
+
+//    @NotNull(message = "Không được để trống")
     private String gender;
+
+    @NotNull(message = "Không được để trống")
     private String website;
+
+//    @NotNull(message = "Không được để trống")
     private String nameCompany;
     private UserBuilding userBuilding;
     private Set<Contract> contracts;
