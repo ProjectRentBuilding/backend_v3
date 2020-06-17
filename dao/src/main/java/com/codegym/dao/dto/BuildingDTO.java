@@ -59,6 +59,7 @@ public class BuildingDTO implements Serializable {
     private Integer deleteFlag;
     private String urlImage;
     private Set<Floor> floors;
+    private String logo;
 
     @Override
     public String toString() {
@@ -79,6 +80,7 @@ public class BuildingDTO implements Serializable {
                 ", deleteFlag=" + deleteFlag +
                 ", urlImage='" + urlImage + '\'' +
                 ", floors=" + floors +
+                ", logo='" + logo + '\'' +
                 '}';
     }
 
@@ -208,5 +210,13 @@ public class BuildingDTO implements Serializable {
 
     public void setFloors(Set<Floor> floors) {
         this.floors = floors;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }

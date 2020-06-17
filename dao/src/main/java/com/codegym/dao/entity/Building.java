@@ -57,6 +57,8 @@ public class Building {
     @Column(name = "url_image")
     private String urlImage;
 
+    private String logo;
+
 
 
     @JsonBackReference(value = "building")
@@ -81,6 +83,7 @@ public class Building {
                 ", bank='" + bank + '\'' +
                 ", deleteFlag=" + deleteFlag +
                 ", urlImage='" + urlImage + '\'' +
+                ", logo='" + logo + '\'' +
                 ", floors=" + floors +
                 '}';
     }
@@ -203,6 +206,14 @@ public class Building {
 
     public void setUrlImage(String urlImage) {
         this.urlImage = urlImage;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 
     public Set<Floor> getFloors() {
