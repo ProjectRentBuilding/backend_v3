@@ -26,7 +26,7 @@ public class ContractPDFExporter {
 
 
     public void export(HttpServletResponse response) throws IOException, DocumentException {
-        Document document = new Document(PageSize.A4);
+        Document document = new Document(PageSize.A3);
         Image image = Image.getInstance(contract.getUrlImage());
 
 
@@ -46,7 +46,7 @@ public class ContractPDFExporter {
         document.add(new Paragraph("Chi Tiết Hợp Đồng", fontTitle));
 
         addEmptyLine(preface, 3);
-
+        document.add(new Paragraph("ID hợp đồng : " + contract.getId(), fontContent));
         document.add(new Paragraph("Tên khách hàng : " + contract.getCustomer().getName(), fontContent));
         document.add(new Paragraph("Số CMND khách hàng : " + contract.getCustomer().getIdCard(), fontContent));
         document.add(new Paragraph("Địa chỉ khách hàng : " + contract.getCustomer().getAddress(), fontContent));
