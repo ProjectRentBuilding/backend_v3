@@ -1,6 +1,7 @@
 package com.codegym.dao.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -40,9 +41,11 @@ public class Contract {
     @Column(name = "status_contract")
     private Boolean statusContract;
 
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     @Column(name = "start_rent_day")
     private Date startRentDay;
 
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     @Column(name = "end_rent_day")
     private Date endRentDay;
 
