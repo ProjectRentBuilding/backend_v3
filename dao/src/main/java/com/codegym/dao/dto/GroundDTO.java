@@ -17,9 +17,9 @@ public class GroundDTO implements Serializable {
     @Pattern(regexp = "(MB)[0-9]{3}", message ="Mã mặt bằng có định dạng là MBxxx (x là số 0-9)" )
     private String codeGround;
 
-//    @NotEmpty(message = "Không được để trống")
-//    @Size(max=15,message = "Diện tích tối đa 15 ký tự")
-//    @Pattern(regexp = "([1-9]([0-9])?)|([0-9]([1-9])?)", message ="Diện tích phải đúng định dạng" )
+    @NotEmpty(message = "Không được để trống")
+    @Size(max=15,message = "Diện tích tối đa 15 ký tự")
+    @Pattern(regexp = "([1-9]([0-9])?)|([0-9]([1-9])?)", message ="Diện tích phải đúng định dạng" )
     private double area;
     private String statusGround;
     private Integer price;
@@ -29,7 +29,10 @@ public class GroundDTO implements Serializable {
     private Set<Equipment> equipments;
     private Set<Contract> contracts;
 
+    @NotEmpty(message = "Không được để trống")
     private Integer floorId;
+    
+    @NotEmpty(message = "Không được để trống")
     private Integer typeGroundId;
     private String note;
 
