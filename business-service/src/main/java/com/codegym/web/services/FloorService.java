@@ -20,5 +20,5 @@ public interface FloorService {
 
     void updateFloor(FloorDTO floorDTO);
 
-//    Page<Floor> getFloors(String name, Pageable pageable);
+    Page<Floor> getFloors(String name, Pageable pageable);
 }

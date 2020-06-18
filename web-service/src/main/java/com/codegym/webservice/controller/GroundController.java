@@ -1,9 +1,12 @@
 package com.codegym.webservice.controller;
 
 import com.codegym.dao.dto.GroundDTO;
+import com.codegym.dao.entity.Floor;
 import com.codegym.dao.entity.Ground;
 import com.codegym.web.services.GroundService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -25,6 +28,14 @@ public class GroundController {
     public List<Ground> getAllGround() {
         List<Ground> grounds;
         grounds = groundService.findAllByDeleteFlagIsNull();
+        return grounds;
+    }
+    @GetMapping(value = "/paging", params = {"page", "size", "search"})
+    public Page<Ground> getListGround(@RequestParam("page") int page,
+                                    @RequestParam("size") int size,
+                                    @RequestParam("search") String name) {
+        Page<Ground> grounds;
+        grounds= groundService.getGrounds(name, PageRequest.of(page,size));
         return grounds;
     }
 
