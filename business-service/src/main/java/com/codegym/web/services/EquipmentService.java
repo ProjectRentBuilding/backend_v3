@@ -13,7 +13,6 @@ import java.util.List;
 public interface EquipmentService {
     List<Equipment> findAllByDeleteFlagIsNull();
     EquipmentDTO findAllByDeleteFlagIsNullAndIdIs(Integer id);
-
     Equipment findById(Integer id);
     void delete(Integer id) ;
 
