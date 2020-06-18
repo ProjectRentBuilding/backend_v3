@@ -54,10 +54,9 @@ public class Building {
     @Column(name="delete_flag")
     private Integer deleteFlag;
 
-    @Column(name = "url_image")
-    private String urlImage;
 
-    private String logo;
+
+    private Integer logo;
 
 
 
@@ -82,8 +81,7 @@ public class Building {
                 ", recipientName='" + recipientName + '\'' +
                 ", bank='" + bank + '\'' +
                 ", deleteFlag=" + deleteFlag +
-                ", urlImage='" + urlImage + '\'' +
-                ", logo='" + logo + '\'' +
+                ", logo=" + logo +
                 ", floors=" + floors +
                 '}';
     }
@@ -200,19 +198,11 @@ public class Building {
         this.deleteFlag = deleteFlag;
     }
 
-    public String getUrlImage() {
-        return urlImage;
-    }
-
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
-    }
-
-    public String getLogo() {
+    public Integer getLogo() {
         return logo;
     }
 
-    public void setLogo(String logo) {
+    public void setLogo(Integer logo) {
         this.logo = logo;
     }
 
@@ -223,4 +213,5 @@ public class Building {
     public void setFloors(Set<Floor> floors) {
         this.floors = floors;
     }
+
 }

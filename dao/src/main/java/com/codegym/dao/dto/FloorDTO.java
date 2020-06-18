@@ -7,6 +7,7 @@ import java.util.Set;
 public class FloorDTO implements Serializable {
 
     private Integer id;
+
     private String nameFloor;
     private String codeFloor;
     private double area;

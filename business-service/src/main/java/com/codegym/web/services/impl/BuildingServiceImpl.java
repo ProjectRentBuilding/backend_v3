@@ -96,7 +96,6 @@ public class BuildingServiceImpl implements BuildingService {
         building.setAccountNumber(buildingDTO.getAccountNumber());
         building.setRecipientName(buildingDTO.getRecipientName());
         building.setBank(buildingDTO.getBank());
-        building.setUrlImage(buildingDTO.getUrlImage());
         building.setFloors(buildingDTO.getFloors());
         building.setLogo(buildingDTO.getLogo());
         buildingRepository.save(building);
