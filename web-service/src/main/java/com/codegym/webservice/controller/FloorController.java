@@ -1,7 +1,6 @@
 package com.codegym.webservice.controller;
 
 import com.codegym.dao.dto.FloorDTO;
-import com.codegym.dao.entity.Building;
 import com.codegym.dao.entity.Floor;
 import com.codegym.web.services.FloorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +26,15 @@ public class FloorController {
         floors = floorService.findAllByDeleteFlagIsNull();
         return floors;
     }
-//    @GetMapping(value = "/paging", params = {"page", "size", "search"})
-//    public Page<Floor> getListFloor(@RequestParam("page") int page,
-//                                          @RequestParam("size") int size,
-//                                          @RequestParam("search") String name) {
-//        Page<Floor> floors;
-//        floors= floorService.getFloors(name, PageRequest.of(page,size));
-//        return floors;
-//    }
+
+    @GetMapping(value = "/paging", params = {"page", "size", "search"})
+    public Page<Floor> getListFloor(@RequestParam("page") int page,
+                                          @RequestParam("size") int size,
+                                          @RequestParam("search") String name) {
+        Page<Floor> floors;
+        floors= floorService.getFloors(name, PageRequest.of(page,size));
+        return floors;
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<FloorDTO> getFloor(@PathVariable("id") int id) {

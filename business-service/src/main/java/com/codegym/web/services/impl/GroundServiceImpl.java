@@ -7,6 +7,8 @@ import com.codegym.dao.repository.GroundRepository;
 import com.codegym.dao.repository.TypeGroundRepository;
 import com.codegym.web.services.GroundService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -100,5 +102,10 @@ public class GroundServiceImpl implements GroundService {
         ground.setTypeGround(typeGroundRepository.findById(groundDTO.getTypeGroundId()).orElse(null));
         groundRepository.save(ground);
 
+    }
+
+    @Override
+    public Page<Ground> getGrounds(String codeGround, Pageable pageable) {
+        return groundRepository.findAllByDeleteFlagIsNullAndCodeGroundContaining(codeGround, pageable);
     }
 }
