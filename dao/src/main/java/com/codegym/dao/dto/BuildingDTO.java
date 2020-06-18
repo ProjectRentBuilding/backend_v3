@@ -57,8 +57,8 @@ public class BuildingDTO implements Serializable {
     @Size(max=50,message = "Tên ngân hàng tối đa 50 ký tự")
     private String bank;
     private Integer deleteFlag;
-    private String urlImage;
     private Set<Floor> floors;
+    private Integer logo;
 
     @Override
     public String toString() {
@@ -77,8 +77,8 @@ public class BuildingDTO implements Serializable {
                 ", recipientName='" + recipientName + '\'' +
                 ", bank='" + bank + '\'' +
                 ", deleteFlag=" + deleteFlag +
-                ", urlImage='" + urlImage + '\'' +
                 ", floors=" + floors +
+                ", logo=" + logo +
                 '}';
     }
 
@@ -194,19 +194,19 @@ public class BuildingDTO implements Serializable {
         this.deleteFlag = deleteFlag;
     }
 
-    public String getUrlImage() {
-        return urlImage;
-    }
-
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
-    }
-
     public Set<Floor> getFloors() {
         return floors;
     }
 
     public void setFloors(Set<Floor> floors) {
         this.floors = floors;
+    }
+
+    public Integer getLogo() {
+        return logo;
+    }
+
+    public void setLogo(Integer logo) {
+        this.logo = logo;
     }
 }

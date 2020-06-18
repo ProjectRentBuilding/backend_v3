@@ -1,6 +1,10 @@
 package com.codegym.web.services;
 import com.codegym.dao.dto.FloorDTO;
 import com.codegym.dao.entity.Floor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 
 
@@ -16,4 +20,5 @@ public interface FloorService {
 
     void updateFloor(FloorDTO floorDTO);
 
+    Page<Floor> getFloors(String name, Pageable pageable);
 }

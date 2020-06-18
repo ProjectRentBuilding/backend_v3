@@ -39,6 +39,7 @@ public class BuildingServiceImpl implements BuildingService {
             buildingDTO.setAccountNumber(building.getAccountNumber());
             buildingDTO.setRecipientName(building.getRecipientName());
             buildingDTO.setBank(building.getBank());
+            buildingDTO.setLogo(building.getLogo());
             return buildingDTO;
         }
         return null;
@@ -76,6 +77,7 @@ public class BuildingServiceImpl implements BuildingService {
         building.setAccountNumber(buildingDTO.getAccountNumber());
         building.setRecipientName(buildingDTO.getRecipientName());
         building.setBank(buildingDTO.getBank());
+        building.setLogo(buildingDTO.getLogo());
         buildingRepository.save(building);
         }
     @Override
@@ -94,8 +96,8 @@ public class BuildingServiceImpl implements BuildingService {
         building.setAccountNumber(buildingDTO.getAccountNumber());
         building.setRecipientName(buildingDTO.getRecipientName());
         building.setBank(buildingDTO.getBank());
-        building.setUrlImage(buildingDTO.getUrlImage());
         building.setFloors(buildingDTO.getFloors());
+        building.setLogo(buildingDTO.getLogo());
         buildingRepository.save(building);
     }
 

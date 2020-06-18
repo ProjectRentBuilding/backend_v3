@@ -37,7 +37,7 @@ public class GroundController {
         return null;
     }
     @DeleteMapping("/{id}")
-    public Map<String, Boolean> deleteBulding(@PathVariable("id") int id) {
+    public Map<String, Boolean> deleteBuilding(@PathVariable("id") int id) {
         GroundDTO ground = groundService.findAllByDeleteFlagIsNullAndIdIs(id);
         groundService.remove(ground.getId());
         Map<String, Boolean> response = new HashMap<>();
@@ -56,6 +56,6 @@ public class GroundController {
         if (bindingResult.hasErrors())
             return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         groundService.updateGround(groundDTO);
-        return ResponseEntity.ok(groundDTO);
+        return ResponseEntity.accepted().body(groundDTO);
     }
 }
