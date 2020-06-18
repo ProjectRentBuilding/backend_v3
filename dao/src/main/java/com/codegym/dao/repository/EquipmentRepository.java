@@ -1,6 +1,8 @@
 package com.codegym.dao.repository;
 
 import com.codegym.dao.entity.Equipment;
+import com.codegym.dao.entity.Ground;
+import com.codegym.dao.entity.TypeEquipment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,8 +14,7 @@ import java.util.List;
 public interface EquipmentRepository extends JpaRepository<Equipment, Integer> {
     List<Equipment> findAllByDeleteFlagIsNull();
     Equipment findAllByDeleteFlagIsNullAndIdIs(Integer id);
-    Page<Equipment> findAllByDeleteFlagIsNullAndTypeEquipmentContainingIgnoreCase(String typeEquipment,Pageable pageable);
-    Page<Equipment> findAllByDeleteFlagIsNullAndGroundContainingIgnoreCase( String ground, Pageable pageable);
     Page<Equipment> findAllByDeleteFlagIsNullAndNameEquipmentContaining(String nameEquipment, Pageable pageable);
-
+    Page<Equipment> findAllByNameEquipmentContainingOrAmountContaining(String nameEquipment, Integer amount, Pageable pageable);
+    Page<Equipment> findAllByDeleteFlagIsNullAndAmountContaining(Integer amount, Pageable pageable);
 }

@@ -3,6 +3,8 @@ package com.codegym.web.services.impl;
 
 import com.codegym.dao.dto.EquipmentDTO;
 import com.codegym.dao.entity.Equipment;
+import com.codegym.dao.entity.Ground;
+import com.codegym.dao.entity.TypeEquipment;
 import com.codegym.dao.repository.EquipmentRepository;
 import com.codegym.dao.repository.GroundRepository;
 import com.codegym.dao.repository.TypeEquipmentRepository;
@@ -61,18 +63,13 @@ public class EquipmentServiceImpl implements EquipmentService {
     }
 
     @Override
-    public Page<Equipment> findAllByDeleteFlagIsNullAndTypeEquipment(String typeEquipment,Pageable pageable) {
-        return equipmentRepository.findAllByDeleteFlagIsNullAndTypeEquipmentContainingIgnoreCase(typeEquipment,pageable);
-    }
-
-    @Override
-    public Page<Equipment> findAllByDeleteFlagIsNullAndGroundContainingIgnoreCase( String ground, Pageable pageable) {
-        return equipmentRepository.findAllByDeleteFlagIsNullAndGroundContainingIgnoreCase(ground, pageable);
-    }
-
-    @Override
     public Page<Equipment> getEquipments( String nameEquipment, Pageable pageable) {
         return equipmentRepository.findAllByDeleteFlagIsNullAndNameEquipmentContaining(nameEquipment, pageable);
+    }
+
+    @Override
+    public Page<Equipment> findAllByNameEquipmentContainingOrAmountContaining(String nameEquipment, Integer amount, Pageable pageable) {
+        return equipmentRepository.findAllByNameEquipmentContainingOrAmountContaining(nameEquipment, amount, pageable);
     }
 
     @Override
@@ -88,6 +85,11 @@ public class EquipmentServiceImpl implements EquipmentService {
         equipment.setGround(groundRepository.findById(equipmentDTO.getGroundId()).orElse(null));
 
         equipmentRepository.save(equipment);
+    }
+
+    @Override
+    public Page<Equipment> findAllByDeleteFlagIsNullAndAmountContaining(Integer amount, Pageable pageable) {
+        return equipmentRepository.findAllByDeleteFlagIsNullAndAmountContaining(amount, pageable);
     }
 
     @Override

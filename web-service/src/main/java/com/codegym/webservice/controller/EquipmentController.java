@@ -41,6 +41,14 @@ public class EquipmentController {
         return equipmentService.getEquipments(name, PageRequest.of(page, size));
     }
 
+//    @GetMapping(value = "/paging", params = {"page", "size", "s0","s1"})
+//    public Page<Equipment> getListEquipment(@RequestParam("page") int page,
+//                                            @RequestParam("size") int size,
+//                                            @RequestParam("s0") String name,
+//                                            @RequestParam("s1") Integer amount) {
+//        return equipmentService.findAllByNameEquipmentContainingOrAmountContaining(name,amount, PageRequest.of(page, size));
+//    }
+
     @GetMapping("/{id}")
     public ResponseEntity<EquipmentDTO> getEquipment(@PathVariable("id") int id) {
         EquipmentDTO equipmentDTO = equipmentService.findAllByDeleteFlagIsNullAndIdIs(id);
