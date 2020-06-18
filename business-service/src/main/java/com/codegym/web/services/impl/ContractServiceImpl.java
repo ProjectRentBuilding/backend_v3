@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -120,7 +121,12 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public Page<Contract> getContracts(String nameCustomer, Pageable pageable) {
-        return contractRepository.findAllByDeleteFlagIsNullAndCustomerNameContainingIgnoreCase(nameCustomer,pageable);
+        return contractRepository.findAllByDeleteFlagIsNullAndCustomerNameContainingIgnoreCase(nameCustomer, pageable);
+    }
+
+    @Override
+    public Page<Contract> searchAnything(String fullName, String codeGround, Date startRentDay, Date endRentDay, Pageable pageable) {
+        return contractRepository.searchAnything(fullName, codeGround, startRentDay, endRentDay, pageable);
     }
 
 
