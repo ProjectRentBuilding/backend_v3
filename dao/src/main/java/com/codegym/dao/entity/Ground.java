@@ -22,7 +22,7 @@ public class Ground {
     private String codeGround;
 
     @Column(name="area")
-    private double area;
+    private Integer area;
 
     @Column(name="status_ground")
     private String statusGround;
@@ -56,7 +56,6 @@ public class Ground {
     @ManyToOne
     @JoinColumn(name = "id_type_ground")
     private TypeGround typeGround;
-
 
     @Override
     public String toString() {
@@ -92,11 +91,11 @@ public class Ground {
         this.codeGround = codeGround;
     }
 
-    public double getArea() {
+    public Integer getArea() {
         return area;
     }
 
-    public void setArea(double area) {
+    public void setArea(Integer area) {
         this.area = area;
     }
 
