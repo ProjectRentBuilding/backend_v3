@@ -3,9 +3,7 @@ package com.codegym.dao.dto;
 import com.codegym.dao.entity.Contract;
 import com.codegym.dao.entity.Equipment;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -17,10 +15,8 @@ public class GroundDTO implements Serializable {
     @Pattern(regexp = "(MB)[0-9]{3}", message ="Mã mặt bằng có định dạng là MBxxx (x là số 0-9)" )
     private String codeGround;
 
-    @NotEmpty(message = "Không được để trống")
-    @Size(max=15,message = "Diện tích tối đa 15 ký tự")
-    @Pattern(regexp = "([1-9]([0-9])?)|([0-9]([1-9])?)", message ="Diện tích phải đúng định dạng" )
-    private double area;
+    @NotNull(message = "Không được để trống")
+    private Integer area;
     private String statusGround;
     private Integer price;
     private Integer priceManager;
@@ -29,10 +25,10 @@ public class GroundDTO implements Serializable {
     private Set<Equipment> equipments;
     private Set<Contract> contracts;
 
-    @NotEmpty(message = "Không được để trống")
+    @NotNull(message = "Không được để trống")
     private Integer floorId;
     
-    @NotEmpty(message = "Không được để trống")
+    @NotNull(message = "Không được để trống")
     private Integer typeGroundId;
     private String note;
 
@@ -53,11 +49,11 @@ public class GroundDTO implements Serializable {
         this.codeGround = codeGround;
     }
 
-    public double getArea() {
+    public Integer getArea() {
         return area;
     }
 
-    public void setArea(double area) {
+    public void setArea(Integer area) {
         this.area = area;
     }
 
@@ -93,14 +89,6 @@ public class GroundDTO implements Serializable {
         this.deleteFlag = deleteFlag;
     }
 
-    public Integer getFloorId() {
-        return floorId;
-    }
-
-    public void setFloorId(Integer floorId) {
-        this.floorId = floorId;
-    }
-
     public Set<Equipment> getEquipments() {
         return equipments;
     }
@@ -115,6 +103,14 @@ public class GroundDTO implements Serializable {
 
     public void setContracts(Set<Contract> contracts) {
         this.contracts = contracts;
+    }
+
+    public Integer getFloorId() {
+        return floorId;
+    }
+
+    public void setFloorId(Integer floorId) {
+        this.floorId = floorId;
     }
 
     public Integer getTypeGroundId() {
