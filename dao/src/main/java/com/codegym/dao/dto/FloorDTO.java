@@ -1,5 +1,7 @@
 package com.codegym.dao.dto;
 import com.codegym.dao.entity.Ground;
+
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -8,13 +10,22 @@ public class FloorDTO implements Serializable {
 
     private Integer id;
 
+    @NotEmpty(message = "Không được để trống")
     private String nameFloor;
+
+    @NotEmpty(message = "Không được để trống")
     private String codeFloor;
     private double area;
     private String capacity;
+
+    @NotEmpty(message = "Không được để trống")
     private String statusFloor;
     private Integer deleteFlag;
+
+    @NotEmpty(message = "Không được để trống")
     private Integer typeFloorId;
+
+    @NotEmpty(message = "Không được để trống")
     private Integer buildingId;
     private Set<Ground> grounds;
 
