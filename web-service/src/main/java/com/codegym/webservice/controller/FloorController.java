@@ -26,6 +26,10 @@ public class FloorController {
         floors = floorService.findAllByDeleteFlagIsNull();
         return floors;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 40939254c5f2563ec6a39745e31c8a3c47735f9d
     @GetMapping(value = "/paging", params = {"page", "size", "search"})
     public Page<Floor> getListFloor(@RequestParam("page") int page,
                                           @RequestParam("size") int size,

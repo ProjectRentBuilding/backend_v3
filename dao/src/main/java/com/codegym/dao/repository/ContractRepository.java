@@ -22,7 +22,7 @@ public interface ContractRepository extends JpaRepository<Contract, Integer> {
     Page<Contract> findAllByDeleteFlagIsNullAndCustomerNameContainingIgnoreCase(String fullName, Pageable pageable);
 
 
-    @Query(value = "SELECT c FROM Contract c where c.customer.name like %?1% and c.ground.codeGround like %?2% and c.startRentDay>=?3 and c.endRentDay<=?4")
+    @Query(value = "SELECT c FROM Contract c where c.customer.name like %?1% and c.ground.codeGround like %?2% and c.startRentDay>=?3 and c.endRentDay<=?4 and c.deleteFlag is null order by c.id" )
     Page<Contract> searchAnything(String fullName, String codeGround, Date startRentDay, Date endRentDay, Pageable pageable);
 
 }
