@@ -17,9 +17,11 @@ public interface EquipmentService {
     void delete(Integer id) ;
 
     Page<Equipment> getEquipments(String nameEquipment, Pageable pageable);
-    Page<Equipment> findAllByNameEquipmentContainingOrAmountContaining(String nameEquipment, Integer amount, Pageable pageable);
     void save(EquipmentDTO equipmentDTO);
-    Page<Equipment> findAllByDeleteFlagIsNullAndAmountContaining(Integer amount, Pageable pageable);
+    Page<Equipment> findAllByNameEquipmentContainingOrAmountContainingOrGround_CodeGroundOrTypeEquipment_NameType(String nameEquipment, Integer amount, String ground_codeGround, String typeEquipment_nameType, Pageable pageable);
+    Page<Equipment> findAllByDeleteFlagIsNullAndNameEquipmentContainingOrAmountContainingOrGround_CodeGroundOrTypeEquipment_NameType(String nameEquipment, Integer amount, String ground_codeGround, String typeEquipment_nameType, Pageable pageable);
+    Page<Equipment> findAllByNameEquipmentContainingOrAmountContainingOrGround_IdOrTypeEquipment_Id(String nameEquipment, Integer amount, Integer ground_id, Integer typeEquipment_id, Pageable pageable);
     void updateEquipment(EquipmentDTO equipmentDTO);
 
+    Page<Equipment> searchAll(String nameEquipment, Integer amount ,String ground_codeGround, String typeEquipment_nameType, Pageable pageable);
 }

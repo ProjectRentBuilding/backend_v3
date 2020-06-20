@@ -18,6 +18,10 @@ public interface EquipmentRepository extends JpaRepository<Equipment, Integer> {
 //    EquipmentDTO getEquipmentById(Integer id);
     Equipment findAllByDeleteFlagIsNullAndIdIs(Integer id);
     Page<Equipment> findAllByDeleteFlagIsNullAndNameEquipmentContaining(String nameEquipment, Pageable pageable);
-    Page<Equipment> findAllByNameEquipmentContainingOrAmountContaining(String nameEquipment, Integer amount, Pageable pageable);
-    Page<Equipment> findAllByDeleteFlagIsNullAndAmountContaining(Integer amount, Pageable pageable);
+    Page<Equipment> findAllByNameEquipmentContainingOrAmountContainingOrGround_CodeGroundOrTypeEquipment_NameType(String nameEquipment, Integer amount, String ground_codeGround, String typeEquipment_nameType, Pageable pageable);
+//    Page<Equipment> findAllByDeleteFlagIsNullAndNameEquipmentContainingOrAmountContainingOrGround_CodeGroundOrTypeEquipment_NameType(String nameEquipment, Integer amount, String ground_codeGround, String typeEquipment_nameType, Pageable pageable);
+//    Page<Equipment> findAllByNameEquipmentContainingOrAmountContainingOrGround_IdContainingOrTypeEquipment_IdContaining(String nameEquipment, Integer amount, Integer ground_id, Integer typeEquipment_id, Pageable pageable);
+
+    @Query(value = "SELECT e FROM Equipment e where e.nameEquipment like %?1% and e.amount=?2 and e.ground.codeGround like %?3% and e.typeEquipment.nameType like %?4%  and e.deleteFlag is null order by e.id" )
+    Page<Equipment> searchAll(String nameEquipment, Integer amount, String ground_codeGround, String typeEquipment_nameType, Pageable pageable);
 }
