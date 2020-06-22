@@ -32,6 +32,9 @@ public class GroundDTO implements Serializable {
     private Integer typeGroundId;
     private String note;
 
+    @NotNull(message = "Không được để trống")
+    private Integer buildingId;
+
 
     public Integer getId() {
         return id;
@@ -127,5 +130,13 @@ public class GroundDTO implements Serializable {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public Integer getBuildingId() {
+        return buildingId;
+    }
+
+    public void setBuildingId(Integer buildingId) {
+        this.buildingId = buildingId;
     }
 }

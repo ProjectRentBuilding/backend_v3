@@ -14,5 +14,7 @@ public interface FloorRepository extends JpaRepository<Floor,Integer> {
     Page<Floor> findAllByDeleteFlagIsNull(Pageable pageable);
     Page<Floor> findAllByDeleteFlagIsNullAndNameFloorContaining(String nameFloor,Pageable pageable);
 
+    Page<Floor> findAllByDeleteFlagIsNullAndBuildingIdContaining(Integer buildingId, Pageable pageable);
+
     Floor findAllByDeleteFlagIsNullAndIdIs(Integer id);
 }

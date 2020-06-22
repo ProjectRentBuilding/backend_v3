@@ -57,6 +57,9 @@ public class Ground {
     @JoinColumn(name = "id_type_ground")
     private TypeGround typeGround;
 
+    @Column(name="id_building")
+    private Integer buildingId;
+
     @Override
     public String toString() {
         return "Ground{" +
@@ -72,6 +75,7 @@ public class Ground {
                 ", equipments=" + equipments +
                 ", contracts=" + contracts +
                 ", typeGround=" + typeGround +
+                ", buildingId=" + buildingId +
                 '}';
     }
 
@@ -169,5 +173,13 @@ public class Ground {
 
     public void setTypeGround(TypeGround typeGround) {
         this.typeGround = typeGround;
+    }
+
+    public Integer getBuildingId() {
+        return buildingId;
+    }
+
+    public void setBuildingId(Integer buildingId) {
+        this.buildingId = buildingId;
     }
 }

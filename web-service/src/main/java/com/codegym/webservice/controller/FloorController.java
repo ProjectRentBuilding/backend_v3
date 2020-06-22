@@ -29,13 +29,26 @@ public class FloorController {
 <<<<<<< HEAD
 =======
 
+<<<<<<< HEAD
+    @GetMapping(value = "/nameFloor", params = {"page", "size", "search"})
+    public Page<Floor> getListFloorByNameFloor(@RequestParam("page") int page,
+=======
 >>>>>>> 40939254c5f2563ec6a39745e31c8a3c47735f9d
     @GetMapping(value = "/paging", params = {"page", "size", "search"})
     public Page<Floor> getListFloor(@RequestParam("page") int page,
+>>>>>>> 179632f56fa693c32cc5432423083d3cdd875ac3
                                           @RequestParam("size") int size,
                                           @RequestParam("search") String name) {
         Page<Floor> floors;
-        floors= floorService.getFloors(name, PageRequest.of(page,size));
+        floors= floorService.getFloorsByNameFloor(name, PageRequest.of(page,size));
+        return floors;
+    }
+    @GetMapping(value = "/buildingId", params = {"page", "size", "search"})
+    public Page<Floor> getListFloorByBuildingId(@RequestParam("page") int page,
+                                          @RequestParam("size") int size,
+                                          @RequestParam("search") String buildingId) {
+        Page<Floor> floors;
+        floors= floorService.getFloorsByBuildingId(Integer.parseInt(buildingId), PageRequest.of(page,size));
         return floors;
     }
 
