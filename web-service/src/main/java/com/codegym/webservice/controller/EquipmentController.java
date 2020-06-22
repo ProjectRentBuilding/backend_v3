@@ -33,7 +33,7 @@ public class EquipmentController {
         return equipments;
     }
 
-//    @GetMapping(value = "/paging", params = {"page", "size", "search"})
+//    @GetMapping(value = "/page", params = {"page", "size", "search"})
 //    public Page<Equipment> getListEquipment(@RequestParam("page") int page,
 //                                          @RequestParam("size") int size,
 //                                          @RequestParam("search") String name) {
