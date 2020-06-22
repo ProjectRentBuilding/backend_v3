@@ -1,10 +1,12 @@
 package com.codegym.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @JsonIgnoreProperties
@@ -70,6 +72,10 @@ public class Contract {
     @Column(name = "delete_flag")
     private Integer deleteFlag;
 
+    // Hùng đã thêm
+    @JsonBackReference(value = "contract")
+    @OneToMany(mappedBy  = "contract", cascade = CascadeType.ALL)
+    private Set<Services> services;
 
     @Override
     public String toString() {
@@ -90,8 +96,19 @@ public class Contract {
                 ", content='" + content + '\'' +
                 ", unified=" + unified +
                 ", deleteFlag=" + deleteFlag +
+                ", services=" + services +
                 '}';
     }
+
+    public Set<Services> getServices() {
+        return services;
+    }
+
+    public void setServices(Set<Services> services) {
+        this.services = services;
+    }
+
+    // Hết
 
     public Integer getId() {
         return id;
