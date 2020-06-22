@@ -1,7 +1,6 @@
 package com.codegym.webservice.controller;
 
 
-import com.codegym.dao.dto.ContractDTO;
 import com.codegym.dao.dto.EquipmentDTO;
 import com.codegym.dao.entity.Contract;
 import com.codegym.dao.entity.Equipment;
@@ -34,19 +33,33 @@ public class EquipmentController {
         return equipments;
     }
 
-    @GetMapping(value = "/paging", params = {"page", "size", "search"})
+//    @GetMapping(value = "/paging", params = {"page", "size", "search"})
+//    public Page<Equipment> getListEquipment(@RequestParam("page") int page,
+//                                          @RequestParam("size") int size,
+//                                          @RequestParam("search") String name) {
+//        return equipmentService.getEquipments(name, PageRequest.of(page, size));
+//    }
+
+    @GetMapping(value = "/paging", params = {"page", "size", "nameEquipment", "amount", "codeGround", "nameTypeEquipment"})
     public Page<Equipment> getListEquipment(@RequestParam("page") int page,
                                           @RequestParam("size") int size,
-                                          @RequestParam("search") String name) {
-        return equipmentService.getEquipments(name, PageRequest.of(page, size));
+                                          @RequestParam(value = "nameEquipment", defaultValue = "") String nameEquipment,
+                                          @RequestParam(value = "amount")  Integer amount,
+                                          @RequestParam(value = "codeGround", defaultValue = "") String codeGround,
+                                          @RequestParam(value = "nameTypeEquipment", defaultValue = "") String nameTypeEquipment) {
+         Page<Equipment> equipments = equipmentService.findAllByDeleteFlagIsNullAndNameEquipmentContainingOrAmountContainingOrGround_CodeGroundOrTypeEquipment_NameType(nameEquipment, amount, codeGround, nameTypeEquipment, PageRequest.of(page, size));
+         return equipments;
     }
 
-//    @GetMapping(value = "/paging", params = {"page", "size", "s0","s1"})
+//    @GetMapping(value = "/paging", params = {"page", "size", "nameEquipment", "amount", "groundId", "typeEquipmentId"})
 //    public Page<Equipment> getListEquipment(@RequestParam("page") int page,
 //                                            @RequestParam("size") int size,
-//                                            @RequestParam("s0") String name,
-//                                            @RequestParam("s1") Integer amount) {
-//        return equipmentService.findAllByNameEquipmentContainingOrAmountContaining(name,amount, PageRequest.of(page, size));
+//                                            @RequestParam(value = "nameEquipment", defaultValue = "") String nameEquipment,
+//                                            @RequestParam(value = "amount")  Integer amount,
+//                                            @RequestParam(value = "groundId") Integer groundId,
+//                                            @RequestParam(value = "typeEquipmentId") Integer typeEquipmentId) {
+//        Page<Equipment> equipments = equipmentService.findAllByNameEquipmentContainingOrAmountContainingOrGround_IdOrTypeEquipment_Id(nameEquipment, amount, groundId, typeEquipmentId, PageRequest.of(page, size));
+//        return equipments;
 //    }
 
     @GetMapping("/{id}")
