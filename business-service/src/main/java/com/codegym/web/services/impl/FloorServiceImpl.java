@@ -32,6 +32,16 @@ public class FloorServiceImpl implements FloorService {
     }
 
     @Override
+    public Page<Floor> getFloorsByNameFloor(String name, Pageable pageable) {
+        return floorRepository.findAllByDeleteFlagIsNullAndNameFloorContaining(name, pageable);
+    }
+
+    @Override
+    public Page<Floor> getFloorsByBuildingId(Integer buildingId, Pageable pageable) {
+        return floorRepository.findAllByDeleteFlagIsNullAndBuildingIdIs(buildingId, pageable);
+    }
+
+    @Override
     public FloorDTO findAllByDeleteFlagIsNullAndIdIs(Integer id) {
         Floor floor = floorRepository.findAllByDeleteFlagIsNullAndIdIs(id);
         if (floor != null) {
@@ -51,6 +61,8 @@ public class FloorServiceImpl implements FloorService {
         }
        return null;
     }
+
+
 
     @Override
     public Floor findById(Integer id) {
@@ -98,7 +110,9 @@ public class FloorServiceImpl implements FloorService {
     }
 
     @Override
-    public Page<Floor> getFloors(String name, Pageable pageable) {
-        return floorRepository.findAllByDeleteFlagIsNullAndNameFloorContaining(name, pageable);
+    public Page<Floor> searchAll(String nameBuilding, String nameFloor, Integer area, String typeFloor_nameFloor, Pageable pageable) {
+        return floorRepository.searchAll(nameBuilding, nameFloor, area, typeFloor_nameFloor, pageable);
     }
+
+
 }

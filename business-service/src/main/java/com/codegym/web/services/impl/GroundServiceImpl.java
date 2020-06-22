@@ -43,6 +43,7 @@ public class GroundServiceImpl implements GroundService {
             groundDTO.setEquipments(ground.getEquipments());
             groundDTO.setContracts(ground.getContracts());
             groundDTO.setNote(ground.getNote());
+            groundDTO.setBuildingId(ground.getBuildingId());
 
             // Chuyển đổi kiểu lưu đối tượng từ ground sang kiểu lưu integer groundDTO
             groundDTO.setFloorId(ground.getFloor().getId());
@@ -70,6 +71,7 @@ public class GroundServiceImpl implements GroundService {
         ground.setEquipments(groundDTO.getEquipments());
         ground.setContracts(groundDTO.getContracts());
         ground.setNote(groundDTO.getNote());
+        ground.setBuildingId(groundDTO.getBuildingId());
 
         ground.setFloor(floorRepository.findAllByDeleteFlagIsNullAndIdIs(groundDTO.getFloorId()));
 
@@ -98,6 +100,7 @@ public class GroundServiceImpl implements GroundService {
         ground.setEquipments(groundDTO.getEquipments());
         ground.setContracts(groundDTO.getContracts());
         ground.setNote(groundDTO.getNote());
+        ground.setBuildingId(groundDTO.getBuildingId());
         ground.setFloor(floorRepository.findAllByDeleteFlagIsNullAndIdIs(groundDTO.getFloorId()));
         ground.setTypeGround(typeGroundRepository.findById(groundDTO.getTypeGroundId()).orElse(null));
         groundRepository.save(ground);

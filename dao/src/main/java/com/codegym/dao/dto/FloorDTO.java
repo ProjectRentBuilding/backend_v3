@@ -15,7 +15,7 @@ public class FloorDTO implements Serializable {
 
     @NotEmpty(message = "Không được để trống")
     private String codeFloor;
-    private double area;
+    private Integer area;
     private String capacity;
 
     @NotEmpty(message = "Không được để trống")
@@ -54,11 +54,11 @@ public class FloorDTO implements Serializable {
         this.codeFloor = codeFloor;
     }
 
-    public double getArea() {
+    public Integer getArea() {
         return area;
     }
 
-    public void setArea(double area) {
+    public void setArea(Integer area) {
         this.area = area;
     }
 

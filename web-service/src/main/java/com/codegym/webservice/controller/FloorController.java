@@ -1,6 +1,7 @@
 package com.codegym.webservice.controller;
 
 import com.codegym.dao.dto.FloorDTO;
+import com.codegym.dao.entity.Equipment;
 import com.codegym.dao.entity.Floor;
 import com.codegym.web.services.FloorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,40 @@ public class FloorController {
         floors = floorService.findAllByDeleteFlagIsNull();
         return floors;
     }
-
+    @GetMapping(value = "/nameFloor", params = {"page", "size", "search"})
+    public Page<Floor> getListFloorByNameFloor(@RequestParam("page") int page,
+                                               @RequestParam("size") int size,
+                                               @RequestParam("search") String name) {
+        Page<Floor> floors;
+        floors= floorService.getFloorsByNameFloor(name, PageRequest.of(page,size));
+        return floors;
+    }
     @GetMapping(value = "/paging", params = {"page", "size", "search"})
     public Page<Floor> getListFloor(@RequestParam("page") int page,
                                           @RequestParam("size") int size,
                                           @RequestParam("search") String name) {
         Page<Floor> floors;
-        floors= floorService.getFloors(name, PageRequest.of(page,size));
+        floors= floorService.getFloorsByNameFloor(name, PageRequest.of(page,size));
+        return floors;
+    }
+    @GetMapping(value = "/buildingId", params = {"page", "size", "search"})
+    public Page<Floor> getListFloorByBuildingId(@RequestParam("page") int page,
+                                          @RequestParam("size") int size,
+                                          @RequestParam("search") String buildingId) {
+        System.out.println(buildingId);
+        Page<Floor> floors;
+        floors= floorService.getFloorsByBuildingId(Integer.parseInt(buildingId), PageRequest.of(page,size));
+        return floors;
+    }
+    @GetMapping(value = "/paging", params = {"page", "size", "nameBuilding", "nameFloor", "area", "nameTypeFloor"})
+    public Page<Floor> getListEquipment(@RequestParam("page") int page,
+                                            @RequestParam("size") int size,
+                                            @RequestParam(value = "nameBuilding") String nameBuilding,
+                                            @RequestParam(value = "nameFloor", defaultValue = "")  String nameFloor,
+                                            @RequestParam(value = "area") Integer area,
+                                            @RequestParam(value = "nameTypeFloor", defaultValue = "") String nameTypeFloor) {
+        Page<Floor> floors;
+        floors= floorService.searchAll(nameBuilding,nameFloor,area, nameTypeFloor,PageRequest.of(page, size));
         return floors;
     }
 
