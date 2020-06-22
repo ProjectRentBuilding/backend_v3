@@ -28,7 +28,7 @@ public class Floor {
     private String codeFloor;
 
     @Column(name="area")
-    private double area;
+    private Integer area;
 
     @Column(name="capacity")
     private String capacity;
@@ -77,11 +77,11 @@ public class Floor {
         this.codeFloor = codeFloor;
     }
 
-    public double getArea() {
+    public Integer getArea() {
         return area;
     }
 
-    public void setArea(double area) {
+    public void setArea(Integer area) {
         this.area = area;
     }
 
