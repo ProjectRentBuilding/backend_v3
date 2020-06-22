@@ -67,10 +67,10 @@ public class EquipmentServiceImpl implements EquipmentService {
         return equipmentRepository.findAllByDeleteFlagIsNullAndNameEquipmentContaining(nameEquipment, pageable);
     }
 
-    @Override
-    public Page<Equipment> findAllByNameEquipmentContainingOrAmountContaining(String nameEquipment, Integer amount, Pageable pageable) {
-        return equipmentRepository.findAllByNameEquipmentContainingOrAmountContaining(nameEquipment, amount, pageable);
-    }
+//    @Override
+//    public Page<Equipment> findAllByNameEquipmentContainingOrAmountContaining(String nameEquipment, Integer amount, Pageable pageable) {
+//        return equipmentRepository.findAllByNameEquipmentContainingOrAmountContaining(nameEquipment, amount, pageable);
+//    }
 
     @Override
     public void save(EquipmentDTO equipmentDTO) {
@@ -88,9 +88,24 @@ public class EquipmentServiceImpl implements EquipmentService {
     }
 
     @Override
-    public Page<Equipment> findAllByDeleteFlagIsNullAndAmountContaining(Integer amount, Pageable pageable) {
-        return equipmentRepository.findAllByDeleteFlagIsNullAndAmountContaining(amount, pageable);
+    public Page<Equipment> findAllByNameEquipmentContainingOrAmountContainingOrGround_CodeGroundOrTypeEquipment_NameType(String nameEquipment, Integer amount, String ground_codeGround, String typeEquipment_nameType, Pageable pageable) {
+        return equipmentRepository.findAllByNameEquipmentContainingOrAmountContainingOrGround_CodeGroundOrTypeEquipment_NameType(nameEquipment, amount, ground_codeGround, typeEquipment_nameType, pageable);
     }
+
+    @Override
+    public Page<Equipment> findAllByDeleteFlagIsNullAndNameEquipmentContainingOrAmountContainingOrGround_CodeGroundOrTypeEquipment_NameType(String nameEquipment, Integer amount, String ground_codeGround, String typeEquipment_nameType, Pageable pageable) {
+        return equipmentRepository.searchAll(nameEquipment, amount, ground_codeGround, typeEquipment_nameType, pageable);
+    }
+
+    @Override
+    public Page<Equipment> findAllByNameEquipmentContainingOrAmountContainingOrGround_IdOrTypeEquipment_Id(String nameEquipment, Integer amount, Integer ground_id, Integer typeEquipment_id, Pageable pageable) {
+        return equipmentRepository.findAllByNameEquipmentContainingOrAmountContainingOrGround_IdContainingOrTypeEquipment_IdContaining(nameEquipment, amount, ground_id, typeEquipment_id, pageable);
+    }
+
+//    @Override
+//    public Page<Equipment> findAllByDeleteFlagIsNullAndAmountContaining(Integer amount, Pageable pageable) {
+//        return equipmentRepository.findAllByDeleteFlagIsNullAndAmountContaining(amount, pageable);
+//    }
 
     @Override
     public void updateEquipment(EquipmentDTO equipmentDTO) {
@@ -105,6 +120,11 @@ public class EquipmentServiceImpl implements EquipmentService {
         equipment.setGround(groundRepository.findById(equipmentDTO.getGroundId()).orElse(null));
 
         equipmentRepository.save(equipment);
+    }
+
+    @Override
+    public Page<Equipment> searchAll(String nameEquipment,Integer amount ,String ground_codeGround, String typeEquipment_nameType, Pageable pageable) {
+        return equipmentRepository.searchAll(nameEquipment, amount, ground_codeGround, typeEquipment_nameType, pageable);
     }
 
 
