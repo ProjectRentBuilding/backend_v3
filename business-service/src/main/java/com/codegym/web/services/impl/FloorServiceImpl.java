@@ -38,7 +38,7 @@ public class FloorServiceImpl implements FloorService {
 
     @Override
     public Page<Floor> getFloorsByBuildingId(Integer buildingId, Pageable pageable) {
-        return floorRepository.findAllByDeleteFlagIsNullAndBuildingIdContaining(buildingId, pageable);
+        return floorRepository.findAllByDeleteFlagIsNullAndBuildingIdIs(buildingId, pageable);
     }
 
     @Override
@@ -107,6 +107,11 @@ public class FloorServiceImpl implements FloorService {
         floor.setGrounds(floor.getGrounds());
         floorRepository.save(floor);
 
+    }
+
+    @Override
+    public Page<Floor> searchAll(String nameBuilding, String nameFloor, Integer area, String typeFloor_nameFloor, Pageable pageable) {
+        return floorRepository.searchAll(nameBuilding, nameFloor, area, typeFloor_nameFloor, pageable);
     }
 
 

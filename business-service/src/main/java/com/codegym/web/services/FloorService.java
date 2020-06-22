@@ -21,6 +21,9 @@ public interface FloorService {
 
     void updateFloor(FloorDTO floorDTO);
 
+    Page<Floor> searchAll(String nameBuilding, String nameFloor, Integer area,
+                          String typeFloor_nameFloor, Pageable pageable);
+
 
 
 
