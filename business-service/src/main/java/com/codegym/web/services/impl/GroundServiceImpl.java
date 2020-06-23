@@ -111,4 +111,9 @@ public class GroundServiceImpl implements GroundService {
     public Page<Ground> getGrounds(String codeGround, Pageable pageable) {
         return groundRepository.findAllByDeleteFlagIsNullAndCodeGroundContaining(codeGround, pageable);
     }
+
+    @Override
+    public Page<Ground> searchAll(String nameFloor, String codeGround, Integer area, String typeGround_nameGround, Pageable pageable) {
+        return groundRepository.searchAll(nameFloor, codeGround, area, typeGround_nameGround, pageable);
+    }
 }

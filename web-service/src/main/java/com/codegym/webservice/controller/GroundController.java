@@ -38,6 +38,17 @@ public class GroundController {
         grounds= groundService.getGrounds(name, PageRequest.of(page,size));
         return grounds;
     }
+    @GetMapping(value = "/paging", params = {"page", "size", "nameFloor", "codeGround", "area", "nameTypeGround"})
+    public Page<Ground> getListGround(@RequestParam("page") int page,
+                                        @RequestParam("size") int size,
+                                        @RequestParam(value = "nameFloor") String nameFloor,
+                                        @RequestParam(value = "codeGround", defaultValue = "")  String codeGround,
+                                        @RequestParam(value = "area") Integer area,
+                                        @RequestParam(value = "nameTypeGround", defaultValue = "") String nameTypeGround) {
+        Page<Ground> grounds;
+        grounds= groundService.searchAll(nameFloor,codeGround,area, nameTypeGround,PageRequest.of(page, size));
+        return grounds;
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<GroundDTO> getGround(@PathVariable("id") int id) {
