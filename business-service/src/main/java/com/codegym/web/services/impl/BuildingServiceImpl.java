@@ -2,6 +2,7 @@ package com.codegym.web.services.impl;
 
 import com.codegym.dao.dto.BuildingDTO;
 import com.codegym.dao.entity.Building;
+import com.codegym.dao.entity.Floor;
 import com.codegym.dao.repository.BuildingRepository;
 import com.codegym.web.services.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,6 +100,11 @@ public class BuildingServiceImpl implements BuildingService {
         building.setFloors(buildingDTO.getFloors());
         building.setLogo(buildingDTO.getLogo());
         buildingRepository.save(building);
+    }
+
+    @Override
+    public Page<Building> searchAll(String nameBuilding, String taxCode, String phone, String address, Pageable pageable) {
+        return buildingRepository.searchAll(nameBuilding, taxCode, phone, address, pageable);
     }
 
 }
