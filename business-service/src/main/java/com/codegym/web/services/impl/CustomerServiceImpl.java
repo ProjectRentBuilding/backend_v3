@@ -46,17 +46,17 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return null;
     }
-
-    @Override
-    public void deleteAllCustomer(Integer id) {
-       List<Customer> customers = customerRepository.findAllCustomer();
-     
-
-        for (Customer customer:customers) {
-            customer.setDeleteFlag(1);
-            customerRepository.save(customer);
-        }
-    }
+//
+//    @Override
+//    public void deleteAllCustomer(Integer id) {
+//       List<Customer> customers = customerRepository.findAllCustomer();
+//
+//
+//        for (Customer customer:customers) {
+//            customer.setDeleteFlag(1);
+//            customerRepository.save(customer);
+//        }
+//    }
 
     @Override
     public void deleteCustomer(Integer id) {

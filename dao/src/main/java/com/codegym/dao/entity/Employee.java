@@ -2,6 +2,7 @@ package com.codegym.dao.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -22,6 +23,7 @@ public class Employee {
     @Column(name = "name_employee")
     private String name;
 
+
     @Column(name = "birthday")
     private Date birthday;
 
@@ -29,7 +31,7 @@ public class Employee {
     private String idCard;
 
     @Column(name = "phone")
-    private Integer phone;
+    private String phone;
 
     @Column(name = "email")
     private String email;
@@ -40,8 +42,21 @@ public class Employee {
     @Column(name = "gender")
     private String gender;
 
+    @Column(name = "level_salary")
+    private  String levelSalary;
+
+    @Column(name = "part")
+    private  String part;
+
+    @Column(name = "start_word")
+    private  Date startWord;
+
+    @Column(name = "type_employee")
+    private  String typeEmployee;
+
+
     @OneToOne(cascade = CascadeType.ALL)
-    @JsonBackReference(value = "usernameEmployee")
+    @JsonBackReference  (value = "usernameEmployee")
     @JoinColumn(name = "username", referencedColumnName = "username")
     private UserBuilding userBuilding;
 
@@ -61,11 +76,16 @@ public class Employee {
                 ", name='" + name + '\'' +
                 ", birthday=" + birthday +
                 ", idCard='" + idCard + '\'' +
-                ", phone=" + phone +
+                ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
                 ", gender='" + gender + '\'' +
+                ", levelSalary='" + levelSalary + '\'' +
+                ", part='" + part + '\'' +
+                ", startWord=" + startWord +
+                ", typeEmployee='" + typeEmployee + '\'' +
                 ", userBuilding=" + userBuilding +
+                ", contracts=" + contracts +
                 '}';
     }
 
@@ -109,11 +129,11 @@ public class Employee {
         this.idCard = idCard;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -139,6 +159,38 @@ public class Employee {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getLevelSalary() {
+        return levelSalary;
+    }
+
+    public void setLevelSalary(String levelSalary) {
+        this.levelSalary = levelSalary;
+    }
+
+    public String getPart() {
+        return part;
+    }
+
+    public void setPart(String part) {
+        this.part = part;
+    }
+
+    public Date getStartWord() {
+        return startWord;
+    }
+
+    public void setStartWord(Date startWord) {
+        this.startWord = startWord;
+    }
+
+    public String getTypeEmployee() {
+        return typeEmployee;
+    }
+
+    public void setTypeEmployee(String typeEmployee) {
+        this.typeEmployee = typeEmployee;
     }
 
     public UserBuilding getUserBuilding() {
