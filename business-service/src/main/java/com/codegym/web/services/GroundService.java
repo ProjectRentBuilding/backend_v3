@@ -21,4 +21,7 @@ public interface GroundService {
     void updateGround(GroundDTO groundDTO);
 
     Page<Ground> getGrounds(String codeGround, Pageable pageable);
+
+    Page<Ground> searchAll(String nameFloor, String codeGround, Integer area,
+                           String typeGround_nameGround, Pageable pageable);
 }

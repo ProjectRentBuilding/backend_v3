@@ -53,9 +53,9 @@ public class FloorController {
         return floors;
     }
     @GetMapping(value = "/paging", params = {"page", "size", "nameBuilding", "nameFloor", "area", "nameTypeFloor"})
-    public Page<Floor> getListEquipment(@RequestParam("page") int page,
+    public Page<Floor> getListFloor(@RequestParam("page") int page,
                                             @RequestParam("size") int size,
-                                            @RequestParam(value = "nameBuilding") String nameBuilding,
+                                            @RequestParam(value = "nameBuilding",defaultValue = "") String nameBuilding,
                                             @RequestParam(value = "nameFloor", defaultValue = "")  String nameFloor,
                                             @RequestParam(value = "area") Integer area,
                                             @RequestParam(value = "nameTypeFloor", defaultValue = "") String nameTypeFloor) {
