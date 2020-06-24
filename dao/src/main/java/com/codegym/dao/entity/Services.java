@@ -3,6 +3,7 @@ package com.codegym.dao.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name = "service")
@@ -25,11 +26,17 @@ public class Services {
     @Column(name = "consume")
     private Integer consume;
 
+    @Column(name = "periodic")
+    private String periodic;
+
     @Column(name = "unit")
     private String unit;
 
     @Column(name = "price")
     private Integer price;
+
+    @Column(name = "month_year")
+    private Date monthYear;
 
     @ManyToOne
     @JoinColumn(name = "id_contract")
@@ -37,12 +44,13 @@ public class Services {
 
     @Override
     public String toString() {
-        return "Service{" +
+        return "Services{" +
                 "id=" + id +
                 ", nameService='" + nameService + '\'' +
                 ", indexBeforeMonth=" + indexBeforeMonth +
                 ", indexAfterMonth=" + indexAfterMonth +
                 ", consume=" + consume +
+                ", periodic='" + periodic + '\'' +
                 ", unit='" + unit + '\'' +
                 ", price=" + price +
                 ", contract=" + contract +
@@ -87,6 +95,14 @@ public class Services {
 
     public void setConsume(Integer consume) {
         this.consume = consume;
+    }
+
+    public String getPeriodic() {
+        return periodic;
+    }
+
+    public void setPeriodic(String periodic) {
+        this.periodic = periodic;
     }
 
     public String getUnit() {

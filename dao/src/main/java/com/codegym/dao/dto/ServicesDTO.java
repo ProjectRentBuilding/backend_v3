@@ -2,8 +2,11 @@ package com.codegym.dao.dto;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.sql.Date;
 
-public class ServiceDTO {
+public class ServicesDTO implements Serializable {
+
     private Integer id;
 
     @NotNull(message = "Không được để trống")
@@ -20,12 +23,21 @@ public class ServiceDTO {
     private Integer consume;
 
     @NotNull(message = "Không được để trống")
+    private String periodic;
+
+    @NotNull(message = "Không được để trống")
+    private String  unit;
+
+    @NotNull(message = "Không được để trống")
     private Integer price;
+
+    @NotNull(message = "Không được để trống")
+    private Date monthYear;
 
     @NotNull(message = "Không được để trống")
     private Integer contactId;
 
-    public ServiceDTO() {
+    public ServicesDTO() {
     }
 
     @Override
