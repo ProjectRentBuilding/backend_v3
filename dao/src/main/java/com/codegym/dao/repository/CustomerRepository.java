@@ -13,8 +13,8 @@ import java.util.List;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer,Integer> {
     List<Customer> findAllByDeleteFlagIsNull();
-    @Query(value = "SELECT * FROM customer WHERE id>0", nativeQuery = true)
-    List<Customer> findAllCustomer();
+//    @Query(value = "SELECT * FROM customer WHERE id>0", nativeQuery = true)
+//    List<Customer> findAllCustomer();
     Customer findAllByDeleteFlagIsNullAndIdIs(Integer id);
     Page<Customer> findAllByDeleteFlagIsNullAndNameContainingIgnoreCase(String fullName, Pageable pageable);
 

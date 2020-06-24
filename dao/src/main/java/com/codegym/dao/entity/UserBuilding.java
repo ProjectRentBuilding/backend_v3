@@ -1,7 +1,9 @@
 package com.codegym.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -10,6 +12,10 @@ import javax.persistence.*;
 @Table(name = "user_building")
 public class UserBuilding {
     @Id
+
+//    @GeneratedValue(generator="system-uuid")
+//    @GenericGenerator(name="system-uuid", strategy = "uuid")
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE)
 //    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "username")
     private String username;
@@ -19,7 +25,6 @@ public class UserBuilding {
 
     @Column(name = "delete_flag")
     private Integer deleteFlag;
-
 
 //    @JsonManagedReference(value = "userBuildingCustomer")
     @OneToOne(mappedBy = "userBuilding")
@@ -31,7 +36,7 @@ public class UserBuilding {
     private RoleUser roleUser;
 
     @OneToOne(mappedBy = "userBuilding")
-//    @JsonManagedReference(value = "userBuildingEmployee")
+//    @JsonManagedReference (value = "userBuildingEmployee")
     private Employee employee;
 
     public UserBuilding() {
