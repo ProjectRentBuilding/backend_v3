@@ -37,9 +37,10 @@ public class CustomerController {
     public Page<Customer> getListContract(@RequestParam("page") int page,
                                           @RequestParam("size") int size,
                                           @RequestParam("search") String name) {
-        Page<Customer> customers = customerService.getCustomers(name, PageRequest.of(page,size));
-        return customers;
+        return customerService.getCustomers(name, PageRequest.of(page,size));
+
     }
+
 
 //    @PostMapping("")
 //    public ResponseEntity<CustomerDTO> createCustomer(@Valid @RequestBody CustomerDTO customerDTO) {

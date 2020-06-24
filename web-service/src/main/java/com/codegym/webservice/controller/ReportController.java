@@ -7,6 +7,7 @@ import com.codegym.dao.entity.Ground;
 import com.codegym.dao.repository.ContractRepository;
 import com.codegym.web.services.ContractService;
 import com.codegym.web.services.GroundService;
+import com.codegym.web.services.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,21 +29,21 @@ public class ReportController {
     GroundService groundService;
 
     @Autowired
-    ContractRepository contractRepository;
+    ReportService reportService;
 
     @GetMapping("/all")
     public List<ReportInt> getAllReport() {
-        return contractRepository.searchAllReport();
+        return reportService.searchAllReport();
     }
 
     @GetMapping("/high")
     public List<ReportInt> getReportHigh() {
-        return contractRepository.searchAllReportHigh();
+        return reportService.searchAllReportHigh();
     }
 
     @GetMapping("/low")
     public List<ReportInt> getReportLow() {
-        return contractRepository.searchAllReportLow();
+        return reportService.searchAllReportLow();
     }
 
     //    @GetMapping("/all")

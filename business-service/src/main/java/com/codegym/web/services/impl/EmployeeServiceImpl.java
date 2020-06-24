@@ -1,11 +1,14 @@
 package com.codegym.web.services.impl;
 
-
+import com.codegym.dao.dto.CustomerDTO;
 import com.codegym.dao.dto.EmployeeDTO;
+import com.codegym.dao.entity.Customer;
 import com.codegym.dao.entity.Employee;
 import com.codegym.dao.repository.EmployeeRepository;
 import com.codegym.web.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,9 +24,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeDTO findAllByDeleteFlagIsNullAndIdIs(Integer id) {
+    public EmployeeDTO getEmployeeById(Integer id) {
         Employee employee = employeeRepository.findAllByDeleteFlagIsNullAndIdIs(id);
-        if (employee != null) {
+        if(employee != null){
             EmployeeDTO employeeDTO = new EmployeeDTO();
             employeeDTO.setId(employee.getId());
             employeeDTO.setDeleteFlag(employee.getDeleteFlag());
@@ -32,14 +35,73 @@ public class EmployeeServiceImpl implements EmployeeService {
             employeeDTO.setIdCard(employee.getIdCard());
             employeeDTO.setPhone(employee.getPhone());
             employeeDTO.setEmail(employee.getEmail());
-            employeeDTO.setEmail(employee.getEmail());
             employeeDTO.setAddress(employee.getAddress());
             employeeDTO.setGender(employee.getGender());
-            employeeDTO.setUserBuilding(employee.getUserBuilding());
+            employeeDTO.setLevelSalary(employee.getLevelSalary());
+            employeeDTO.setPart(employee.getPart());
+            employeeDTO.setStartWord(employee.getStartWord());
+            employeeDTO.setTypeEmployee(employee.getTypeEmployee());
             employeeDTO.setUserBuilding(employee.getUserBuilding());
             employeeDTO.setContracts(employee.getContracts());
-            return employeeDTO;
-        }
+            return  employeeDTO;        }
         return null;
+    }
+
+
+
+    @Override
+    public void deleteEmployee(Integer id) {
+        Employee employee = employeeRepository.findAllByDeleteFlagIsNullAndIdIs(id);
+        employee.setDeleteFlag(1);
+        employeeRepository.save(employee);
+    }
+
+
+    @Override
+    public void save(EmployeeDTO employeeDTO) {
+       Employee employee = new Employee();
+       employee.setId(employeeDTO.getId());
+       employee.setDeleteFlag(employeeDTO.getDeleteFlag());
+       employee.setName(employeeDTO.getName());
+       employee.setBirthday(employeeDTO.getBirthday());
+       employee.setIdCard(employeeDTO.getIdCard());
+       employee.setPhone(employeeDTO.getPhone());
+       employee.setEmail(employeeDTO.getEmail());
+       employee.setAddress(employeeDTO.getAddress());
+       employee.setGender(employeeDTO.getGender());
+       employee.setLevelSalary(employeeDTO.getLevelSalary());
+       employee.setPart(employeeDTO.getPart());
+       employee.setStartWord(employeeDTO.getStartWord());
+       employee.setTypeEmployee(employeeDTO.getTypeEmployee());
+       employee.setUserBuilding(employeeDTO.getUserBuilding());
+       employee.setContracts(employeeDTO.getContracts());
+       employeeRepository.save(employee);
+
+    }
+
+    @Override
+    public void updateEmployee(EmployeeDTO employeeDTO) {
+        Employee employee = employeeRepository.findAllByDeleteFlagIsNullAndIdIs(employeeDTO.getId());
+        employee.setId(employeeDTO.getId());
+        employee.setDeleteFlag(employeeDTO.getDeleteFlag());
+        employee.setName(employeeDTO.getName());
+        employee.setBirthday(employeeDTO.getBirthday());
+        employee.setIdCard(employeeDTO.getIdCard());
+        employee.setPhone(employeeDTO.getPhone());
+        employee.setEmail(employeeDTO.getEmail());
+        employee.setAddress(employeeDTO.getAddress());
+        employee.setGender(employeeDTO.getGender());
+        employee.setLevelSalary(employeeDTO.getLevelSalary());
+        employee.setPart(employeeDTO.getPart());
+        employee.setStartWord(employeeDTO.getStartWord());
+        employee.setTypeEmployee(employeeDTO.getTypeEmployee());
+        employee.setUserBuilding(employeeDTO.getUserBuilding());
+        employee.setContracts(employeeDTO.getContracts());
+        employeeRepository.save(employee);
+    }
+
+    @Override
+    public Page<Employee> getEmployees(String nameEmployee, Pageable pageable) {
+        return employeeRepository.findAllByDeleteFlagIsNullAndNameContainingIgnoreCase(nameEmployee,pageable);
     }
 }
