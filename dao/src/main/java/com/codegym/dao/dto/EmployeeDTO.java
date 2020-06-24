@@ -3,6 +3,7 @@ package com.codegym.dao.dto;
 import com.codegym.dao.entity.Contract;
 import com.codegym.dao.entity.UserBuilding;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -10,13 +11,22 @@ import java.util.Set;
 public class EmployeeDTO implements Serializable {
     private Integer id;
     private Integer deleteFlag;
+    @NotNull(message = "Không được để trống")
     private String name;
+    @NotNull(message = "Không được để trống")
     private Date birthday;
+    @NotNull(message = "Không được để trống")
     private String idCard;
-    private int phone;
+    @NotNull(message = "Không được để trống")
+    private String phone;
+    @NotNull(message = "Không được để trống")
     private String email;
     private String address;
     private String gender;
+    private String levelSalary;
+    private String part;
+    private Date startWord;
+    private String typeEmployee;
     private UserBuilding userBuilding;
     private Set<Contract> contracts;
 
@@ -31,10 +41,14 @@ public class EmployeeDTO implements Serializable {
                 ", name='" + name + '\'' +
                 ", birthday=" + birthday +
                 ", idCard='" + idCard + '\'' +
-                ", phone=" + phone +
+                ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
                 ", gender='" + gender + '\'' +
+                ", levelSalary='" + levelSalary + '\'' +
+                ", part='" + part + '\'' +
+                ", startWord=" + startWord +
+                ", typeEmployee='" + typeEmployee + '\'' +
                 ", userBuilding=" + userBuilding +
                 ", contracts=" + contracts +
                 '}';
@@ -80,11 +94,11 @@ public class EmployeeDTO implements Serializable {
         this.idCard = idCard;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -110,6 +124,38 @@ public class EmployeeDTO implements Serializable {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getLevelSalary() {
+        return levelSalary;
+    }
+
+    public void setLevelSalary(String levelSalary) {
+        this.levelSalary = levelSalary;
+    }
+
+    public String getPart() {
+        return part;
+    }
+
+    public void setPart(String part) {
+        this.part = part;
+    }
+
+    public Date getStartWord() {
+        return startWord;
+    }
+
+    public void setStartWord(Date startWord) {
+        this.startWord = startWord;
+    }
+
+    public String getTypeEmployee() {
+        return typeEmployee;
+    }
+
+    public void setTypeEmployee(String typeEmployee) {
+        this.typeEmployee = typeEmployee;
     }
 
     public UserBuilding getUserBuilding() {
