@@ -6,6 +6,7 @@ import com.codegym.web.services.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -27,5 +28,10 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public List<ReportInt> searchAllReportLow() {
         return contractRepository.searchAllReportLow();
+    }
+
+    @Override
+    public List<ReportInt> searchReportWithAny(Date startRentDay, Date endRentDay, Double minTotal, Double maxTotal, String codeGround) {
+        return contractRepository.searchReportWithAny(startRentDay, endRentDay, minTotal, maxTotal, codeGround);
     }
 }
