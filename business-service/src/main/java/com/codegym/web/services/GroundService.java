@@ -12,7 +12,7 @@ import java.util.List;
 public interface GroundService {
     List<Ground> findAllByDeleteFlagIsNull();
     GroundDTO findAllByDeleteFlagIsNullAndIdIs(Integer id);
-    Ground findById(Integer id);
+
 
     void save(GroundDTO groundDTO);
 

@@ -54,11 +54,6 @@ public class GroundServiceImpl implements GroundService {
     }
 
     @Override
-    public Ground findById(Integer id) {
-        return null;
-    }
-
-    @Override
     public void save(GroundDTO groundDTO) {
         Ground ground = new Ground();
         ground.setId(groundDTO.getId());
