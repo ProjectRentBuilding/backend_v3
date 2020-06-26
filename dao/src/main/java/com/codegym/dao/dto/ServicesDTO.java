@@ -1,5 +1,7 @@
 package com.codegym.dao.dto;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -31,25 +33,29 @@ public class ServicesDTO implements Serializable {
     @NotNull(message = "Không được để trống")
     private Integer price;
 
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     @NotNull(message = "Không được để trống")
     private Date monthYear;
 
     @NotNull(message = "Không được để trống")
-    private Integer contactId;
+    private Integer contractId;
 
     public ServicesDTO() {
     }
 
     @Override
     public String toString() {
-        return "ServiceDTO{" +
+        return "ServicesDTO{" +
                 "id=" + id +
                 ", nameService='" + nameService + '\'' +
                 ", indexBeforeMonth=" + indexBeforeMonth +
                 ", indexAfterMonth=" + indexAfterMonth +
                 ", consume=" + consume +
+                ", periodic='" + periodic + '\'' +
+                ", unit='" + unit + '\'' +
                 ", price=" + price +
-                ", contactId=" + contactId +
+                ", monthYear=" + monthYear +
+                ", contractId=" + contractId +
                 '}';
     }
 
@@ -101,11 +107,35 @@ public class ServicesDTO implements Serializable {
         this.price = price;
     }
 
-    public Integer getContactId() {
-        return contactId;
+    public Integer getContractId() {
+        return contractId;
     }
 
-    public void setContactId(Integer contactId) {
-        this.contactId = contactId;
+    public void setContractId(Integer contractId) {
+        this.contractId = contractId;
+    }
+
+    public String getPeriodic() {
+        return periodic;
+    }
+
+    public void setPeriodic(String periodic) {
+        this.periodic = periodic;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public Date getMonthYear() {
+        return monthYear;
+    }
+
+    public void setMonthYear(Date monthYear) {
+        this.monthYear = monthYear;
     }
 }

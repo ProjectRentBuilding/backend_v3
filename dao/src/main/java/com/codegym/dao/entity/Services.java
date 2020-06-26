@@ -1,6 +1,7 @@
 package com.codegym.dao.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -35,6 +36,7 @@ public class Services {
     @Column(name = "price")
     private Integer price;
 
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     @Column(name = "month_year")
     private Date monthYear;
 
@@ -127,5 +129,13 @@ public class Services {
 
     public void setContract(Contract contract) {
         this.contract = contract;
+    }
+
+    public Date getMonthYear() {
+        return monthYear;
+    }
+
+    public void setMonthYear(Date monthYear) {
+        this.monthYear = monthYear;
     }
 }
