@@ -1,6 +1,8 @@
 package com.codegym.web.services.impl;
 
+import com.codegym.dao.dto.ServicesDTO;
 import com.codegym.dao.entity.Services;
+import com.codegym.dao.repository.ContractRepository;
 import com.codegym.dao.repository.ServicesRepository;
 import com.codegym.web.services.ServicesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +19,68 @@ public class ServicesServiceImpl implements ServicesService {
     @Autowired
     ServicesRepository serviceRepository;
 
+    @Autowired
+    ContractRepository contractRepository;
+
     @Override
     public List<Services> findAll() {
         return serviceRepository.findAll();
     }
 
     @Override
-    public Services findAllByIdIs(Integer id) {
-        return serviceRepository.findAllByIdIs(id);
+    public ServicesDTO findAllByIdIs(Integer id) {
+        Services services= serviceRepository.findAllByIdIs(id);
+        if (services != null) {
+            ServicesDTO servicesDTO = new ServicesDTO();
+            servicesDTO.setId(services.getId());
+            servicesDTO.setNameService(services.getNameService());
+            servicesDTO.setPeriodic(services.getPeriodic());
+            servicesDTO.setUnit(services.getUnit());
+            servicesDTO.setPrice(services.getPrice());
+            servicesDTO.setConsume(services.getConsume());
+            servicesDTO.setMonthYear(services.getMonthYear());
+            servicesDTO.setContractId(services.getContract().getId());
+            return servicesDTO;
+        }
+        return null;
+    }
+
+    @Override
+    public void save(ServicesDTO servicesDTO) {
+        Services services = new Services();
+        services.setId(servicesDTO.getId());
+        services.setNameService(servicesDTO.getNameService());
+        services.setPeriodic(servicesDTO.getPeriodic());
+        services.setUnit(servicesDTO.getUnit());
+        services.setPrice(servicesDTO.getPrice());
+        services.setConsume(servicesDTO.getConsume());
+        services.setMonthYear(servicesDTO.getMonthYear());
+        services.setContract(contractRepository.findAllByDeleteFlagIsNullAndIdIs(servicesDTO.getContractId()));
+        serviceRepository.save(services);
+    }
+
+    @Override
+    public void remove(Integer id) {
+        serviceRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateService(ServicesDTO servicesDTO) {
+        Services services = serviceRepository.findAllByIdIs(servicesDTO.getId());
+        services.setId(servicesDTO.getId());
+        services.setNameService(servicesDTO.getNameService());
+        services.setPeriodic(servicesDTO.getPeriodic());
+        services.setUnit(servicesDTO.getUnit());
+        services.setPrice(servicesDTO.getPrice());
+        services.setConsume(servicesDTO.getConsume());
+        services.setMonthYear(servicesDTO.getMonthYear());
+        services.setContract(contractRepository.findAllByDeleteFlagIsNullAndIdIs(servicesDTO.getContractId()));
+        serviceRepository.save(services);
+    }
+
+    @Override
+    public Page<Services> searchAll(String nameService, String periodic, Integer consume, Date monthYear, Pageable pageable) {
+        return serviceRepository.searchAll(nameService, periodic, consume, monthYear,pageable);
     }
 
     @Override

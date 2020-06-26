@@ -3,6 +3,7 @@ package com.codegym.webservice.controller;
 import com.codegym.dao.dto.BuildingDTO;
 import com.codegym.dao.entity.Building;
 import com.codegym.dao.entity.Contract;
+import com.codegym.dao.entity.Floor;
 import com.codegym.web.services.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -37,6 +38,17 @@ public class BuildingController {
                                           @RequestParam("search") String name) {
         Page<Building> buildings;
         buildings= buildingService.getBuildings(name, PageRequest.of(page,size));
+        return buildings;
+    }
+    @GetMapping(value = "/paging", params = {"page", "size", "nameBuilding", "taxCode", "phone", "address"})
+    public Page<Building> getListBuilding(@RequestParam("page") int page,
+                                    @RequestParam("size") int size,
+                                    @RequestParam(value = "nameBuilding",defaultValue = "") String nameBuilding,
+                                    @RequestParam(value = "taxCode", defaultValue = "")  String taxCode,
+                                    @RequestParam(value = "phone", defaultValue = "") String phone,
+                                    @RequestParam(value = "address", defaultValue = "") String address) {
+        Page<Building> buildings;
+        buildings= buildingService.searchAll(nameBuilding,taxCode,phone, address,PageRequest.of(page, size));
         return buildings;
     }
 
