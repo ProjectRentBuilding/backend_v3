@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Date;
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +40,17 @@ public class ServicesController {
         return null;
     }
 
+
+//    @GetMapping(value = "/paging", params = {"page", "size", "consume", "price", "monthYear", "nameCustomer"})
+//    public Page<Services> searchAndPage(@RequestParam("page") int page,
+//                                        @RequestParam("size") int size,
+//                                        @RequestParam(value = "consume") Integer consume,
+//                                        @RequestParam(value = "price")  Integer price,
+//                                        @RequestParam(value = "monthYear")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date monthYear,
+//                                        @RequestParam(value = "nameCustomer", defaultValue = "") String nameCustomer) {
+//        return servicesService.findAllByConsumeBeforeAndPriceBeforeAndMonthYearBeforeAndContract_Customer_NameContaining(consume, price, monthYear, nameCustomer, PageRequest.of(page, size));
+//    }
+//
     @PostMapping("")
     public ResponseEntity<?> createService(@Valid @RequestBody ServicesDTO servicesDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors())

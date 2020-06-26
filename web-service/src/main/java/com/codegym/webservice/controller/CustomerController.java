@@ -87,5 +87,13 @@ public class CustomerController {
         return ResponseEntity.accepted().body(customerDTO);
     }
 
+    //Hung them
+    @GetMapping(value = "/page", params = {"page", "size", "name", "idCard"})
+    public Page<Customer> getCustomers(@RequestParam("page") int page,
+                                       @RequestParam("size") int size,
+                                       @RequestParam("name") String name,
+                                       @RequestParam("idCard") String idCard) {
+        return customerService.findAllByDeleteFlagIsNullAndNameContainingAndIdCardContaining(name, idCard, PageRequest.of(page,size));
+    }
 }
 

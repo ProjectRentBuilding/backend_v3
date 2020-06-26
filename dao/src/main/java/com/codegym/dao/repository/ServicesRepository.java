@@ -17,6 +17,17 @@ public interface ServicesRepository extends JpaRepository<Services, Integer> {
     List<Services> findAll();
     Services findAllByIdIs(Integer id);
 
+    Page<Services> findAllByConsumeBeforeAndPriceBeforeAndMonthYearBeforeAndContract_Customer_NameContaining(Integer consume, Integer price, Date monthYear, String contract_customer_name, Pageable pageable);
+//    @Query(value = "SELECT s FROM Services s where s.consume>=?1 and s.price>=?2 and s.monthYear>=?3 and s.contract.customer.name like %?4% order by s.nameService" )
+    @Query(value = "SELECT s " +
+            "FROM Services s " +
+            "where s.consume>=?1" +
+            "and s.price>=?2" +
+            "and s.monthYear>=?3 " +
+            "and s.contract.customer.name like %?4%" +
+            "order by s.nameService")
+    Page<Services> searchAndPage(Integer consume, Integer price, Date monthYear, String nameCustomer, Pageable pageable);
+
     @Query(value="select s from Services s where s.nameService like %?1% and s.periodic " +
             "like %?2% and s.consume>=?3 and s.monthYear>=?4  order by s.id")
     Page<Services> searchAll(String nameService, String periodic, Integer consume,

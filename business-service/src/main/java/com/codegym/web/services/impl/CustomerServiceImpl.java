@@ -111,4 +111,10 @@ public class CustomerServiceImpl implements CustomerService {
     public Page<Customer> getCustomers(String nameCustomer, Pageable pageable) {
         return customerRepository.findAllByDeleteFlagIsNullAndNameContainingIgnoreCase(nameCustomer,pageable);
     }
+
+    // Hung them
+    @Override
+    public Page<Customer> findAllByDeleteFlagIsNullAndNameContainingAndIdCardContaining(String name, String idCard, Pageable pageable) {
+        return customerRepository.searchCustomer(name, idCard, pageable);
+    }
 }
