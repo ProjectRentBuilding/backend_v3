@@ -18,5 +18,9 @@ public interface CustomerRepository extends JpaRepository<Customer,Integer> {
     Customer findAllByDeleteFlagIsNullAndIdIs(Integer id);
     Page<Customer> findAllByDeleteFlagIsNullAndNameContainingIgnoreCase(String fullName, Pageable pageable);
 
+    // Hung them
+    @Query(value = "SELECT c FROM Customer c where c.name like %?1% and c.idCard like %?2% and c.deleteFlag is null order by c.name" )
+    Page<Customer> searchCustomer(String name, String idCard, Pageable pageable);
+
 }
 
