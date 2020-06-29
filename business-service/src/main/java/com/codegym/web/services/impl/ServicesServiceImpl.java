@@ -88,4 +88,14 @@ public class ServicesServiceImpl implements ServicesService {
     public Page<Services> searchAll(String nameService, String periodic, Integer consume, Date monthYear, Pageable pageable) {
         return serviceRepository.searchAll(nameService, periodic, consume, monthYear,pageable);
     }
+
+    @Override
+    public Page<Services> searchAndPage(Integer consume, Integer price, Date monthYear, String nameCustomer, Pageable pageable) {
+        return serviceRepository.searchAndPage(consume, price, monthYear, nameCustomer, pageable);
+    }
+
+    @Override
+    public Page<Services> findAllByConsumeBeforeAndPriceBeforeAndMonthYearBeforeAndContract_Customer_NameContaining(Integer consume, Integer price, Date monthYear, String contract_customer_name, Pageable pageable) {
+        return serviceRepository.findAllByConsumeBeforeAndPriceBeforeAndMonthYearBeforeAndContract_Customer_NameContaining(consume, price, monthYear, contract_customer_name, pageable);
+    }
 }

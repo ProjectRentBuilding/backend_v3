@@ -17,4 +17,7 @@ public interface CustomerService {
     void save(CustomerDTO customerDTO);
     void updateCustomer(CustomerDTO customerDTO);
     Page<Customer> getCustomers(String nameCustomer, Pageable pageable);
+    // Hung them
+    Page<Customer> findAllByDeleteFlagIsNullAndNameContainingAndIdCardContaining(String name, String idCard, Pageable pageable);
+
 }
