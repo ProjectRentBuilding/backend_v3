@@ -18,7 +18,7 @@ public interface BuildingRepository extends JpaRepository<Building,Integer> {
 
     Building findAllByDeleteFlagIsNullAndIdIs(Integer id);
 
-    @Query(value="select b from Building b where b.fullName like %?1% and b.taxCode like %?2% and b.phone like %?3% and b.address like %?4% and b.deleteFlag is null order by b.taxCode")
+    @Query(value="select b from Building b where b.fullName like %?1% and b.taxCode like %?2% and b.phone like %?3% and b.address like %?4% and b.deleteFlag is null order by b.id")
     Page<Building> searchAll(String nameBuilding, String taxCode, String phone,
                           String address, Pageable pageable);
 
