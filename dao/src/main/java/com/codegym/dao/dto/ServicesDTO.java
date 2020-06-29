@@ -40,6 +40,9 @@ public class ServicesDTO implements Serializable {
     @NotNull(message = "Không được để trống")
     private Integer contractId;
 
+    @NotNull(message = "Không được để trống")
+    private Boolean statusPay;
+
     public ServicesDTO() {
     }
 
@@ -56,6 +59,7 @@ public class ServicesDTO implements Serializable {
                 ", price=" + price +
                 ", monthYear=" + monthYear +
                 ", contractId=" + contractId +
+                ", statusPay=" + statusPay +
                 '}';
     }
 
@@ -99,22 +103,6 @@ public class ServicesDTO implements Serializable {
         this.consume = consume;
     }
 
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public Integer getContractId() {
-        return contractId;
-    }
-
-    public void setContractId(Integer contractId) {
-        this.contractId = contractId;
-    }
-
     public String getPeriodic() {
         return periodic;
     }
@@ -131,11 +119,35 @@ public class ServicesDTO implements Serializable {
         this.unit = unit;
     }
 
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
     public Date getMonthYear() {
         return monthYear;
     }
 
     public void setMonthYear(Date monthYear) {
         this.monthYear = monthYear;
+    }
+
+    public Integer getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(Integer contractId) {
+        this.contractId = contractId;
+    }
+
+    public Boolean getStatusPay() {
+        return statusPay;
+    }
+
+    public void setStatusPay(Boolean statusPay) {
+        this.statusPay = statusPay;
     }
 }
