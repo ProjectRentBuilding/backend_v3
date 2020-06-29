@@ -44,6 +44,12 @@ public class Services {
     @JoinColumn(name = "id_contract")
     private Contract contract;
 
+    @Column(name = "status_pay")
+    private Boolean statusPay;
+
+    public Services() {
+    }
+
     @Override
     public String toString() {
         return "Services{" +
@@ -55,7 +61,9 @@ public class Services {
                 ", periodic='" + periodic + '\'' +
                 ", unit='" + unit + '\'' +
                 ", price=" + price +
+                ", monthYear=" + monthYear +
                 ", contract=" + contract +
+                ", statusPay=" + statusPay +
                 '}';
     }
 
@@ -123,6 +131,14 @@ public class Services {
         this.price = price;
     }
 
+    public Date getMonthYear() {
+        return monthYear;
+    }
+
+    public void setMonthYear(Date monthYear) {
+        this.monthYear = monthYear;
+    }
+
     public Contract getContract() {
         return contract;
     }
@@ -131,11 +147,11 @@ public class Services {
         this.contract = contract;
     }
 
-    public Date getMonthYear() {
-        return monthYear;
+    public Boolean getStatusPay() {
+        return statusPay;
     }
 
-    public void setMonthYear(Date monthYear) {
-        this.monthYear = monthYear;
+    public void setStatusPay(Boolean statusPay) {
+        this.statusPay = statusPay;
     }
 }

@@ -32,4 +32,10 @@ public interface ServicesRepository extends JpaRepository<Services, Integer> {
             "like %?2% and s.consume>=?3 and s.monthYear>=?4  order by s.id")
     Page<Services> searchAll(String nameService, String periodic, Integer consume,
                              Date monthYear, Pageable pageable);
+
+    @Query(value = "select * from \n" +
+            "\tservice s\n" +
+            "where id_contract = ?1 \n" +
+            "and date(month_year) between ?2 and ?3 ", nativeQuery = true)
+    Page<Services> searchServiceIdContract(Integer idContract, Date startDate, Date endDate,Pageable pageable);
 }

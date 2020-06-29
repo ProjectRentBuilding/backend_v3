@@ -90,6 +90,12 @@ public class ServicesServiceImpl implements ServicesService {
     }
 
     @Override
+    public Page<Services> searchServiceIdContract(Integer idContract, Date startDate, Date endDate, Pageable pageable) {
+        return serviceRepository.searchServiceIdContract(idContract, startDate, endDate, pageable);
+    }
+
+
+    @Override
     public Page<Services> searchAndPage(Integer consume, Integer price, Date monthYear, String nameCustomer, Pageable pageable) {
         return serviceRepository.searchAndPage(consume, price, monthYear, nameCustomer, pageable);
     }

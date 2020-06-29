@@ -24,4 +24,5 @@ public interface ServicesService {
     Page<Services> searchAll(String nameService, String periodic, Integer consume,
                              Date monthYear, Pageable pageable);
 
+    Page<Services> searchServiceIdContract(Integer idContract, Date startDate, Date endDate, Pageable pageable);
 }
