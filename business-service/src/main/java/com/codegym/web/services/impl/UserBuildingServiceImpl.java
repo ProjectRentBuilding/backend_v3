@@ -44,7 +44,7 @@ public class UserBuildingServiceImpl implements UserBuildingService {
     @Override
     public void save(UserBuildingDTO userBuildingDTO) {
         UserBuilding userBuilding = new UserBuilding();
-        userBuilding.setCustomer(userBuildingDTO.getCustomer());
+        userBuilding.setUsername(userBuildingDTO.getUsername());
         userBuilding.setDeleteFlag(userBuildingDTO.getDeleteFlag());
         userBuilding.setPasswordUser(userBuildingDTO.getPasswordUser());
         userBuilding.setEmployee(userBuildingDTO.getEmployee());
