@@ -14,6 +14,7 @@ import java.util.List;
 
 public interface EmployeeService {
     List<Employee> findAllByDeleteFlagIsNull();
+    List<Employee> getAllEmployeeServe();
     EmployeeDTO getEmployeeById(Integer id);
 
 
@@ -22,4 +23,5 @@ public interface EmployeeService {
     void updateEmployee(EmployeeDTO employeeDTO);
     Page<Employee> getEmployees(String nameEmployee, Pageable pageable);
     Page<Employee> searchAnything(String name, String idCard, String address, String part, Pageable pageable);
+    Page<Employee> searchAnythingEmployeeServe(String name, String idCard, String address, String part, Pageable pageable);
 }
