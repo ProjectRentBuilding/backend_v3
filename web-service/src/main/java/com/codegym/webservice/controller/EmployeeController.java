@@ -29,6 +29,11 @@ public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
 
+    @GetMapping("/salary")
+    public List<Employee> getSalary() {
+        return employeeService.getTatCa();
+    }
+
     @GetMapping("")
     public List<Employee> getAllEmployee() {
         return employeeService.findAllByDeleteFlagIsNull();

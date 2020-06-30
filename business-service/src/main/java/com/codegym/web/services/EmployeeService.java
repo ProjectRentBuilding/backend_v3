@@ -16,6 +16,7 @@ public interface EmployeeService {
     List<Employee> findAllByDeleteFlagIsNull();
     List<Employee> getAllEmployeeServe();
     EmployeeDTO getEmployeeById(Integer id);
+    List<Employee> getTatCa();
 
 
     void deleteEmployee(Integer id);
