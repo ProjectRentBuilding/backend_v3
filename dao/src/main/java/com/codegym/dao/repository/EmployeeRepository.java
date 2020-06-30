@@ -34,5 +34,7 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
             "order by e.id_employee",nativeQuery = true)
     Page<Employee> searchAnythingEmployeeServe(String name, String idCard, String address, String part, Pageable pageable);
 
+    List<Employee> getAllByDeleteFlagIsNull();
+
 
 }

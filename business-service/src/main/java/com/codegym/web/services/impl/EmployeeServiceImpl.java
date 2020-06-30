@@ -60,6 +60,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         return null;
     }
 
+    @Override
+    public List<Employee> getTatCa() {
+        return employeeRepository.getAllByDeleteFlagIsNull();
+    }
+
 
     @Override
     public void deleteEmployee(Integer id) {
