@@ -31,6 +31,7 @@ public class ServicesController {
     public List<Services> getAllService() {
         return servicesService.findAll();
     }
+
     @GetMapping("/distinct")
     public List<String> getAllServiceDistinct() {
         return servicesService.searchAllDistinct();
@@ -49,8 +50,8 @@ public class ServicesController {
     public Page<Services> searchAndPage(@RequestParam("page") int page,
                                         @RequestParam("size") int size,
                                         @RequestParam(value = "idContract") Integer idContract,
-                                        @RequestParam(value = "startDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
-                                        @RequestParam(value = "endDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate){
+                                        @RequestParam(value = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+                                        @RequestParam(value = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
         return servicesService.searchServiceIdContract(idContract, startDate, endDate, PageRequest.of(page, size));
     }
 //    @GetMapping(value = "/searchDistinct", params = {"page", "size", "idContract", "startDate", "endDate"})
@@ -62,7 +63,7 @@ public class ServicesController {
 //        return servicesService.searchServiceIdContract(idContract, startDate, endDate, PageRequest.of(page, size));
 //    }
 
-//    @GetMapping(value = "/paging", params = {"page", "size", "consume", "price", "monthYear", "nameCustomer"})
+    //    @GetMapping(value = "/paging", params = {"page", "size", "consume", "price", "monthYear", "nameCustomer"})
 //    public Page<Services> searchAndPage(@RequestParam("page") int page,
 //                                        @RequestParam("size") int size,
 //                                        @RequestParam(value = "consume") Integer consume,
@@ -109,4 +110,15 @@ public class ServicesController {
         services = servicesService.searchAll(nameService, periodic, consume, monthYear, PageRequest.of(page, size));
         return services;
     }
+
+    @GetMapping(value = "/infoService", params = {"page", "size", "idContract", "nameService", "startDate", "endDate"})
+    public Page<Services> searchInformationService(@RequestParam("page") int page,
+                                                   @RequestParam("size") int size,
+                                                   @RequestParam(value = "idContract") Integer idContract,
+                                                   @RequestParam(value = "nameService", defaultValue = "") String nameService,
+                                                   @RequestParam(value = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+                                                   @RequestParam(value = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
+        return servicesService.searchInformationService(idContract,nameService,startDate, endDate, PageRequest.of(page, size));
+    }
+
 }
