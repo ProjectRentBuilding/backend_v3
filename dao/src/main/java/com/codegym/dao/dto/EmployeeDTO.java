@@ -27,7 +27,8 @@ public class EmployeeDTO implements Serializable {
     private String part;
     private Date startWord;
     private String typeEmployee;
-    private UserBuilding userBuilding;
+    private String userBuilding;
+    private Long salary;
     private Set<Contract> contracts;
 
     public EmployeeDTO() {
@@ -49,7 +50,8 @@ public class EmployeeDTO implements Serializable {
                 ", part='" + part + '\'' +
                 ", startWord=" + startWord +
                 ", typeEmployee='" + typeEmployee + '\'' +
-                ", userBuilding=" + userBuilding +
+                ", userBuilding='" + userBuilding + '\'' +
+                ", salary=" + salary +
                 ", contracts=" + contracts +
                 '}';
     }
@@ -158,12 +160,20 @@ public class EmployeeDTO implements Serializable {
         this.typeEmployee = typeEmployee;
     }
 
-    public UserBuilding getUserBuilding() {
+    public String getUserBuilding() {
         return userBuilding;
     }
 
-    public void setUserBuilding(UserBuilding userBuilding) {
+    public void setUserBuilding(String userBuilding) {
         this.userBuilding = userBuilding;
+    }
+
+    public Long getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Long salary) {
+        this.salary = salary;
     }
 
     public Set<Contract> getContracts() {

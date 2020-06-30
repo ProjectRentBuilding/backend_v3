@@ -6,6 +6,7 @@ import com.codegym.web.services.ServicesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,10 @@ public class ServicesController {
     public List<Services> getAllService() {
         return servicesService.findAll();
     }
+    @GetMapping("/distinct")
+    public List<String> getAllServiceDistinct() {
+        return servicesService.searchAllDistinct();
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<ServicesDTO> getService(@PathVariable("id") int id) {
@@ -48,6 +53,14 @@ public class ServicesController {
                                         @RequestParam(value = "contractId") Integer contractId){
         return servicesService.findAllByMonthYearBetweenAndContract_Id(monthYear, monthYear2, contractId, PageRequest.of(page, size));
     }
+//    @GetMapping(value = "/searchDistinct", params = {"page", "size", "idContract", "startDate", "endDate"})
+//    public Page<Services> searchAllDistinct(@RequestParam("page") int page,
+//                                        @RequestParam("size") int size,
+//                                        @RequestParam(value = "idContract") Integer idContract,
+//                                        @RequestParam(value = "startDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+//                                        @RequestParam(value = "endDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate){
+//        return servicesService.searchServiceIdContract(idContract, startDate, endDate, PageRequest.of(page, size));
+//    }
 
 //    @GetMapping(value = "/search", params = {"page", "size", "idContract", "startDate", "endDate"})
 //    public Page<Services> searchAndPage(@RequestParam("page") int page,

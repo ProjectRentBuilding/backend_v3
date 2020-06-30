@@ -13,7 +13,7 @@ import java.util.Set;
 @Table(name = "employee")
 public class Employee {
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_employee")
     private Integer id;
 
@@ -54,6 +54,9 @@ public class Employee {
     @Column(name = "type_employee")
     private  String typeEmployee;
 
+    @Column(name = "salary")
+    private Long salary;
+
 
     @OneToOne(cascade = CascadeType.ALL)
     @JsonBackReference  (value = "usernameEmployee")
@@ -84,6 +87,7 @@ public class Employee {
                 ", part='" + part + '\'' +
                 ", startWord=" + startWord +
                 ", typeEmployee='" + typeEmployee + '\'' +
+                ", salary=" + salary +
                 ", userBuilding=" + userBuilding +
                 ", contracts=" + contracts +
                 '}';
@@ -191,6 +195,14 @@ public class Employee {
 
     public void setTypeEmployee(String typeEmployee) {
         this.typeEmployee = typeEmployee;
+    }
+
+    public Long getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Long salary) {
+        this.salary = salary;
     }
 
     public UserBuilding getUserBuilding() {

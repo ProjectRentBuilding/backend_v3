@@ -46,10 +46,10 @@ public interface ContractRepository extends JpaRepository<Contract, Integer> {
     List<ReportInt> searchAllReportLow();
 
         @Query(value = "select g.code_ground as 'codeGroundCal',\n" +
-            "SUM(IFNULL(c.total, 0)) as 'totalCal' \n" +
+            "COALESCE(sum(c.total), 0) as 'totalCal' \n" +
             "from ground g left join contract c \n" +
             "on c.id_ground = g.id_ground \n" +
-            "where IFNULL(c.start_rent_day,'1900-01-01') >= ?1 and IFNULL(c.end_rent_day,'2030-01-01') <= ?2 \n" +
+            "where COALESCE(c.start_rent_day,'1900-01-01') >= ?1 and COALESCE(c.end_rent_day,'2030-01-01') <= ?2 \n" +
             "group by g.id_ground \n" +
             "having totalCal>=?3 and totalCal <=?4 and codeGroundCal like %?5% ", nativeQuery = true)
 //    @Query(value = "SELECT g.codeGround as codeGroundCal,coalesce(sum(c.total),0 )as totalCal FROM Ground g left join Contract c on c.ground.id = g.id where c.startRentDay >=?1 and c.endRentDay <= ?2 group by g.id having totalCal>=?3 and totalCal<=?4 and codeGroundCal like %?5% ")

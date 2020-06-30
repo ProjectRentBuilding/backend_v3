@@ -20,7 +20,7 @@ public interface FloorRepository extends JpaRepository<Floor,Integer> {
 
     Floor findAllByDeleteFlagIsNullAndIdIs(Integer id);
 
-    @Query(value="select f from Floor f where f.building.fullName like %?1% and f.nameFloor like %?2% and f.area>=?3 and f.typeFloor.nameTypeFloor like %?4% and f.deleteFlag is null order by f.nameFloor")
+    @Query(value="select f from Floor f where f.building.fullName like %?1% and f.nameFloor like %?2% and f.area>=?3 and f.typeFloor.nameTypeFloor like %?4% and f.deleteFlag is null order by f.id")
     Page<Floor> searchAll(String nameBuilding, String nameFloor, Integer area,
                               String typeFloor_nameFloor, Pageable pageable);
 }
