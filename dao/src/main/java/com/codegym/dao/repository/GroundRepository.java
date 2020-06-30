@@ -18,7 +18,7 @@ public interface GroundRepository extends JpaRepository<Ground,Integer> {
 
     Ground findAllByDeleteFlagIsNullAndIdIs(Integer id);
 
-    @Query(value="select g from Ground g where g.floor.nameFloor like %?1% and g.codeGround like %?2% and g.area>=?3 and g.typeGround.nameTypeGround like %?4% and g.deleteFlag is null order by g.codeGround")
+    @Query(value="select g from Ground g where g.floor.nameFloor like %?1% and g.codeGround like %?2% and g.area>=?3 and g.typeGround.nameTypeGround like %?4% and g.deleteFlag is null order by g.id")
     Page<Ground> searchAll(String nameFloor, String codeGround, Integer area,
                           String typeGround_nameGround, Pageable pageable);
 }
