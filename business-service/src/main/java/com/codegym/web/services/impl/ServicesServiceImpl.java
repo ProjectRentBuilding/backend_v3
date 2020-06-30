@@ -81,6 +81,7 @@ public class ServicesServiceImpl implements ServicesService {
         services.setIndexAfterMonth(servicesDTO.getIndexAfterMonth());
         services.setMonthYear(servicesDTO.getMonthYear());
         services.setContract(contractRepository.findAllByDeleteFlagIsNullAndIdIs(servicesDTO.getContractId()));
+        services.setStatusPay(servicesDTO.getStatusPay());
         serviceRepository.save(services);
     }
 
@@ -95,10 +96,14 @@ public class ServicesServiceImpl implements ServicesService {
     }
 
     @Override
+    public Page<Services> findAllByMonthYearBetweenAndContract_Id(Date monthYear, Date monthYear2, Integer contractId, Pageable pageable) {
+        return serviceRepository.findAllByMonthYearBetweenAndContract_Id(monthYear, monthYear2, contractId, pageable);
+    }
+
+    @Override
     public List<String> searchAllDistinct() {
         return serviceRepository.searchAllDistinct();
     }
-
 
     @Override
     public Page<Services> searchInformationService(Integer idContract, String nameService, Date startDate, Date endDate, Pageable pageable) {

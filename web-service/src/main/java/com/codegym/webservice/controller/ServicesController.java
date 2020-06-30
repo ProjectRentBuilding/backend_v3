@@ -46,13 +46,13 @@ public class ServicesController {
         return null;
     }
 
-    @GetMapping(value = "/search", params = {"page", "size", "idContract", "startDate", "endDate"})
+    @GetMapping(value = "/search", params = {"page", "size", "monthYear", "monthYear2", "contractId"})
     public Page<Services> searchAndPage(@RequestParam("page") int page,
                                         @RequestParam("size") int size,
-                                        @RequestParam(value = "idContract") Integer idContract,
-                                        @RequestParam(value = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
-                                        @RequestParam(value = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
-        return servicesService.searchServiceIdContract(idContract, startDate, endDate, PageRequest.of(page, size));
+                                        @RequestParam(value = "monthYear")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date monthYear,
+                                        @RequestParam(value = "monthYear2")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date monthYear2,
+                                        @RequestParam(value = "contractId") Integer contractId){
+        return servicesService.findAllByMonthYearBetweenAndContract_Id(monthYear, monthYear2, contractId, PageRequest.of(page, size));
     }
 //    @GetMapping(value = "/searchDistinct", params = {"page", "size", "idContract", "startDate", "endDate"})
 //    public Page<Services> searchAllDistinct(@RequestParam("page") int page,
@@ -63,16 +63,6 @@ public class ServicesController {
 //        return servicesService.searchServiceIdContract(idContract, startDate, endDate, PageRequest.of(page, size));
 //    }
 
-    //    @GetMapping(value = "/paging", params = {"page", "size", "consume", "price", "monthYear", "nameCustomer"})
-//    public Page<Services> searchAndPage(@RequestParam("page") int page,
-//                                        @RequestParam("size") int size,
-//                                        @RequestParam(value = "consume") Integer consume,
-//                                        @RequestParam(value = "price")  Integer price,
-//                                        @RequestParam(value = "monthYear")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date monthYear,
-//                                        @RequestParam(value = "nameCustomer", defaultValue = "") String nameCustomer) {
-//        return servicesService.findAllByConsumeBeforeAndPriceBeforeAndMonthYearBeforeAndContract_Customer_NameContaining(consume, price, monthYear, nameCustomer, PageRequest.of(page, size));
-//    }
-//
     @PostMapping("")
     public ResponseEntity<?> createService(@Valid @RequestBody ServicesDTO servicesDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors())

@@ -26,7 +26,10 @@ public interface ServicesService {
 
     Page<Services> searchServiceIdContract(Integer idContract, Date startDate, Date endDate, Pageable pageable);
 
+    Page<Services> findAllByMonthYearBetweenAndContract_Id(Date monthYear, Date monthYear2, Integer contractId, Pageable pageable);
+
     List<String> searchAllDistinct();
+
     Page<Services> searchInformationService(Integer idContract,String nameService,
                                             Date startDate, Date endDate, Pageable pageable);
 }
