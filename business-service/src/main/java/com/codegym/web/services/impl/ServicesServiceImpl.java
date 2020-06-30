@@ -94,6 +94,11 @@ public class ServicesServiceImpl implements ServicesService {
         return serviceRepository.searchServiceIdContract(idContract, startDate, endDate, pageable);
     }
 
+    @Override
+    public List<String> searchAllDistinct() {
+        return serviceRepository.searchAllDistinct();
+    }
+
 
     @Override
     public Page<Services> searchAndPage(Integer consume, Integer price, Date monthYear, String nameCustomer, Pageable pageable) {

@@ -33,9 +33,9 @@ public interface ServicesRepository extends JpaRepository<Services, Integer> {
     Page<Services> searchAll(String nameService, String periodic, Integer consume,
                              Date monthYear, Pageable pageable);
 
-    @Query(value = "select * from \n" +
-            "\tservice s\n" +
-            "where id_contract = ?1 \n" +
-            "and date(month_year) between ?2 and ?3 ", nativeQuery = true)
+    @Query(value = "select s from Services s where s.contract.id = ?1 and s.monthYear between ?2 and ?3 ")
     Page<Services> searchServiceIdContract(Integer idContract, Date startDate, Date endDate,Pageable pageable);
+
+    @Query(value="select distinct ns.nameService from Services ns ")
+    List<String> searchAllDistinct();
 }
