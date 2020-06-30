@@ -41,4 +41,5 @@ public interface ServicesRepository extends JpaRepository<Services, Integer> {
     @Query(value="select distinct ns.nameService from Services ns ")
     List<String> searchAllDistinct();
 
+    List<Services> findAllByMonthYearAndContract_Id(Date monthYear, Integer contract_id);
 }

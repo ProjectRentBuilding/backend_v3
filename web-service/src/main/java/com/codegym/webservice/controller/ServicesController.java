@@ -53,34 +53,22 @@ public class ServicesController {
                                         @RequestParam(value = "contractId") Integer contractId){
         return servicesService.findAllByMonthYearBetweenAndContract_Id(monthYear, monthYear2, contractId, PageRequest.of(page, size));
     }
-//    @GetMapping(value = "/searchDistinct", params = {"page", "size", "idContract", "startDate", "endDate"})
-//    public Page<Services> searchAllDistinct(@RequestParam("page") int page,
-//                                        @RequestParam("size") int size,
-//                                        @RequestParam(value = "idContract") Integer idContract,
-//                                        @RequestParam(value = "startDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
-//                                        @RequestParam(value = "endDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate){
-//        return servicesService.searchServiceIdContract(idContract, startDate, endDate, PageRequest.of(page, size));
-//    }
 
-//    @GetMapping(value = "/search", params = {"page", "size", "idContract", "startDate", "endDate"})
-//    public Page<Services> searchAndPage(@RequestParam("page") int page,
-//                                        @RequestParam("size") int size,
-//                                        @RequestParam(value = "idContract") Integer idContract,
-//                                        @RequestParam(value = "startDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
-//                                        @RequestParam(value = "endDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate){
-//        return servicesService.searchServiceIdContract(idContract, startDate, endDate, PageRequest.of(page, size));
-//    }
+    @GetMapping(value = "/searchDistinct", params = {"page", "size", "idContract", "startDate", "endDate"})
+    public Page<Services> searchAllDistinct(@RequestParam("page") int page,
+                                        @RequestParam("size") int size,
+                                        @RequestParam(value = "idContract") Integer idContract,
+                                        @RequestParam(value = "startDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+                                        @RequestParam(value = "endDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate){
+        return servicesService.searchServiceIdContract(idContract, startDate, endDate, PageRequest.of(page, size));
+    }
 
-//    @GetMapping(value = "/paging", params = {"page", "size", "consume", "price", "monthYear", "nameCustomer"})
-//    public Page<Services> searchAndPage(@RequestParam("page") int page,
-//                                        @RequestParam("size") int size,
-//                                        @RequestParam(value = "consume") Integer consume,
-//                                        @RequestParam(value = "price")  Integer price,
-//                                        @RequestParam(value = "monthYear")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date monthYear,
-//                                        @RequestParam(value = "nameCustomer", defaultValue = "") String nameCustomer) {
-//        return servicesService.findAllByConsumeBeforeAndPriceBeforeAndMonthYearBeforeAndContract_Customer_NameContaining(consume, price, monthYear, nameCustomer, PageRequest.of(page, size));
-//    }
-//
+    @GetMapping(value = "/invoice", params = {"monthYear", "idContract"})
+    public List<Services> searchInvoice(@RequestParam(value = "monthYear")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date monthYear,
+                                        @RequestParam(value = "idContract") Integer idContract){
+        return servicesService.findAllByMonthYearAndContract_Id(monthYear, idContract);
+    }
+
     @PostMapping("")
     public ResponseEntity<?> createService(@Valid @RequestBody ServicesDTO servicesDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
@@ -96,14 +84,6 @@ public class ServicesController {
         servicesService.updateService(servicesDTO);
         return ResponseEntity.accepted().body(servicesDTO);
     }
-
-//    @PatchMapping("/{id}")
-//    public ResponseEntity<?> updateService(@PathVariable(value = "id") Integer id, @RequestBody @Valid ServicesDTO servicesDTO, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors())
-//            return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
-//        servicesService.updateService(servicesDTO);
-//        return ResponseEntity.accepted().body(servicesDTO);
-//    }
 
     @DeleteMapping("/{id}")
     public Map<String, Boolean> deleteService(@PathVariable("id") int id) {

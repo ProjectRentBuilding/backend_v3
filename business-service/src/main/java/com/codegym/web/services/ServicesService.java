@@ -30,4 +30,5 @@ public interface ServicesService {
 
     List<String> searchAllDistinct();
 
+    List<Services> findAllByMonthYearAndContract_Id(Date monthYear, Integer contract_id);
 }
