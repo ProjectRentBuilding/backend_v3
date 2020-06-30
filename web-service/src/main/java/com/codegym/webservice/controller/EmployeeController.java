@@ -87,4 +87,15 @@ public class EmployeeController {
         return employeeService.searchAnything(name, idCard, address, part, PageRequest.of(page, size));
 
     }
+    @GetMapping(value = "/paging1", params = {"page", "size", "name", "idCard", "address", "part"})
+    public Page<Employee> getListEmployeeServe(@RequestParam("page") int page,
+                                          @RequestParam("size") int size,
+                                          @RequestParam(value = "name", defaultValue = "") String name,
+                                          @RequestParam(value = "idCard", defaultValue = "") String idCard,
+                                          @RequestParam(value = "address", defaultValue = "") String address,
+                                          @RequestParam(value = "part", defaultValue = "") String part) {
+        return employeeService.searchAnythingEmployeeServe(name, idCard, address, part, PageRequest.of(page, size));
+
+    }
+
 }

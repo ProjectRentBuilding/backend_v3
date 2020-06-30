@@ -26,7 +26,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> findAllByDeleteFlagIsNull() {
-        return employeeRepository.findAllByDeleteFlagIsNull();
+        return employeeRepository.getAll();
+    }
+
+    @Override
+    public List<Employee> getAllEmployeeServe() {
+        return employeeRepository.getAllEmployeeServe();
     }
 
     @Override
@@ -117,6 +122,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Page<Employee> searchAnything(String name, String idCard, String address, String part, Pageable pageable) {
         return employeeRepository.searchAnything(name,idCard,address,part, pageable);
+    }
+
+    @Override
+    public Page<Employee> searchAnythingEmployeeServe(String name, String idCard, String address, String part, Pageable pageable) {
+        return employeeRepository.searchAnythingEmployeeServe(name,idCard,address,part, pageable);
     }
 
 
