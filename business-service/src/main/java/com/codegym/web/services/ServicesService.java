@@ -25,4 +25,5 @@ public interface ServicesService {
                              Date monthYear, Pageable pageable);
 
     Page<Services> searchServiceIdContract(Integer idContract, Date startDate, Date endDate, Pageable pageable);
+    Page<Services> findAllByMonthYearBetweenAndContract_Id(Date monthYear, Date monthYear2, Integer contractId, Pageable pageable);
 }

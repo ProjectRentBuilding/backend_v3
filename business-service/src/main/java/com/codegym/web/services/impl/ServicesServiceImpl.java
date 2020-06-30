@@ -75,6 +75,7 @@ public class ServicesServiceImpl implements ServicesService {
         services.setConsume(servicesDTO.getConsume());
         services.setMonthYear(servicesDTO.getMonthYear());
         services.setContract(contractRepository.findAllByDeleteFlagIsNullAndIdIs(servicesDTO.getContractId()));
+        services.setStatusPay(servicesDTO.getStatusPay());
         serviceRepository.save(services);
     }
 
@@ -86,6 +87,11 @@ public class ServicesServiceImpl implements ServicesService {
     @Override
     public Page<Services> searchServiceIdContract(Integer idContract, Date startDate, Date endDate, Pageable pageable) {
         return serviceRepository.searchServiceIdContract(idContract, startDate, endDate, pageable);
+    }
+
+    @Override
+    public Page<Services> findAllByMonthYearBetweenAndContract_Id(Date monthYear, Date monthYear2, Integer contractId, Pageable pageable) {
+        return serviceRepository.findAllByMonthYearBetweenAndContract_Id(monthYear, monthYear2, contractId, pageable);
     }
 
 

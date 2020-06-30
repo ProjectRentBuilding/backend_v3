@@ -34,8 +34,10 @@ public interface ServicesRepository extends JpaRepository<Services, Integer> {
                              Date monthYear, Pageable pageable);
 
     @Query(value = "select * from \n" +
-            "\tservice s\n" +
-            "where id_contract = ?1 \n" +
-            "and date(month_year) between ?2 and ?3 ", nativeQuery = true)
-    Page<Services> searchServiceIdContract(Integer idContract, Date startDate, Date endDate,Pageable pageable);
+            "\t service s \n" +
+            "where s.id_contract = ?1 \n" +
+            "and date(s.month_year) between ?2 and ?3 ", nativeQuery = true)
+    Page<Services> searchServiceIdContract(Integer idContract, Date startDate, Date endDate, Pageable pageable);
+
+    Page<Services> findAllByMonthYearBetweenAndContract_Id(Date monthYear, Date monthYear2, Integer contractId, Pageable pageable);
 }

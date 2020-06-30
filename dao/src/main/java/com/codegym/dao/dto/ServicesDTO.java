@@ -40,7 +40,7 @@ public class ServicesDTO implements Serializable {
     @NotNull(message = "Không được để trống")
     private Integer contractId;
 
-    @NotNull(message = "Không được để trống")
+//    @NotNull(message = "Không được để trống")
     private Boolean statusPay;
 
     public ServicesDTO() {
