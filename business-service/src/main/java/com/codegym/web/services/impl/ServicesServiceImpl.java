@@ -39,6 +39,8 @@ public class ServicesServiceImpl implements ServicesService {
             servicesDTO.setPrice(services.getPrice());
             servicesDTO.setConsume(services.getConsume());
             servicesDTO.setMonthYear(services.getMonthYear());
+            servicesDTO.setIndexBeforeMonth(services.getIndexBeforeMonth());
+            servicesDTO.setIndexAfterMonth(services.getIndexAfterMonth());
             servicesDTO.setContractId(services.getContract().getId());
             return servicesDTO;
         }
@@ -54,6 +56,8 @@ public class ServicesServiceImpl implements ServicesService {
         services.setUnit(servicesDTO.getUnit());
         services.setPrice(servicesDTO.getPrice());
         services.setConsume(servicesDTO.getConsume());
+        services.setIndexBeforeMonth(servicesDTO.getIndexBeforeMonth());
+        services.setIndexAfterMonth(servicesDTO.getIndexAfterMonth());
         services.setMonthYear(servicesDTO.getMonthYear());
         services.setContract(contractRepository.findAllByDeleteFlagIsNullAndIdIs(servicesDTO.getContractId()));
         serviceRepository.save(services);
@@ -73,14 +77,32 @@ public class ServicesServiceImpl implements ServicesService {
         services.setUnit(servicesDTO.getUnit());
         services.setPrice(servicesDTO.getPrice());
         services.setConsume(servicesDTO.getConsume());
+        services.setIndexBeforeMonth(servicesDTO.getIndexBeforeMonth());
+        services.setIndexAfterMonth(servicesDTO.getIndexAfterMonth());
         services.setMonthYear(servicesDTO.getMonthYear());
         services.setContract(contractRepository.findAllByDeleteFlagIsNullAndIdIs(servicesDTO.getContractId()));
+        services.setStatusPay(servicesDTO.getStatusPay());
         serviceRepository.save(services);
     }
 
     @Override
     public Page<Services> searchAll(String nameService, String periodic, Integer consume, Date monthYear, Pageable pageable) {
         return serviceRepository.searchAll(nameService, periodic, consume, monthYear,pageable);
+    }
+
+    @Override
+    public Page<Services> searchServiceIdContract(Integer idContract, Date startDate, Date endDate, Pageable pageable) {
+        return serviceRepository.searchServiceIdContract(idContract, startDate, endDate, pageable);
+    }
+
+    @Override
+    public Page<Services> findAllByMonthYearBetweenAndContract_Id(Date monthYear, Date monthYear2, Integer contractId, Pageable pageable) {
+        return serviceRepository.findAllByMonthYearBetweenAndContract_Id(monthYear, monthYear2, contractId, pageable);
+    }
+
+    @Override
+    public List<String> searchAllDistinct() {
+        return serviceRepository.searchAllDistinct();
     }
 
     @Override
