@@ -54,14 +54,21 @@ public class ServicesController {
                                         @RequestParam(value = "contractId") Integer contractId){
         return servicesService.findAllByMonthYearBetweenAndContract_Id(monthYear, monthYear2, contractId, PageRequest.of(page, size));
     }
-//    @GetMapping(value = "/searchDistinct", params = {"page", "size", "idContract", "startDate", "endDate"})
-//    public Page<Services> searchAllDistinct(@RequestParam("page") int page,
-//                                        @RequestParam("size") int size,
-//                                        @RequestParam(value = "idContract") Integer idContract,
-//                                        @RequestParam(value = "startDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
-//                                        @RequestParam(value = "endDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate){
-//        return servicesService.searchServiceIdContract(idContract, startDate, endDate, PageRequest.of(page, size));
-//    }
+
+    @GetMapping(value = "/searchDistinct", params = {"page", "size", "idContract", "startDate", "endDate"})
+    public Page<Services> searchAllDistinct(@RequestParam("page") int page,
+                                        @RequestParam("size") int size,
+                                        @RequestParam(value = "idContract") Integer idContract,
+                                        @RequestParam(value = "startDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+                                        @RequestParam(value = "endDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate){
+        return servicesService.searchServiceIdContract(idContract, startDate, endDate, PageRequest.of(page, size));
+    }
+
+    @GetMapping(value = "/invoice", params = {"monthYear", "idContract"})
+    public List<Services> searchInvoice(@RequestParam(value = "monthYear")  @DateTimeFormat(pattern = "yyyy-MM-dd") Date monthYear,
+                                        @RequestParam(value = "idContract") Integer idContract){
+        return servicesService.findAllByMonthYearAndContract_Id(monthYear, idContract);
+    }
 
     @PostMapping("")
     public ResponseEntity<?> createService(@Valid @RequestBody ServicesDTO servicesDTO, BindingResult bindingResult) {
