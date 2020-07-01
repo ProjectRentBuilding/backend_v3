@@ -50,29 +50,4 @@ public class ReportController {
         List<ReportInt> reportInts = reportService.searchReportWithAny(startRentDay, endRentDay, minTotal, maxTotal, codeGround);
         return reportService.searchReportWithAny(startRentDay, endRentDay, minTotal, maxTotal, codeGround);
     }
-
-    //    @GetMapping("/all")
-//    public List<ReportDTO> dungCmnHinh5s() {
-//        List<Ground> grounds;
-//        List<Contract> contracts;
-//        List<ReportDTO> reportDTOS=new ArrayList<>();
-//        grounds = groundService.findAllByDeleteFlagIsNull();
-//        contracts = contractService.findAllByDeleteFlagIsNull();
-//
-//        for (int i = 0; i < grounds.size(); i++) {
-//            double totalCal = 0;
-//            for (int j = 0; j < contracts.size(); j++) {
-//                if (contracts.get(j).getGround().getCodeGround().equals(grounds.get(i).getCodeGround())) {
-//                    totalCal += contracts.get(j).getTotal();
-//                }
-//            }
-//            System.out.println("ma mat bang " + grounds.get(i).getCodeGround() + " tong tien " + totalCal);
-//            ReportDTO reportDTO;
-//            reportDTO = new ReportDTO(grounds.get(i).getCodeGround(), totalCal);
-//            reportDTOS.add(reportDTO);
-//        }
-//
-//        return reportDTOS;
-
-
 }
