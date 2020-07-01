@@ -110,6 +110,11 @@ public class ServicesServiceImpl implements ServicesService {
         return serviceRepository.findAllByMonthYearAndContract_Id(monthYear, contract_id);
     }
 
+    @Override
+    public Page<Services> searchInformationService(Integer idContract, String nameService, Date startDate, Date endDate, Pageable pageable) {
+        return serviceRepository.searchInformationService(idContract, nameService, startDate, endDate, pageable);
+    }
+
 
     @Override
     public Page<Services> searchAndPage(Integer consume, Integer price, Date monthYear, String nameCustomer, Pageable pageable) {

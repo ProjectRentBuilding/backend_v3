@@ -42,4 +42,9 @@ public interface ServicesRepository extends JpaRepository<Services, Integer> {
     List<String> searchAllDistinct();
 
     List<Services> findAllByMonthYearAndContract_Id(Date monthYear, Integer contract_id);
+
+    @Query(value="select s from Services s where s.contract.id=?1 and " +
+            "s.nameService like ?2 and s.monthYear between ?3 and ?4 order by s.id")
+    Page<Services> searchInformationService(Integer idContract,String nameService,
+                                            Date startDate, Date endDate, Pageable pageable);
 }
