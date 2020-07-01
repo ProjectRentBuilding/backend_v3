@@ -1,20 +1,13 @@
 package com.codegym.webservice.controller;
 
-import com.codegym.dao.dto.ReportDTO;
+
 import com.codegym.dao.dto.ReportInt;
-import com.codegym.dao.entity.Contract;
-import com.codegym.dao.entity.Ground;
-import com.codegym.dao.repository.ContractRepository;
 import com.codegym.web.services.ContractService;
 import com.codegym.web.services.GroundService;
 import com.codegym.web.services.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
