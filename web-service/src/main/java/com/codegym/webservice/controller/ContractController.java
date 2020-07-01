@@ -38,14 +38,6 @@ public class ContractController {
         return contracts;
     }
 
-//    @GetMapping(value = "/paging", params = {"page", "size", "search"})
-//    public Page<Contract> getListContract(@RequestParam("page") int page,
-//                                          @RequestParam("size") int size,
-//                                          @RequestParam("search") String name) {
-//        Page<Contract> contracts = contractService.getContracts(name, PageRequest.of(page, size));
-//        return contracts;
-//    }
-
     @GetMapping(value = "/paging", params = {"page", "size", "fullName", "codeGround", "startRentDay", "endRentDay"})
     public Page<Contract> getListContract(@RequestParam("page") int page,
                                           @RequestParam("size") int size,
