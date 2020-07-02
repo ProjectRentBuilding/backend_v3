@@ -29,10 +29,11 @@ public interface ServicesRepository extends JpaRepository<Services, Integer> {
     Page<Services> searchAndPage(Integer consume, Integer price, Date monthYear, String nameCustomer, Pageable pageable);
 
     @Query(value="select s from Services s where s.nameService like %?1% and s.periodic " +
-            "like %?2% and s.consume>=?3 and s.monthYear>=?4  order by s.id")
+            "like %?2% and s.consume>=?3 and s.monthYear>=?4 order by s.id")
     Page<Services> searchAll(String nameService, String periodic, Integer consume,
                              Date monthYear, Pageable pageable);
 
+    Page<Services> findAllByNameServiceAndPeriodicAndConsumeAndMonthYearAfterAndContract_Customer_DeleteFlagIsNull(String nameService, String periodic, Integer consume, Date monthYear, Pageable pageable);
     Page<Services> findAllByMonthYearBetweenAndContract_Id(Date monthYear, Date monthYear2, Integer contractId, Pageable pageable);
 
     @Query(value = "select s from Services s where s.contract.id = ?1 and s.monthYear between ?2 and ?3 ")
