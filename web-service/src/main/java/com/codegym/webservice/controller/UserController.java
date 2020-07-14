@@ -1,7 +1,5 @@
 package com.codegym.webservice.controller;
 
-
-
 import com.codegym.dao.dto.JwtResponse;
 import com.codegym.dao.dto.UserBuildingDTO;
 import com.codegym.web.services.impl.UserBuildingServiceImpl;
@@ -24,9 +22,9 @@ public class UserController {
     @Autowired
     JwtTokenUtil jwtTokenUtil;
     @Autowired(required = false)
-    UserBuildingServiceImpl userBuildingService;
+    UserBuildingServiceImpl userBuildingServiceImpl;
 
-    private UserBuildingDTO userBuildingDTO = new UserBuildingDTO("member","Hello");
+    private UserBuildingDTO userBuildingDTO;
     @GetMapping("/admin")
     public ResponseEntity<?> helloAdmin() {
         userBuildingDTO=new UserBuildingDTO("admin","Hello");
@@ -45,13 +43,14 @@ public class UserController {
         return new ResponseEntity<>(userBuildingDTO, HttpStatus.OK);
     }
 
-    @PostMapping("/login1")
-    public ResponseEntity<?> login(@RequestBody UserBuildingDTO user){
-//        System.out.println(user.getPassword());
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody UserBuildingDTO userBuilding){
+//        System.out.println(user.getPasswordUser());
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPasswordUser())
+                new UsernamePasswordAuthenticationToken(userBuilding.getUsername(),userBuilding.getPasswordUser())
         );
-        UserDetails userDetails = userBuildingService
+        UserDetails userDetails = userBuildingServiceImpl
                 .loadUserByUsername(authentication.getName());
         String jwtToken=jwtTokenUtil.generateToken(userDetails);
         JwtResponse jwtResponse= new JwtResponse(jwtToken,userDetails.getUsername(),userDetails.getAuthorities());

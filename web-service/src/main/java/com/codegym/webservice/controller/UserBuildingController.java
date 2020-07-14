@@ -1,14 +1,10 @@
 package com.codegym.webservice.controller;
 
-import com.codegym.dao.dto.CustomerDTO;
 import com.codegym.dao.dto.UserBuildingDTO;
-import com.codegym.dao.entity.TypeGround;
 import com.codegym.dao.entity.UserBuilding;
 import com.codegym.web.services.UserBuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

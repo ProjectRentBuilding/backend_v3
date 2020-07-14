@@ -1,8 +1,8 @@
 package com.codegym.web.services.impl;
 
-import com.codegym.dao.dto.CustomerDTO;
 import com.codegym.dao.dto.UserBuildingDTO;
-import com.codegym.dao.entity.*;
+import com.codegym.dao.entity.RoleUser;
+import com.codegym.dao.entity.UserBuilding;
 import com.codegym.dao.repository.UserBuildingRepository;
 import com.codegym.web.services.UserBuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +33,19 @@ public class UserBuildingServiceImpl implements UserBuildingService, UserDetails
     }
 
     @Override
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        UserBuilding userBuilding = userBuildingRepository.findAllByDeleteFlagIsNullAndUsernameIs(userName);
+        if (userBuilding == null) {
+            throw new UsernameNotFoundException("User not found with username: " + userName);
+        }
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+        RoleUser roles = userBuilding.getRoleUser();
+        grantedAuthorities.add(new SimpleGrantedAuthority(roles.getRoleName()));
+        return new org.springframework.security.core.userdetails.User(userBuilding.getUsername(), userBuilding.getPasswordUser(),
+                grantedAuthorities);
+    }
+
+    @Override
     public UserBuildingDTO getUserBuildingByUsername(String username) {
        UserBuilding userBuilding = userBuildingRepository.findAllByDeleteFlagIsNullAndUsernameIs(username);
        if(userBuilding != null){
@@ -58,19 +71,5 @@ public class UserBuildingServiceImpl implements UserBuildingService, UserDetails
         userBuilding.setCustomer(userBuildingDTO.getCustomer());
         userBuilding.setRoleUser(userBuildingDTO.getRoleUser());
         userBuildingRepository.save(userBuilding);
-    }
-
-    @Override
-    @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserBuilding userBuilding = userBuildingRepository.findAllByDeleteFlagIsNullAndUsernameIs(username);
-        if (userBuilding == null) {
-            throw new UsernameNotFoundException("User not found with username: " + username);
-        }
-        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        RoleUser roleUser = userBuilding.getRoleUser();
-        grantedAuthorities.add(new SimpleGrantedAuthority(roleUser.getRoleName()));
-        return new org.springframework.security.core.userdetails.User(userBuilding.getUsername(), userBuilding.getPasswordUser(),
-                grantedAuthorities);
     }
 }

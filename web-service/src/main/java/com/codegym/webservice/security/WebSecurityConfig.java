@@ -32,7 +32,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired(required = false)
-    UserBuildingServiceImpl userDetailService;
+    UserBuildingServiceImpl userBuildingService;
     @Autowired
     JwtRequestFilter jwtRequestFilter;
     @Autowired
@@ -43,7 +43,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // configure AuthenticationManager so that it knows from where to load
         // user for matching credentials
         // Use BCryptPasswordEncoder
-        auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userBuildingService).passwordEncoder(passwordEncoder());
+
     }
 
     @Bean
@@ -68,7 +69,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll().and().
                 authorizeRequests().antMatchers("/admin","/api/admin/*").access("hasRole('ROLE_ADMIN')").and().
 //                authorizeRequests().antMatchers("/admin").access("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')").and().
-                authorizeRequests().antMatchers("/member").access("hasRole('ROLE_MEMBER')").and().
+        authorizeRequests().antMatchers("/member").access("hasRole('ROLE_MEMBER')").and().
                 authorizeRequests().antMatchers("/user").access("hasRole('ROLE_USER')")
                 .anyRequest().authenticated()
                 .and().cors();
