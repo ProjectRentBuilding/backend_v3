@@ -1,6 +1,5 @@
 package com.codegym.webservice.controller;
 
-
 import com.codegym.dao.dto.JwtResponse;
 import com.codegym.dao.dto.UserBuildingDTO;
 import com.codegym.web.services.impl.UserBuildingServiceImpl;
@@ -43,6 +42,7 @@ public class UserController {
         userBuildingDTO=new UserBuildingDTO("member","Hello");
         return new ResponseEntity<>(userBuildingDTO, HttpStatus.OK);
     }
+
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UserBuildingDTO userBuilding){

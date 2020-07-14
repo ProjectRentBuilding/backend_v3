@@ -1,8 +1,6 @@
 package com.codegym.web.services;
 
-import com.codegym.dao.dto.CustomerDTO;
 import com.codegym.dao.dto.UserBuildingDTO;
-import com.codegym.dao.entity.TypeEquipment;
 import com.codegym.dao.entity.UserBuilding;
 import org.springframework.security.core.userdetails.UserDetails;
 
