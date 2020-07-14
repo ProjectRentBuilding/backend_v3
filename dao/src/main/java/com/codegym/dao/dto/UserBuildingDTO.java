@@ -21,6 +21,11 @@ public class UserBuildingDTO implements Serializable {
     public UserBuildingDTO() {
     }
 
+    public UserBuildingDTO(String username, String passwordUser) {
+        this.username = username;
+        this.passwordUser = passwordUser;
+    }
+
     public String getUsername() {
         return username;
     }

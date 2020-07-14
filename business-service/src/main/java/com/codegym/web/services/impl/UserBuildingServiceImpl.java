@@ -1,18 +1,24 @@
 package com.codegym.web.services.impl;
 
-import com.codegym.dao.dto.CustomerDTO;
 import com.codegym.dao.dto.UserBuildingDTO;
-import com.codegym.dao.entity.Customer;
-import com.codegym.dao.entity.TypeEquipment;
+import com.codegym.dao.entity.RoleUser;
 import com.codegym.dao.entity.UserBuilding;
 import com.codegym.dao.repository.UserBuildingRepository;
 import com.codegym.web.services.UserBuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 @Service
-public class UserBuildingServiceImpl implements UserBuildingService {
+public class UserBuildingServiceImpl implements UserBuildingService, UserDetailsService {
     @Autowired
     UserBuildingRepository userBuildingRepository;
     @Override
@@ -23,6 +29,19 @@ public class UserBuildingServiceImpl implements UserBuildingService {
     @Override
     public UserBuilding findByUsername(String username) {
       return userBuildingRepository.findByUsername(username);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        UserBuilding userBuilding = userBuildingRepository.findAllByDeleteFlagIsNullAndUsernameIs(userName);
+        if (userBuilding == null) {
+            throw new UsernameNotFoundException("User not found with username: " + userName);
+        }
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+        RoleUser roles = userBuilding.getRoleUser();
+        grantedAuthorities.add(new SimpleGrantedAuthority(roles.getRoleName()));
+        return new org.springframework.security.core.userdetails.User(userBuilding.getUsername(), userBuilding.getPasswordUser(),
+                grantedAuthorities);
     }
 
     @Override
