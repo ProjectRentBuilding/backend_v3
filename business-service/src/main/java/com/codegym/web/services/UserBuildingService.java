@@ -4,6 +4,7 @@ import com.codegym.dao.dto.CustomerDTO;
 import com.codegym.dao.dto.UserBuildingDTO;
 import com.codegym.dao.entity.TypeEquipment;
 import com.codegym.dao.entity.UserBuilding;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface UserBuildingService {
     UserBuilding findByUsername(String username);
     UserBuildingDTO getUserBuildingByUsername(String username);
     void save(UserBuildingDTO userBuildingDTO);
+    UserDetails loadUserByUsername(String userName);
 }
