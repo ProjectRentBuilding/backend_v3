@@ -48,19 +48,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests()
-                .antMatchers("/login").permitAll().and().
-                authorizeRequests().antMatchers("/admin","/api/admin/*").access("hasRole('ROLE_ADMIN')").and().
+//        http.csrf().disable()
+//                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+//                .and()
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers("/login").permitAll().and().
+//                authorizeRequests().antMatchers("/admin","/api/admin/*").access("hasRole('ROLE_ADMIN')").and().
 //                authorizeRequests().antMatchers("/admin").access("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')").and().
-        authorizeRequests().antMatchers("/member").access("hasRole('ROLE_MEMBER')").and().
-                authorizeRequests().antMatchers("/user").access("hasRole('ROLE_USER')")
-                .anyRequest().authenticated()
-                .and().cors();
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+//        authorizeRequests().antMatchers("/member").access("hasRole('ROLE_MEMBER')").and().
+//                authorizeRequests().antMatchers("/user").access("hasRole('ROLE_USER')")
+//                .anyRequest().authenticated()
+//                .and().cors();
+//        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }
